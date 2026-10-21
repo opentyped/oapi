@@ -1,0 +1,8 @@
+{
+  "typeMappings": [
+    {
+      "match": { "module": "./wire.js", "export": "default" },
+      "schema": { "type": "string" }
+    }
+  ]
+}

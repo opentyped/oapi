@@ -1,0 +1,17 @@
+{
+  "typeMappings": [
+    {
+      "match": {
+        "module": "decimal.js",
+        "export": "default"
+      },
+      "schema": {
+        "type": "string",
+        "examples": ["123.45"]
+      }
+    }
+  ],
+  "namespaces": {
+    "./other.ts": "other"
+  }
+}

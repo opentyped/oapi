@@ -1,0 +1,92 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "patternProperties": {
+          "^(?=^item_[\\s\\S]*(?![\\s\\S]))(?!^item_special_[\\s\\S]*(?![\\s\\S]))[\\s\\S]*(?![\\s\\S])": {
+            "$ref": "#/components/schemas/Base"
+          },
+          "^(?!^item_[\\s\\S]*(?![\\s\\S]))(?=^item_special_[\\s\\S]*(?![\\s\\S]))[\\s\\S]*(?![\\s\\S])": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 2
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Base"
+                }
+              },
+              "rank": {
+                "type": "number"
+              }
+            },
+            "required": ["name", "children", "rank"],
+            "additionalProperties": false
+          },
+          "^(?=^item_[\\s\\S]*(?![\\s\\S]))(?=^item_special_[\\s\\S]*(?![\\s\\S]))[\\s\\S]*(?![\\s\\S])": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "allOf": [
+                  {
+                    "type": "string",
+                    "minLength": 2
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 2
+                  }
+                ]
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Base"
+                }
+              },
+              "rank": {
+                "type": "number"
+              }
+            },
+            "required": ["name", "children", "rank"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "Base": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Base"
+            }
+          }
+        },
+        "required": ["name", "children"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

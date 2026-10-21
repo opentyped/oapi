@@ -1,0 +1,62 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "accounts.Tree": {
+        "$id": "https://example.test/accounts",
+        "$dynamicAnchor": "node",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$dynamicRef": "#node"
+            }
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "billing.Tree": {
+        "$id": "https://example.test/billing",
+        "$dynamicAnchor": "node",
+        "type": "object",
+        "properties": {
+          "balance": {
+            "type": "number"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$dynamicRef": "#node"
+            }
+          }
+        },
+        "required": ["balance"],
+        "additionalProperties": false
+      },
+      "Pair": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "$ref": "#/components/schemas/accounts.Tree"
+          },
+          "billing": {
+            "$ref": "#/components/schemas/billing.Tree"
+          }
+        },
+        "required": ["accounts", "billing"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "openapi": "3.2.0",
+  "$self": "https://example.test/openapi.json",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/model": {
+      "get": {
+        "operationId": "api_model",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "#/components/securitySchemes/Key": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Mirror": {
+        "$id": "https://example.test/mirror",
+        "$ref": "https://example.test/openapi.json#/paths/~1api~1model/get/responses/200/content/application~1json/schema"
+      }
+    },
+    "securitySchemes": {
+      "Key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Key"
+      }
+    }
+  }
+}

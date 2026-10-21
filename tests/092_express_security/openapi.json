@@ -1,0 +1,82 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/inherited": {
+      "get": {
+        "operationId": "inherited",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/public": {
+      "get": {
+        "operationId": "public",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "security": []
+      }
+    },
+    "/protected": {
+      "post": {
+        "operationId": "protected",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "security": [
+          {
+            "oauth": ["users:write"],
+            "apiKey": []
+          },
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      },
+      "oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://identity.example/token",
+            "scopes": {
+              "users:read": "Read users",
+              "users:write": "Write users"
+            }
+          }
+        }
+      }
+    }
+  }
+}

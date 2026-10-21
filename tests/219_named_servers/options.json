@@ -1,0 +1,9 @@
+{
+  "openapi": "3.2.0",
+  "servers": [
+    {
+      "url": "https://api.example.test",
+      "name": "public"
+    }
+  ]
+}

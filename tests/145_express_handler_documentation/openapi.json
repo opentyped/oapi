@@ -1,0 +1,25 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/documented": {
+      "get": {
+        "operationId": "documented",
+        "summary": "Read the documented endpoint.",
+        "description": "Handler documentation supplies the operation details.",
+        "deprecated": true,
+        "responses": { "204": { "description": "HTTP 204" } }
+      }
+    },
+    "/overridden": {
+      "get": {
+        "operationId": "overridden",
+        "summary": "Explicit summary",
+        "description": "Explicit details",
+        "responses": { "204": { "description": "HTTP 204" } }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

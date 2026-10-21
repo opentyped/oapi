@@ -1,0 +1,6 @@
+{
+  "namespaces": {
+    "./src/models/**/*.ts": "models",
+    "./src/models/billing/**/*.ts": "billing"
+  }
+}

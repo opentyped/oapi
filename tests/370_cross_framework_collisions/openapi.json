@@ -1,0 +1,106 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "operationId": "convertUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/a.User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/b.User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/users": {
+      "post": {
+        "operationId": "convertWebUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/a.User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/b.User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "a.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "peers": {
+            "$ref": "#/components/schemas/ReadonlyOfRecordOfstringAnda.User"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "peers"]
+      },
+      "b.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "peers": {
+            "$ref": "#/components/schemas/ReadonlyOfRecordOfstringAndb.User"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "peers"]
+      },
+      "ReadonlyOfRecordOfstringAnda.User": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/a.User"
+        }
+      },
+      "ReadonlyOfRecordOfstringAndb.User": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/b.User"
+        }
+      }
+    }
+  }
+}

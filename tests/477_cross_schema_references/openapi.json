@@ -1,0 +1,38 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Node": {
+        "$id": "https://example.test/node",
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "peer": {
+            "$ref": "https://example.test/leaf"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "Leaf": {
+        "$id": "https://example.test/leaf",
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string"
+          }
+        },
+        "required": ["tag"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "namespaces": {
+    "./accounts.ts": "accounts",
+    "./billing.ts": "billing"
+  }
+}

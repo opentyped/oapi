@@ -1,0 +1,92 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number",
+                "const": 7
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  }
+                },
+                "required": ["id"],
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ],
+                "items": false,
+                "minItems": 1,
+                "maxItems": 2
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "boolean"
+                }
+              }
+            ]
+          },
+          "renamed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "flag_id": {
+                    "type": "boolean"
+                  }
+                },
+                "required": ["flag_id"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "literal": {
+            "type": "string",
+            "const": "ready"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["active", "idle"]
+          }
+        },
+        "required": ["value", "renamed", "literal", "state"],
+        "additionalProperties": false
+      },
+      "Impossible": {
+        "not": {}
+      }
+    }
+  }
+}

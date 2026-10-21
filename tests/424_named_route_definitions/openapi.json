@@ -1,0 +1,110 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/widgets/{sku}": {
+      "get": {
+        "operationId": "ReadWidget",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Widget"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing widget."
+          }
+        },
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/widgets": {
+      "get": {
+        "operationId": "ListWidgets_get",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Widget"
+                  }
+                }
+              }
+            }
+          },
+          "207": {
+            "description": "HTTP 207"
+          }
+        }
+      },
+      "additionalOperations": {
+        "COPY": {
+          "operationId": "ListWidgets_COPY",
+          "responses": {
+            "200": {
+              "description": "HTTP 200",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Widget"
+                    }
+                  }
+                }
+              }
+            },
+            "207": {
+              "description": "HTTP 207"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Widget": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "retired": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": ["sku"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

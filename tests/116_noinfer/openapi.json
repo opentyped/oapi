@@ -1,0 +1,93 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 2
+          },
+          "head": {
+            "$ref": "#/components/schemas/WireNode"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WireNode"
+            }
+          },
+          "choice": {
+            "type": "string",
+            "enum": ["a", "b"]
+          },
+          "box": {
+            "$ref": "#/components/schemas/BoxOfstring"
+          },
+          "shadow": {
+            "$ref": "#/components/schemas/Shadow"
+          },
+          "imported": {
+            "type": "number"
+          }
+        },
+        "required": ["value", "label", "head", "list", "choice", "box", "shadow", "imported"],
+        "additionalProperties": false
+      },
+      "WireNode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 2
+          },
+          "next": {
+            "$ref": "#/components/schemas/WireNode"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "BoxOfstring": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "Shadow": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/custom.NoInferOfboolean"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "custom.NoInferOfboolean": {
+        "type": "object",
+        "properties": {
+          "own": {
+            "type": "boolean"
+          }
+        },
+        "required": ["own"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

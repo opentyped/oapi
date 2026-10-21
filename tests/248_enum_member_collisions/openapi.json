@@ -1,0 +1,62 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "$ref": "#/components/schemas/left.User"
+          },
+          "right": {
+            "$ref": "#/components/schemas/right.User"
+          },
+          "leftMember": {
+            "type": "number"
+          },
+          "rightMember": {
+            "type": "number"
+          },
+          "leftCode": {
+            "type": "number",
+            "const": 1
+          },
+          "rightCode": {
+            "type": "number",
+            "const": 2
+          }
+        },
+        "required": ["left", "right", "leftMember", "rightMember", "leftCode", "rightCode"],
+        "additionalProperties": false
+      },
+      "left.User": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string",
+            "const": "left"
+          }
+        ]
+      },
+      "right.User": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string",
+            "const": "right"
+          }
+        ]
+      }
+    }
+  }
+}

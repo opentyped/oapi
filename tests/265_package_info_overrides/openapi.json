@@ -1,0 +1,30 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Public catalog",
+    "version": "2.3.4",
+    "description": "Catalog API",
+    "license": {
+      "name": "Custom"
+    },
+    "contact": {
+      "name": "Public API Team"
+    }
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

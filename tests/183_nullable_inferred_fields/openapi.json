@@ -1,0 +1,193 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "nullable": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "const": "ada"
+                      }
+                    ],
+                    "minLength": 2
+                  },
+                  "names": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "string",
+                              "const": "ada"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "fallback": {
+                    "type": "string",
+                    "enum": ["missing", "ada"]
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["name", "names", "owner"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "const": "bo"
+                      }
+                    ],
+                    "minLength": 2
+                  },
+                  "names": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "string",
+                              "const": "bo"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "fallback": {
+                    "type": "string",
+                    "enum": ["missing", "bo"]
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["name", "names", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": ["missing", "di"]
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["value", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "items": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "string",
+                              "const": "ev"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["values", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["nullable", "choice", "items"],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

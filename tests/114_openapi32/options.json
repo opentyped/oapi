@@ -1,0 +1,8 @@
+{
+  "openapi": "3.2.0",
+  "tags": [
+    { "name": "users", "parent": "resources", "summary": "User operations", "kind": "nav" },
+    { "name": "resources", "summary": "Resources", "kind": "nav" },
+    { "name": "staff", "parent": "users", "kind": "audience" }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Pair": {
+        "type": "object",
+        "$defs": {
+          "a": {
+            "$id": "https://example.test/nested-accounts",
+            "$dynamicAnchor": "node",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$dynamicRef": "#node"
+                }
+              }
+            },
+            "required": ["name"],
+            "additionalProperties": false
+          },
+          "b": {
+            "$id": "https://example.test/nested-billing",
+            "$dynamicAnchor": "node",
+            "type": "object",
+            "properties": {
+              "balance": {
+                "type": "number"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$dynamicRef": "#node"
+                }
+              }
+            },
+            "required": ["balance"],
+            "additionalProperties": false
+          }
+        },
+        "properties": {
+          "accounts": {
+            "$ref": "https://example.test/nested-accounts"
+          },
+          "billing": {
+            "$ref": "https://example.test/nested-billing"
+          }
+        },
+        "required": ["accounts", "billing"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

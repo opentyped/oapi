@@ -1,0 +1,12 @@
+{
+  "namespaces": { "./shared/**/*.ts": "models" },
+  "documents": [
+    {
+      "options": {
+        "root": "child",
+        "tsconfig": "tsconfig.json",
+        "info": { "title": "Shared models", "version": "1.0.0" }
+      }
+    }
+  ]
+}

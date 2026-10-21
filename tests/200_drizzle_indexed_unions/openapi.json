@@ -1,0 +1,109 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["admin", "member"]
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "profile": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Profile"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "role", "active", "profile", "createdAt"],
+        "additionalProperties": false
+      },
+      "NewUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["admin", "member"]
+          },
+          "id": {
+            "type": "number"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "profile": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Profile"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "role"],
+        "additionalProperties": false
+      },
+      "EitherModel": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/User"
+          },
+          {
+            "$ref": "#/components/schemas/NewUser"
+          }
+        ]
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "bio": {
+            "type": "string",
+            "minLength": 2
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "parent": {
+            "$ref": "#/components/schemas/Profile"
+          }
+        },
+        "required": ["bio", "tags"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

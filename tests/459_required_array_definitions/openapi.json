@@ -1,0 +1,30 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Team": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": ["owner", "name"]
+          },
+          "owner": {
+            "type": "string"
+          },
+          "motto": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "owner"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

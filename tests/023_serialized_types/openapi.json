@@ -1,0 +1,22 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Decimal": { "type": "string", "pattern": "^[0-9]+$" },
+      "Model": {
+        "type": "object",
+        "properties": {
+          "amount": { "$ref": "#/components/schemas/Decimal" },
+          "id": { "type": "string", "format": "uuid" },
+          "count": { "type": "integer", "minimum": 0 },
+          "active": { "type": "boolean" }
+        },
+        "additionalProperties": false,
+        "required": ["amount", "id", "count", "active"]
+      }
+    }
+  }
+}

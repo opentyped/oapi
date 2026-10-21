@@ -1,0 +1,22 @@
+import oapi from '@typedapi/express';
+import type { Router } from '@typedapi/express';
+
+declare const app: Router;
+interface Model {
+  /** @minLength 2 */
+  name: string;
+  children: Model[];
+}
+export declare function compute(): Model;
+type Contract<F extends (...args: never[]) => Model, K extends keyof ReturnType<F> = 'name'> = {
+  body: { value: ReturnType<F>[K] };
+  responses: { 200: { body: Model } };
+};
+oapi.mount<Contract<typeof compute>>(app, {
+  method: 'POST',
+  path: '/selected-name',
+  operationId: 'selectedName',
+  handler(_request, response) {
+    return response.json({ name: 'ok', children: [] });
+  },
+});

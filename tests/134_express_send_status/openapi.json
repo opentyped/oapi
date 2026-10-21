@@ -1,0 +1,19 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/unavailable": {
+      "get": {
+        "operationId": "unavailable",
+        "responses": {
+          "503": {
+            "description": "HTTP 503",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

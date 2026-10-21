@@ -1,0 +1,93 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/alpha": {
+      "get": {
+        "operationId": "getApiAlpha",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/api/beta": {
+      "get": {
+        "operationId": "getApiBeta",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/api/gamma": {
+      "post": {
+        "operationId": "postApiGamma",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/api/delta": {
+      "post": {
+        "operationId": "postApiDelta",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/internal/alpha": {
+      "get": {
+        "operationId": "getInternalAlpha",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/internal/beta": {
+      "get": {
+        "operationId": "getInternalBeta",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/internal/gamma": {
+      "post": {
+        "operationId": "postInternalGamma",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/internal/delta": {
+      "post": {
+        "operationId": "postInternalDelta",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,19 @@
+- Build Utoipa’s TypeScript equivalent: annotate models and handlers; generate OpenAPI 3.2 and JSON Schema at compile time.
+- Generate through Vite and `npm run json`; never execute application source.
+- Make `oapi.mount<Contract>(app, { method, path, handler })` register Express routes and describe them statically.
+- Type params, query, body, headers, and status-specific responses; enforce handler contracts.
+- Preserve Express capabilities; support standard Web Request/Response adapters and erase wrappers when possible.
+- Resolve nested, generic, mapped, conditional, and recursive types; reject unsafe `any`, `unknown`, and unsupported serialization clearly.
+- Assign namespaces through configured source globs; keep unrelated `User` models distinct in documents and generated definitions.
+- Keep operation IDs readable and stable; require explicit names for collisions, never append hashes.
+- Name schema components from folders, types, and property context; require explicit aliases when ambiguous, never hashes or counters.
+- Enforce one-way package dependencies; keep framework parsing with its framework and AST utilities generic.
+- Keep framework dependencies optional; register Express and other adapters explicitly in configuration.
+- Let independent parsers contribute through a shared document context; compose defaults only in Vite/main.
+- Reuse proven schema/OpenAPI libraries; keep custom machinery small.
+- Build `tsgen` from openapi-typescript: native OpenAPI 3.2, namespace-safe definitions only, no HTTP runtime.
+- Verify full outputs with authored numbered TypeScript/OpenAPI/definition goldens; no extra test suites in `tests/`.
+- Emit one ambient `.openapi/openapi.d.ts`; configure its directory and module prefix.
+- Export every generated type from `<prefix>/<configured-namespace>`; reserve `schema` for that namespace’s typed routes.
+- Provide callable `typedapi/fetch`: typed params/query and one body; path/method/media select payload types; native response narrowing; support Node, Web and Expo.
+- Export endpoint input/response/error types in source-folder namespaces; retain namespaces through OpenAPI JSON.

@@ -1,0 +1,97 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "ada",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "ada"
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["name", "owner"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "bo",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "bo"
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["name", "owner"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "x",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "x"
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["name", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["item"],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

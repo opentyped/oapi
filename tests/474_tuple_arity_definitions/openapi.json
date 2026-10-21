@@ -1,0 +1,60 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Arity": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "optional": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 1,
+            "maxItems": 2
+          },
+          "rest": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "boolean"
+              }
+            ],
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "required": ["required", "rest"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

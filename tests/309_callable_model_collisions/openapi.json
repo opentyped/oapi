@@ -1,0 +1,102 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "admin": {
+            "$ref": "#/components/schemas/SelectedOfa.loadAndKeysOfa.User"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/SelectedOfb.loadAndKeysOfb.User"
+          }
+        },
+        "required": ["admin", "customer"],
+        "additionalProperties": false
+      },
+      "SelectedOfa.loadAndKeysOfa.User": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 2
+              },
+              {
+                "$ref": "#/components/schemas/a.User.children"
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "SelectedOfb.loadAndKeysOfb.User": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 5
+              },
+              {
+                "$ref": "#/components/schemas/b.User.children"
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "a.User.children": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/a.User"
+        }
+      },
+      "b.User.children": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/b.User"
+        }
+      },
+      "a.User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "children": {
+            "$ref": "#/components/schemas/a.User.children"
+          }
+        },
+        "required": ["name", "children"],
+        "additionalProperties": false
+      },
+      "b.User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 5
+          },
+          "children": {
+            "$ref": "#/components/schemas/b.User.children"
+          }
+        },
+        "required": ["name", "children"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

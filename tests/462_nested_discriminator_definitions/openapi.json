@@ -1,0 +1,70 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Drawing": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "shape": {
+            "type": "object",
+            "required": ["kind"],
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Circle"
+              },
+              {
+                "$ref": "#/components/schemas/Rectangle"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "circle": "#/components/schemas/Circle",
+                "rectangle": "#/components/schemas/Rectangle"
+              }
+            }
+          }
+        },
+        "required": ["id", "shape"],
+        "additionalProperties": false
+      },
+      "Circle": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "circle"
+          },
+          "radius": {
+            "type": "number"
+          }
+        },
+        "required": ["kind", "radius"],
+        "additionalProperties": false
+      },
+      "Rectangle": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "rectangle"
+          },
+          "width": {
+            "type": "number"
+          }
+        },
+        "required": ["kind", "width"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

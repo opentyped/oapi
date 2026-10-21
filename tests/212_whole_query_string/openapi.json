@@ -1,0 +1,80 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/json-query": {
+      "get": {
+        "operationId": "searchJsonQuery",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "querystring",
+            "required": true,
+            "description": "Complete JSON query.",
+            "deprecated": true,
+            "example": { "name": "Ada" },
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Filter" } }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "ok": { "type": "boolean" } },
+                  "required": ["ok"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/form-query": {
+      "get": {
+        "operationId": "searchFormQuery",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "querystring",
+            "required": false,
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "tags": { "type": "array", "items": { "type": "string" } }
+                  },
+                  "additionalProperties": false
+                },
+                "encoding": { "tags": { "style": "form", "explode": true } }
+              }
+            }
+          }
+        ],
+        "responses": { "204": { "description": "HTTP 204" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Filter": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "child": { "$ref": "#/components/schemas/Filter" }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/devices": {
+      "get": {
+        "operationId": "ReadDevices",
+        "security": [
+          {
+            "deviceAlias": ["read:items"],
+            "clientCert": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "device": {
+        "type": "oauth2",
+        "deprecated": true,
+        "oauth2MetadataUrl": "https://auth.example.test/.well-known/oauth-authorization-server",
+        "flows": {
+          "deviceAuthorization": {
+            "deviceAuthorizationUrl": "https://auth.example.test/device",
+            "tokenUrl": "https://auth.example.test/token",
+            "refreshUrl": "https://auth.example.test/refresh",
+            "scopes": {
+              "read:items": "Read devices"
+            }
+          }
+        }
+      },
+      "deviceAlias": {
+        "$ref": "#/components/securitySchemes/device"
+      },
+      "clientCert": {
+        "type": "mutualTLS",
+        "description": "Client certificate"
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/imported": {
+      "get": {
+        "operationId": "imported",
+        "summary": "Read through an imported function.",
+        "description": "Function details remain available through an import alias.",
+        "deprecated": true,
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/arrow": {
+      "get": {
+        "operationId": "arrow",
+        "summary": "Read through an arrow function.",
+        "description": "Arrow details remain available through a const alias.",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/overridden": {
+      "get": {
+        "operationId": "overridden",
+        "summary": "Local summary overrides the imported handler documentation.",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/typed": {
+      "get": {
+        "operationId": "typed",
+        "summary": "Explicitly typed arrow documentation.",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

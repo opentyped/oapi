@@ -1,0 +1,271 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "allOf": [
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              }
+            ]
+          },
+          "bounded": {
+            "allOf": [
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 3
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              }
+            ]
+          }
+        },
+        "required": ["values", "bounded"],
+        "additionalProperties": false
+      },
+      "Fixed": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "allOf": [
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "Mixed": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "allOf": [
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  }
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  }
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

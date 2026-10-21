@@ -1,0 +1,74 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "x-owner": "accounts",
+        "x-data": {
+          "$ref": "#/not-a-schema",
+          "schemas": {
+            "example": true
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 2,
+            "x-role": "identifier"
+          },
+          "serialized": {
+            "type": "string",
+            "x-origin": "explicit",
+            "x-codec": "text"
+          },
+          "child": {
+            "$ref": "#/components/schemas/Model"
+          }
+        },
+        "required": ["id", "serialized"],
+        "additionalProperties": false
+      },
+      "Envelope": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "object",
+            "x-owner": "local",
+            "x-data": {
+              "$ref": "#/not-a-schema",
+              "schemas": {
+                "example": true
+              }
+            },
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 2,
+                "x-role": "identifier"
+              },
+              "serialized": {
+                "type": "string",
+                "x-origin": "explicit",
+                "x-codec": "text"
+              },
+              "child": {
+                "$ref": "#/components/schemas/Model"
+              }
+            },
+            "required": ["id", "serialized"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["model"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

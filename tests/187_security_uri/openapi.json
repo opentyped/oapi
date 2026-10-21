@@ -1,0 +1,54 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/secured": {
+      "get": {
+        "operationId": "ReadSecured",
+        "security": [
+          {
+            "local": ["read"],
+            "#/components/securitySchemes/local": ["read"],
+            "#%2Fcomponents%2FsecuritySchemes%2Flocal": ["read"]
+          },
+          {
+            "./local": ["external:scope"]
+          },
+          {
+            "https://auth.example.test/schemes/service": ["external:scope"]
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "local": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://auth.example.test/token",
+            "scopes": {
+              "read": "Read data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "https://auth.example.test/schemes/default": []
+    }
+  ]
+}

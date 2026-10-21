@@ -1,0 +1,61 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "children": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Intersection.test.Left.children.And.test.Right.children",
+                "maxItems": 2
+              },
+              {
+                "$ref": "#/components/schemas/Intersection.test.Left.children.And.test.Right.children"
+              }
+            ]
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": ["value", "count"],
+        "additionalProperties": false
+      },
+      "Intersection.test.Left.children.And.test.Right.children": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "children": {
+              "$ref": "#/components/schemas/Intersection.test.Left.children.And.test.Right.children",
+              "allOf": [
+                {
+                  "maxItems": 2
+                }
+              ]
+            },
+            "count": {
+              "type": "number"
+            }
+          },
+          "required": ["value", "count"],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

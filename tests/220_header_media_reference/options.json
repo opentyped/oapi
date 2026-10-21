@@ -1,0 +1,13 @@
+{
+  "openapi": "3.2.0",
+  "headers": {
+    "Data": {
+      "content": {
+        "application/json": {
+          "$ref": "https://example.test/media.json#/Text",
+          "summary": "Text payload"
+        }
+      }
+    }
+  }
+}

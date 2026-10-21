@@ -1,0 +1,79 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/copies": {
+      "post": {
+        "operationId": "StartCopy",
+        "responses": {
+          "202": {
+            "description": "HTTP 202",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "job": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["job"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopyPayload"
+              }
+            }
+          }
+        },
+        "callbacks": {
+          "done": {
+            "$ref": "#/components/callbacks/Callback.CopyCallback"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CopyPayload": {
+        "type": "object",
+        "properties": {
+          "callbackUrl": {
+            "type": "string"
+          }
+        },
+        "required": ["callbackUrl"],
+        "additionalProperties": false
+      }
+    },
+    "callbacks": {
+      "Callback.CopyCallback": {
+        "{$request.body#/callbackUrl}": {
+          "additionalOperations": {
+            "COPY": {
+              "operationId": "copyCallback",
+              "responses": {
+                "204": {
+                  "description": "HTTP 204"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

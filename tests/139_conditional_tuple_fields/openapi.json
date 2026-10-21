@@ -1,0 +1,106 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Result": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "$ref": "#/components/schemas/User",
+            "title": "user"
+          },
+          {
+            "type": "string",
+            "const": "ada",
+            "title": "suffix"
+          }
+        ],
+        "items": false,
+        "minItems": 1,
+        "maxItems": 2
+      },
+      "Nested": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "$ref": "#/components/schemas/RowOfLiteral_item_matrix",
+            "title": "row"
+          },
+          {
+            "$ref": "#/components/schemas/RowOfLiteral_item_matrix",
+            "title": "copy"
+          }
+        ],
+        "items": false,
+        "minItems": 1,
+        "maxItems": 2
+      },
+      "Prefix": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "$ref": "#/components/schemas/User",
+            "title": "head"
+          }
+        ],
+        "items": {
+          "type": "string",
+          "title": "tail"
+        },
+        "minItems": 1
+      },
+      "FrozenResult": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "$ref": "#/components/schemas/User"
+          },
+          {
+            "type": "string",
+            "const": "frozen"
+          }
+        ],
+        "items": false,
+        "minItems": 1,
+        "maxItems": 2
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "manager": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "RowOfLiteral_item_matrix": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "$ref": "#/components/schemas/User",
+            "title": "user"
+          },
+          {
+            "type": "string",
+            "const": "matrix",
+            "title": "suffix"
+          }
+        ],
+        "items": false,
+        "minItems": 1,
+        "maxItems": 2
+      }
+    }
+  }
+}

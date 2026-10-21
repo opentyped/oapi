@@ -1,0 +1,8 @@
+{
+  "name": "@fixtures/contact",
+  "version": "1.2.3",
+  "type": "module",
+  "description": "Package-derived API metadata",
+  "author": "Ada Lovelace <ada@example.test> (https://example.test/ada)",
+  "license": "MIT"
+}

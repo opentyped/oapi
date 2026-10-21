@@ -1,0 +1,61 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/bounded-events": {
+      "get": {
+        "operationId": "boundedEvents",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/jsonl": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StreamEvent" },
+                  "maxItems": 2
+                },
+                "itemSchema": { "$ref": "#/components/schemas/StreamEvent" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "operationId": "expressEvents",
+        "responses": { "200": { "$ref": "#/components/responses/EventStream" } }
+      }
+    },
+    "/web-events": {
+      "get": {
+        "operationId": "events",
+        "responses": { "200": { "$ref": "#/components/responses/EventStream" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StreamEvent": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "next": { "$ref": "#/components/schemas/StreamEvent" }
+        },
+        "required": ["id"],
+        "additionalProperties": false,
+        "examples": [{ "id": "one" }]
+      }
+    },
+    "responses": {
+      "EventStream": {
+        "description": "Event stream",
+        "content": {
+          "application/jsonl": { "itemSchema": { "$ref": "#/components/schemas/StreamEvent" } }
+        }
+      }
+    }
+  }
+}

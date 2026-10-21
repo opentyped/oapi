@@ -1,0 +1,91 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "lists": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "names": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "const": "ada"
+                    },
+                    "minItems": 1
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["names", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "nested": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "const": "bo",
+                        "minLength": 2
+                      },
+                      "copy": {
+                        "type": "string",
+                        "const": "bo"
+                      }
+                    },
+                    "required": ["name"],
+                    "additionalProperties": false
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["value", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["lists", "nested"],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

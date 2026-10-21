@@ -1,0 +1,43 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Asset": {
+        "title": "Transfer asset",
+        "type": "object",
+        "minProperties": 3,
+        "maxProperties": 8,
+        "properties": {
+          "id": { "type": "string", "readOnly": true },
+          "secret": { "type": "string", "writeOnly": true },
+          "payload": {
+            "type": "string",
+            "contentEncoding": "base64",
+            "contentMediaType": "application/json"
+          },
+          "price": { "type": "number", "minimum": 0, "maximum": 1000, "multipleOf": 0.25 },
+          "state": {
+            "type": "string",
+            "enum": ["draft", "published"],
+            "default": "draft",
+            "examples": ["draft", "published"]
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true
+          },
+          "retired": { "type": "string", "deprecated": true },
+          "previous": { "$ref": "#/components/schemas/Asset" }
+        },
+        "required": ["id", "secret", "price"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

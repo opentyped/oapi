@@ -1,0 +1,60 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "required": ["kind"],
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ReadonlyOfA.From.test.Model.Base"
+          },
+          {
+            "$ref": "#/components/schemas/ReadonlyOfB.From.test.Model.Base"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "a": "#/components/schemas/ReadonlyOfA.From.test.Model.Base",
+            "b": "#/components/schemas/ReadonlyOfB.From.test.Model.Base"
+          }
+        }
+      },
+      "ReadonlyOfA.From.test.Model.Base": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "a"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["kind", "value"],
+        "additionalProperties": false
+      },
+      "ReadonlyOfB.From.test.Model.Base": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "b"
+          },
+          "value": {
+            "type": "number"
+          }
+        },
+        "required": ["kind", "value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

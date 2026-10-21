@@ -1,0 +1,52 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Invoice": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "total": { "type": "string", "examples": ["123.45"] },
+          "alias": { "type": "string", "examples": ["123.45"] },
+          "named": { "type": "string", "examples": ["123.45"] },
+          "reexported": { "type": "string", "examples": ["123.45"] },
+          "history": { "type": "array", "items": { "type": "string", "examples": ["123.45"] } },
+          "readonly": { "type": "string", "examples": ["123.45"] },
+          "optional": { "type": "string", "examples": ["123.45"] },
+          "nullable": {
+            "anyOf": [{ "type": "null" }, { "type": "string", "examples": ["123.45"] }]
+          },
+          "nested": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": { "amount": { "type": "string", "examples": ["123.45"] } },
+            "required": ["amount"]
+          },
+          "unrelated": { "$ref": "#/components/schemas/other.Decimal" },
+          "override": { "type": "number" }
+        },
+        "required": [
+          "total",
+          "alias",
+          "named",
+          "reexported",
+          "history",
+          "readonly",
+          "nullable",
+          "nested",
+          "unrelated",
+          "override"
+        ]
+      },
+      "other.Decimal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": { "value": { "type": "string" } },
+        "required": ["value"]
+      }
+    }
+  }
+}

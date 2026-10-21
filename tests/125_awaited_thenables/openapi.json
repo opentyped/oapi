@@ -1,0 +1,73 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Result": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/WireNode"
+          },
+          "nested": {
+            "$ref": "#/components/schemas/WireNode"
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 3
+          },
+          "local": {
+            "$ref": "#/components/schemas/local.Date"
+          }
+        },
+        "required": ["value", "nested", "choice", "label", "local"],
+        "additionalProperties": false
+      },
+      "AwaitedNode": {
+        "$ref": "#/components/schemas/WireNode"
+      },
+      "WireNode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 2
+          },
+          "next": {
+            "$ref": "#/components/schemas/WireNode"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "local.Date": {
+        "type": "object",
+        "properties": {
+          "own": {
+            "type": "string"
+          }
+        },
+        "required": ["own"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

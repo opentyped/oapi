@@ -1,0 +1,81 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "accepted": {
+            "type": "string",
+            "const": "ok"
+          },
+          "rejected": {
+            "type": "string",
+            "const": "fallback"
+          },
+          "distributed": {
+            "type": "string",
+            "enum": ["ok", "fallback"]
+          },
+          "object": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": ["id"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "projected": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "a"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": ["kind", "value"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "b"
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": ["kind", "value"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["accepted", "rejected", "distributed", "object", "projected"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

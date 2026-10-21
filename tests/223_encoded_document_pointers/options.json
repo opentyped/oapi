@@ -1,0 +1,17 @@
+{
+  "include": {},
+  "documents": [
+    {
+      "path": "/v1",
+      "operationIdPrefix": "nested_",
+      "options": {
+        "root": ".",
+        "tsconfig": "tsconfig.json",
+        "info": {
+          "title": "Child",
+          "version": "1"
+        }
+      }
+    }
+  ]
+}

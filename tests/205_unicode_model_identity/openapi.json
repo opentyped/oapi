@@ -1,0 +1,39 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "CafeComposed": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/CafeComposed"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "CafeDecomposed": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "next": {
+            "$ref": "#/components/schemas/CafeDecomposed"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

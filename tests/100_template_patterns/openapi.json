@@ -1,0 +1,85 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "direct": {
+            "$ref": "#/components/schemas/Direct"
+          },
+          "items": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Value"
+            },
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^item-[\\s\\S]*(?![\\s\\S])"
+            }
+          },
+          "events": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Value"
+            },
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^event-[\\s\\S]*(?![\\s\\S])"
+            }
+          },
+          "literal": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false,
+            "patternProperties": {
+              "^literal-[\\s\\S]*(?![\\s\\S])": {
+                "$ref": "#/components/schemas/Value"
+              }
+            }
+          },
+          "token": {
+            "type": "string",
+            "pattern": "^item\\.[\\s\\S]*\\.end(?![\\s\\S])"
+          }
+        },
+        "required": ["direct", "items", "events", "literal", "token"],
+        "additionalProperties": false
+      },
+      "Direct": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "dictionary"
+          }
+        },
+        "required": ["kind"],
+        "additionalProperties": false,
+        "patternProperties": {
+          "^item\\.[\\s\\S]*\\.end(?![\\s\\S])": {
+            "$ref": "#/components/schemas/Value"
+          }
+        }
+      },
+      "Value": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

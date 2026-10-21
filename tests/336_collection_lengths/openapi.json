@@ -1,0 +1,89 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "arrayLength": {
+            "type": "number"
+          },
+          "fixedLength": {
+            "type": "number",
+            "const": 2
+          },
+          "optionalLength": {
+            "type": "number",
+            "enum": [1, 2]
+          },
+          "emptyLength": {
+            "type": "number",
+            "const": 0
+          },
+          "restLength": {
+            "type": "number"
+          },
+          "unionLength": {
+            "type": "number",
+            "enum": [1, 2]
+          },
+          "mixed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Model"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "pairMixed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Model"
+              },
+              {
+                "type": "number",
+                "const": 2
+              }
+            ]
+          }
+        },
+        "required": [
+          "arrayLength",
+          "fixedLength",
+          "optionalLength",
+          "emptyLength",
+          "restLength",
+          "unionLength",
+          "mixed",
+          "pairMixed"
+        ],
+        "additionalProperties": false
+      },
+      "Model": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Model"
+            }
+          }
+        },
+        "required": ["name", "children"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

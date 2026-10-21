@@ -1,0 +1,46 @@
+{
+  "name": "@typedapi/openapi",
+  "version": "0.1.0",
+  "description": "Compiler-independent OpenAPI 3.2 documents, schemas and validation",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./web": {
+      "types": "./dist/contract.d.ts",
+      "import": "./dist/contract.js",
+      "require": "./dist/contract.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "require": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@scalar/openapi-validator": "0.1.13",
+    "ajv": "^8.18.0",
+    "fast-uri": "3.1.8",
+    "content-type": "1.0.5",
+    "openapi3-ts": "^4.6.2"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "@types/content-type": "^1.1.9",
+    "tsc-alias": "1.9.8"
+  }
+}

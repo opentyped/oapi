@@ -1,0 +1,193 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "operationId": "createUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "$ref": "#/components/schemas/models.User"
+                  }
+                },
+                "required": ["user"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "HTTP 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "HTTP 422",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["message"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "x-typedapi-namespace": "api/users"
+      },
+      "get": {
+        "operationId": "ListUsers",
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "2XX": {
+            "description": "HTTP 2XX",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/models.User"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "HTTP default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reason": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["reason"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "x-typedapi-namespace": "api/users"
+      }
+    },
+    "/drafts": {
+      "post": {
+        "operationId": "SaveDraft",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/models.User"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "x-typedapi-namespace": "api/users"
+      }
+    },
+    "/health": {
+      "head": {
+        "operationId": "Health",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.User"
+                }
+              }
+            }
+          }
+        },
+        "x-typedapi-namespace": "api/users"
+      }
+    },
+    "/text": {
+      "get": {
+        "operationId": "ReadText",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-typedapi-namespace": "api/users"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "models.User": {
+        "type": "object",
+        "properties": {
+          "balance": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "manager": {
+            "$ref": "#/components/schemas/models.User"
+          }
+        },
+        "required": ["id", "balance"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

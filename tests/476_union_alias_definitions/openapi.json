@@ -1,0 +1,48 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Payment": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Cash"
+          },
+          {
+            "$ref": "#/components/schemas/Card"
+          }
+        ]
+      },
+      "Cash": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "cash"
+          }
+        },
+        "required": ["kind"],
+        "additionalProperties": false
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "card"
+          },
+          "last4": {
+            "type": "string"
+          }
+        },
+        "required": ["kind", "last4"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

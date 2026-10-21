@@ -1,0 +1,72 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "patterns": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "accepted": {
+                    "type": "string",
+                    "pattern": "^item-[\\s\\S]*(?![\\s\\S])"
+                  }
+                },
+                "required": ["accepted"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "rejected": {
+                    "type": "string",
+                    "pattern": "^other-[\\s\\S]*(?![\\s\\S])"
+                  }
+                },
+                "required": ["rejected"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "literals": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "accepted": {
+                    "type": "string",
+                    "const": "item-a"
+                  }
+                },
+                "required": ["accepted"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "rejected": {
+                    "type": "string",
+                    "const": "other"
+                  }
+                },
+                "required": ["rejected"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["patterns", "literals"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

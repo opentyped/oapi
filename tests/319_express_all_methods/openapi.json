@@ -1,0 +1,297 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "delete": {
+        "operationId": "deleteHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "head": {
+        "operationId": "headHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "options": {
+        "operationId": "optionsHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "patchHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "put": {
+        "operationId": "putHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "query": {
+        "operationId": "queryHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "trace": {
+        "operationId": "traceHealth",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "additionalOperations": {
+        "ACL": {
+          "operationId": "aclHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "BIND": {
+          "operationId": "bindHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "CHECKOUT": {
+          "operationId": "checkoutHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "CONNECT": {
+          "operationId": "connectHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "COPY": {
+          "operationId": "copyHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "LINK": {
+          "operationId": "linkHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "LOCK": {
+          "operationId": "lockHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "M-SEARCH": {
+          "operationId": "mSearchHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "MERGE": {
+          "operationId": "mergeHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "MKACTIVITY": {
+          "operationId": "mkactivityHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "MKCALENDAR": {
+          "operationId": "mkcalendarHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "MKCOL": {
+          "operationId": "mkcolHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "MOVE": {
+          "operationId": "moveHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "NOTIFY": {
+          "operationId": "notifyHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "PROPFIND": {
+          "operationId": "propfindHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "PROPPATCH": {
+          "operationId": "proppatchHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "PURGE": {
+          "operationId": "purgeHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "REBIND": {
+          "operationId": "rebindHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "REPORT": {
+          "operationId": "reportHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "SEARCH": {
+          "operationId": "searchHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "SOURCE": {
+          "operationId": "sourceHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "SUBSCRIBE": {
+          "operationId": "subscribeHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "UNBIND": {
+          "operationId": "unbindHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "UNLINK": {
+          "operationId": "unlinkHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "UNLOCK": {
+          "operationId": "unlockHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        },
+        "UNSUBSCRIBE": {
+          "operationId": "unsubscribeHealth",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

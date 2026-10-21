@@ -1,0 +1,31 @@
+[files]
+exclude = ["**/.git", "**/target", "**/node_modules", "**/dist", "**/generated"]
+
+[[rules.layout]]
+target = "."
+mode = "permissive"
+files.required = ["package.json", "tsconfig.json"]
+
+[[rules.layout]]
+target = ["**/*.md", "**/*.markdown"]
+allow = false
+case_sensitive = false
+
+[[rules.layout]]
+target = ["README.md", "agents.md"]
+allow = true
+description = "Project usage and concise agent objectives."
+
+[[rules.filename]]
+target = "packages/*/src/**/*.ts"
+kind = "file"
+max_words = 2
+
+[[rules."forbidden-words"]]
+target = "packages/*/src/**"
+words = ["common", "core", "helper", "helpers", "misc", "shared", "util", "utils"]
+
+[[rules.layout]]
+target = "packages/*"
+mode = "permissive"
+files.required = ["package.json", "tsconfig.json", "src/index.ts"]

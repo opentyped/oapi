@@ -1,0 +1,12 @@
+{
+  "name": "@example/catalog",
+  "version": "2.3.4",
+  "type": "module",
+  "description": "Catalog API",
+  "license": "MIT",
+  "author": {
+    "name": "API Team",
+    "email": "api@example.com",
+    "url": "https://example.com"
+  }
+}

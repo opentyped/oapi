@@ -1,0 +1,62 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "$ref": "#/components/schemas/Choice"
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/Quantity"
+          },
+          "impossible": {
+            "allOf": [
+              {
+                "type": "string",
+                "minLength": 3
+              },
+              {
+                "type": "string",
+                "const": "x"
+              }
+            ]
+          }
+        },
+        "required": ["choice", "quantity"],
+        "additionalProperties": false
+      },
+      "Choice": {
+        "allOf": [
+          {
+            "type": "string",
+            "minLength": 3
+          },
+          {
+            "type": "string",
+            "enum": ["x", "valid"]
+          }
+        ]
+      },
+      "Quantity": {
+        "allOf": [
+          {
+            "type": "number",
+            "minimum": 10
+          },
+          {
+            "type": "number",
+            "enum": [1, 12]
+          }
+        ]
+      }
+    }
+  }
+}

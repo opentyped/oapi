@@ -1,0 +1,78 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "forbidden": {
+            "not": {},
+            "title": "Forbidden payload",
+            "deprecated": true
+          },
+          "labels": {
+            "type": "object",
+            "patternProperties": {
+              "^x-": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "title": "Labels",
+            "writeOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "required": ["point", "labels"]
+      },
+      "Point": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "const": "point"
+          },
+          "coordinates": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 2
+          }
+        },
+        "required": ["kind", "coordinates"],
+        "additionalProperties": false,
+        "title": "Wire point",
+        "description": "Serialized point coordinates.",
+        "default": {
+          "kind": "point",
+          "coordinates": [0, 0]
+        },
+        "examples": [
+          {
+            "kind": "point",
+            "coordinates": [1, 2]
+          }
+        ],
+        "deprecated": true,
+        "xml": {
+          "name": "point"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/events": {
+      "post": {
+        "operationId": "Upload",
+        "requestBody": {
+          "required": true,
+          "description": "Upload an encoded sequence of items.",
+          "content": {
+            "application/jsonl": {
+              "itemSchema": {
+                "$ref": "#/components/schemas/UploadItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/optional-events": {
+      "post": {
+        "operationId": "OptionalUpload",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/x-ndjson": {
+              "itemSchema": {
+                "$ref": "#/components/schemas/UploadItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/express-events": {
+      "post": {
+        "operationId": "ExpressUpload",
+        "requestBody": {
+          "required": true,
+          "description": "Upload an encoded sequence of items.",
+          "content": {
+            "application/jsonl": {
+              "itemSchema": {
+                "$ref": "#/components/schemas/UploadItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/web-events": {
+      "post": {
+        "operationId": "webUpload",
+        "requestBody": {
+          "required": true,
+          "description": "Upload an encoded sequence of items.",
+          "content": {
+            "application/jsonl": {
+              "itemSchema": {
+                "$ref": "#/components/schemas/UploadItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/batch-events": {
+      "post": {
+        "operationId": "BatchUpload",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/jsonl": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UploadItem"
+                },
+                "minItems": 1,
+                "maxItems": 3
+              },
+              "itemSchema": {
+                "$ref": "#/components/schemas/UploadItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UploadItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 2
+          },
+          "parent": {
+            "$ref": "#/components/schemas/UploadItem"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

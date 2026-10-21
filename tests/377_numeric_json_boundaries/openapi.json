@@ -1,0 +1,60 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "maximum": {
+            "type": "number",
+            "const": 1.7976931348623157e308
+          },
+          "minimum": {
+            "type": "number",
+            "const": 5e-324
+          },
+          "underflow": {
+            "type": "number",
+            "const": 0
+          },
+          "negativeZero": {
+            "type": "number",
+            "const": 0
+          },
+          "anyNumber": {
+            "type": "number"
+          },
+          "positive": {
+            "type": "string",
+            "const": "Infinity"
+          },
+          "negative": {
+            "type": "string",
+            "const": "-Infinity"
+          },
+          "notNumber": {
+            "type": "string",
+            "const": "NaN"
+          }
+        },
+        "required": [
+          "maximum",
+          "minimum",
+          "underflow",
+          "negativeZero",
+          "anyNumber",
+          "positive",
+          "negative",
+          "notNumber"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

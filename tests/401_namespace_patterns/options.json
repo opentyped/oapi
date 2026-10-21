@@ -1,0 +1,6 @@
+{
+  "namespaces": {
+    "./src/{accounts,billing}/**/*.ts": "public",
+    "./src/!(accounts|billing)/**/*.ts": "private"
+  }
+}

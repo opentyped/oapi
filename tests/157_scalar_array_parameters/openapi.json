@@ -1,0 +1,29 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/search": {
+      "get": {
+        "operationId": "Search",
+        "parameters": [
+          {
+            "name": "values",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "anyOf": [
+                { "type": "array", "items": { "type": "string" } },
+                { "type": "array", "items": { "type": "number" } }
+              ]
+            },
+            "style": "pipeDelimited",
+            "explode": false
+          }
+        ],
+        "responses": { "204": { "description": "HTTP 204" } }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

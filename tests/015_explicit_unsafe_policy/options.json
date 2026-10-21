@@ -1,0 +1,6 @@
+{
+  "types": {
+    "any": "allow",
+    "unknown": "allow"
+  }
+}

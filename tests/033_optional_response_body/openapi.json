@@ -1,0 +1,33 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/heartbeat": {
+      "get": {
+        "operationId": "pollHeartbeat",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Heartbeat" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Heartbeat": {
+        "type": "object",
+        "properties": {
+          "sequence": { "type": "number" },
+          "previous": { "$ref": "#/components/schemas/Heartbeat" }
+        },
+        "additionalProperties": false,
+        "required": ["sequence"]
+      }
+    }
+  }
+}

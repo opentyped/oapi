@@ -1,0 +1,5 @@
+{
+  "typeMappings": [
+    { "match": { "module": "decimal.js", "export": "Decimal" }, "schema": { "type": "string" } }
+  ]
+}

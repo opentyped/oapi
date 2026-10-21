@@ -1,0 +1,46 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "readHealth",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "ok": { "type": "boolean", "const": true } },
+                  "additionalProperties": false,
+                  "required": ["ok"]
+                }
+              }
+            },
+            "headers": {
+              "X-Trace": {
+                "schema": { "type": "string" },
+                "required": true,
+                "description": "Trace identifier",
+                "deprecated": true,
+                "style": "simple",
+                "explode": false,
+                "example": "trace-1",
+                "x-owner": "gateway"
+              },
+              "X-Reason": {
+                "content": {
+                  "text/plain": { "schema": { "type": "string" }, "example": "accepted" }
+                },
+                "required": false
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

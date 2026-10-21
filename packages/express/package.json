@@ -1,0 +1,52 @@
+{
+  "name": "@typedapi/express",
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./parser": {
+      "types": "./dist/parser/index.d.ts",
+      "import": "./dist/parser/index.js",
+      "require": "./dist/parser/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@typedapi/ast": "0.1.0",
+    "@typedapi/openapi": "0.1.0",
+    "@typedapi/compiler": "0.1.0",
+    "typescript": "~5.9.3",
+    "magic-string": "^1.4.3",
+    "path-to-regexp": "8.4.2",
+    "openapi3-ts": "^4.6.2"
+  },
+  "peerDependencies": {
+    "express": ">=4 <6",
+    "@types/express": ">=4 <6"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    },
+    "@types/express": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "tsc-alias": "1.9.8"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "@fixtures/contact",
+    "version": "1.2.3",
+    "description": "Package-derived API metadata",
+    "contact": {
+      "name": "Ada Lovelace",
+      "email": "ada@example.test",
+      "url": "https://example.test/ada"
+    },
+    "license": { "name": "MIT" }
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": { "id": { "type": "string" } },
+        "additionalProperties": false,
+        "required": ["id"]
+      }
+    }
+  }
+}

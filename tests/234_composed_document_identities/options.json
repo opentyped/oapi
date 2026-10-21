@@ -1,0 +1,33 @@
+{
+  "openapi": "3.2.0",
+  "$self": "https://example.test/openapi.json",
+  "include": {},
+  "documents": [
+    {
+      "path": "/api",
+      "operationIdPrefix": "api_",
+      "options": {
+        "root": ".",
+        "tsconfig": "tsconfig.json",
+        "openapi": "3.2.0",
+        "$self": "https://child.example.test/api/openapi.json",
+        "info": {
+          "title": "Child",
+          "version": "1"
+        },
+        "securitySchemes": {
+          "Key": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-Key"
+          }
+        },
+        "security": [
+          {
+            "https://child.example.test/api/openapi.json#/components/securitySchemes/Key": []
+          }
+        ]
+      }
+    }
+  ]
+}

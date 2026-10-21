@@ -1,0 +1,70 @@
+{
+  "include": {
+    "paths": ["Health"]
+  },
+  "securitySchemes": {
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://root.example"
+    }
+  ],
+  "documents": [
+    {
+      "path": "/v1",
+      "operationIdPrefix": "child_",
+      "options": {
+        "root": ".",
+        "tsconfig": "tsconfig.json",
+        "info": {
+          "title": "Child",
+          "version": "1"
+        },
+        "include": {
+          "paths": ["ReadUser"]
+        },
+        "securitySchemes": {
+          "key": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-Key"
+          }
+        },
+        "security": [
+          {
+            "key": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://child.example"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/public",
+      "operationIdPrefix": "public_",
+      "options": {
+        "root": ".",
+        "tsconfig": "tsconfig.json",
+        "info": {
+          "title": "Public",
+          "version": "1"
+        },
+        "include": {
+          "paths": ["ReadUser"]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "getRoot",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/v1/users/{userId}/posts/{postId}": {
+      "get": {
+        "operationId": "getV1UsersByUserIdPostsByPostId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/users/{名}": {
+      "get": {
+        "operationId": "getUsersBy名",
+        "parameters": [
+          {
+            "name": "名",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/health-check": {
+      "get": {
+        "operationId": "getHealthCheck",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/devices": {
+      "additionalOperations": {
+        "M-SEARCH": {
+          "operationId": "mSearchDevices",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        }
+      }
+    },
+    "/explicit": {
+      "post": {
+        "operationId": "stablePublicMethod",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

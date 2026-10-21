@@ -1,0 +1,42 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/items": {
+      "additionalOperations": {
+        "PURGE": {
+          "operationId": "PurgeContract",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            },
+            "default": {
+              "description": "Fallback for unrecognized statuses.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["reason"],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

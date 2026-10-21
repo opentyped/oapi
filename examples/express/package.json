@@ -1,0 +1,27 @@
+{
+  "name": "@typedapi/example-express",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "json": "typedapi --config typedapi.config.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run json && npm run typecheck",
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "start": "tsx server.ts"
+  },
+  "devDependencies": {
+    "@typedapi/compiler": "0.1.0",
+    "@typedapi/vite": "0.1.0",
+    "typescript": "~5.9.3",
+    "@types/express": "^5.0.0",
+    "tsx": "4.23.15",
+    "vite": "^7.1.0"
+  },
+  "dependencies": {
+    "@typedapi/express": "0.1.0",
+    "@typedapi/openapi": "0.1.0",
+    "express": "^5.1.0"
+  }
+}

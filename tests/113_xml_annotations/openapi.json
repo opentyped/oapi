@@ -1,0 +1,49 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "XmlUser": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "xml": { "attribute": true, "prefix": "u" } },
+          "displayName": { "type": "string", "xml": { "name": "display_name" } },
+          "labels": {
+            "type": "array",
+            "items": { "type": "string" },
+            "xml": { "name": "labels", "wrapped": true }
+          },
+          "manager": { "$ref": "#/components/schemas/XmlUser", "xml": { "name": "manager" } }
+        },
+        "required": ["id", "displayName", "labels"],
+        "additionalProperties": false,
+        "xml": { "name": "user", "namespace": "https://example.com/users", "prefix": "u" }
+      },
+      "XmlEnvelope": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "xml": { "attribute": true, "prefix": "u" } },
+              "displayName": { "type": "string", "xml": { "name": "display_name" } },
+              "labels": {
+                "type": "array",
+                "items": { "type": "string" },
+                "xml": { "name": "labels", "wrapped": true }
+              },
+              "manager": { "$ref": "#/components/schemas/XmlUser", "xml": { "name": "manager" } }
+            },
+            "required": ["id", "displayName", "labels"],
+            "additionalProperties": false,
+            "xml": { "name": "account" }
+          }
+        },
+        "required": ["user"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

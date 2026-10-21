@@ -1,0 +1,114 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/subscriptions": {
+      "post": {
+        "operationId": "subscribe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "HTTP 202"
+          }
+        },
+        "callbacks": {
+          "onEvent": {
+            "$ref": "#/components/callbacks/Callback.EventHook"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SubscribeBody": {
+        "type": "object",
+        "properties": {
+          "callbackUrl": {
+            "type": "string"
+          }
+        },
+        "required": ["callbackUrl"],
+        "additionalProperties": false
+      },
+      "SubscriptionEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "previous": {
+            "$ref": "#/components/schemas/SubscriptionEvent"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    },
+    "callbacks": {
+      "Callback.EventHook": {
+        "{$request.body#/callbackUrl}": {
+          "post": {
+            "operationId": "deliverEvent",
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SubscriptionEvent"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "204": {
+                "description": "HTTP 204"
+              }
+            },
+            "deprecated": false
+          },
+          "put": {
+            "operationId": "legacyEvent",
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SubscriptionEvent"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "204": {
+                "description": "HTTP 204"
+              }
+            },
+            "deprecated": true
+          },
+          "get": {
+            "operationId": "probeEvent",
+            "responses": {
+              "204": {
+                "description": "HTTP 204"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

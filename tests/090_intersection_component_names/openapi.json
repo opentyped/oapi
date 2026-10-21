@@ -1,0 +1,109 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "forward": {
+            "$ref": "#/components/schemas/BoxOfUser.And.Extra"
+          },
+          "reverse": {
+            "$ref": "#/components/schemas/BoxOfExtra.And.User"
+          },
+          "nested": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "count": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["id", "active", "count"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "count": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["id", "active", "count"],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": ["value"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["forward", "reverse", "nested"],
+        "additionalProperties": false
+      },
+      "BoxOfUser.And.Extra": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "active": {
+                "type": "boolean"
+              }
+            },
+            "required": ["id", "active"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "BoxOfExtra.And.User": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "active": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["active", "id"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/files/{id}": {
+      "additionalOperations": {
+        "PROPFIND": {
+          "operationId": "Inspect",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "callbackUrl": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["callbackUrl"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "responses": {
+            "207": {
+              "description": "HTTP 207",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Payload"
+                  }
+                }
+              }
+            }
+          },
+          "callbacks": {
+            "done": {
+              "$ref": "#/components/callbacks/Callback.CopyCallback"
+            }
+          }
+        }
+      }
+    },
+    "/files": {
+      "additionalOperations": {
+        "SEARCH": {
+          "operationId": "Find",
+          "responses": {
+            "200": {
+              "description": "HTTP 200",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Payload"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "search": {
+          "operationId": "CaseFind",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "Health_get",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      },
+      "additionalOperations": {
+        "COPY": {
+          "operationId": "Health_COPY",
+          "responses": {
+            "204": {
+              "description": "HTTP 204"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payload"
+            }
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    },
+    "callbacks": {
+      "Callback.CopyCallback": {
+        "{$request.body#/callbackUrl}": {
+          "additionalOperations": {
+            "COPY": {
+              "operationId": "copyCallback",
+              "responses": {
+                "204": {
+                  "description": "HTTP 204"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

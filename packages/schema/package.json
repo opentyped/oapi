@@ -1,0 +1,40 @@
+{
+  "name": "@typedapi/schema",
+  "version": "0.1.0",
+  "description": "TypeChecker-driven JSON Schema generation",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./property": {
+      "types": "./dist/property.d.ts",
+      "import": "./dist/property.js",
+      "require": "./dist/property.js"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "typescript": "~5.9.3",
+    "minimatch": "10.2.6",
+    "ajv": "^8.18.0",
+    "@typedapi/openapi": "0.1.0",
+    "@typedapi/ast": "0.1.0",
+    "json5": "2.2.3"
+  },
+  "devDependencies": {
+    "tsc-alias": "1.9.8"
+  }
+}

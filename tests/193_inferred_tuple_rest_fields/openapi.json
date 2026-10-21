@@ -1,0 +1,112 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "const": "ada"
+                    },
+                    "minItems": 1
+                  },
+                  "prefixed": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "const": "start"
+                      }
+                    ],
+                    "items": {
+                      "type": "string",
+                      "const": "ada",
+                      "title": "names"
+                    },
+                    "minItems": 1
+                  },
+                  "native": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "const": "start"
+                      }
+                    ],
+                    "items": {
+                      "type": "string",
+                      "const": "ada"
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": ["values", "prefixed", "native"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "const": "bo"
+                    },
+                    "minItems": 1
+                  },
+                  "prefixed": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "const": "start"
+                      }
+                    ],
+                    "items": {
+                      "type": "string",
+                      "const": "bo",
+                      "title": "names"
+                    },
+                    "minItems": 1
+                  },
+                  "native": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "const": "start"
+                      }
+                    ],
+                    "items": {
+                      "type": "string",
+                      "const": "bo"
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": ["values", "prefixed", "native"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

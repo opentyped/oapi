@@ -1,0 +1,81 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "fixed": {
+            "type": "boolean"
+          }
+        },
+        "required": ["fixed"],
+        "additionalProperties": false,
+        "patternProperties": {
+          "^a-[\\s\\S]*(?![\\s\\S])": {
+            "type": "string"
+          },
+          "^b-[\\s\\S]*(?![\\s\\S])": {
+            "type": "string"
+          }
+        },
+        "propertyNames": {
+          "allOf": [
+            {
+              "anyOf": [
+                {
+                  "not": {
+                    "pattern": "^a-[\\s\\S]*(?![\\s\\S])"
+                  }
+                },
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^a-[\\s\\S]*(?![\\s\\S])",
+                      "minLength": 4
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^b-[\\s\\S]*(?![\\s\\S])",
+                      "minLength": 5
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "not": {
+                    "pattern": "^b-[\\s\\S]*(?![\\s\\S])"
+                  }
+                },
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^a-[\\s\\S]*(?![\\s\\S])",
+                      "minLength": 4
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^b-[\\s\\S]*(?![\\s\\S])",
+                      "minLength": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Result": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/CellOfLiteral_item_ada"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false,
+        "minProperties": 1
+      },
+      "OptionalResult": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/OptionalCellOfLiteral_item_optional"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellOfLiteral_item_ada": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "const": "ada"
+          },
+          "model": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["name", "model"],
+        "additionalProperties": false
+      },
+      "OptionalCellOfLiteral_item_optional": {
+        "type": "object",
+        "properties": {
+          "numeric": {
+            "type": "null"
+          },
+          "name": {
+            "type": "string",
+            "const": "optional"
+          },
+          "model": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "manager": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

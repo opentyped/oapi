@@ -1,0 +1,113 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/examples": {
+      "post": {
+        "operationId": "createExamples",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payload"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "name": "Ada"
+                  }
+                },
+                "example2": {
+                  "value": {
+                    "name": "Grace",
+                    "next": {
+                      "name": "Ada"
+                    }
+                  }
+                }
+              }
+            },
+            "application/vnd.item+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payload"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "name": "Ada"
+                  }
+                },
+                "example2": {
+                  "value": {
+                    "name": "Grace",
+                    "next": {
+                      "name": "Ada"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    },
+    "/override": {
+      "post": {
+        "operationId": "overrideExamples",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payload"
+              },
+              "example": {
+                "name": "HTTP"
+              }
+            },
+            "application/vnd.item+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payload"
+              },
+              "example": {
+                "name": "HTTP"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/Payload"
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

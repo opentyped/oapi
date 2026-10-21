@@ -1,0 +1,94 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": ["city"],
+            "additionalProperties": false
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": ["city"],
+              "additionalProperties": false
+            }
+          },
+          "head": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "next": {
+                "$ref": "#/components/schemas/Node"
+              }
+            },
+            "required": ["value"],
+            "additionalProperties": false
+          },
+          "label": {
+            "allOf": [
+              {
+                "type": "string",
+                "minLength": 5
+              }
+            ],
+            "minLength": 2
+          },
+          "keep": {
+            "$ref": "#/components/schemas/api.Address"
+          }
+        },
+        "required": ["address", "addresses", "head", "label", "keep"],
+        "additionalProperties": false
+      },
+      "Node": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/Node"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "api.Address": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": ["city"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

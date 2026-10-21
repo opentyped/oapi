@@ -1,0 +1,63 @@
+{
+  "name": "typedapi-workspace",
+  "version": "0.1.0",
+  "description": "Build-time OpenAPI and JSON Schema generation from TypeScript contracts",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "npm run build:packages",
+    "typecheck": "npm run build:packages && npm run json:examples && npm run typecheck --workspaces --if-present && tsc --noEmit",
+    "test": "npm run build && node --experimental-strip-types --test tests/golden.test.ts",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run example:build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "prepack": "npm run build",
+    "build:tsgen": "npm run build --workspace @typedapi/tsgen",
+    "build:ast": "npm run build --workspace @typedapi/ast",
+    "build:openapi": "npm run build --workspace @typedapi/openapi",
+    "build:compiler": "npm run build --workspace @typedapi/compiler",
+    "build:express": "npm run build --workspace @typedapi/express",
+    "build:vite": "npm run build --workspace @typedapi/vite",
+    "build:packages": "npm run build:ast && npm run build:openapi && npm run build:schema && npm run build:compiler && npm run build:express && npm run build:fetch && npm run build:tsgen && npm run build:vite",
+    "json": "npm run build && npm run json:examples",
+    "json:schema": "node packages/vite/dist/cli.js --config examples/schema/typedapi.config.ts",
+    "json:express": "node packages/vite/dist/cli.js --config examples/express/typedapi.config.ts",
+    "types": "npm run generate --workspace @typedapi/example-client",
+    "example:express": "npm run start --workspace @typedapi/example-express",
+    "example:build": "npm run build --workspace @typedapi/example-express",
+    "example:start": "node examples/express/dist/server.js",
+    "build:schema": "npm run build --workspace @typedapi/schema",
+    "build:fetch": "npm run build --workspace typedapi",
+    "json:examples": "npm run json --workspaces --if-present",
+    "examples:check": "npm run build && npm run check --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@typedapi/express": "0.1.0",
+    "@typedapi/tsgen": "0.1.0",
+    "@eslint/js": "^10.0.1",
+    "@types/content-type": "^1.1.9",
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.10.0",
+    "decimal.js": "^10.6.0",
+    "drizzle-orm": "0.45.4",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "express": "^5.1.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "tsc-alias": "1.9.8",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vite": "^7.1.0",
+    "typedapi": "0.1.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "private": true
+}

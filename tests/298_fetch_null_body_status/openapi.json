@@ -1,0 +1,120 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/express/empty": {
+      "get": {
+        "operationId": "expressEmpty",
+        "responses": {
+          "2XX": {
+            "description": "HTTP 2XX",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "HTTP 204"
+          },
+          "205": {
+            "description": "HTTP 205"
+          },
+          "3XX": {
+            "description": "HTTP 3XX",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "HTTP 304"
+          },
+          "default": {
+            "description": "HTTP default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/empty": {
+      "get": {
+        "operationId": "webEmpty",
+        "responses": {
+          "2XX": {
+            "description": "HTTP 2XX",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "HTTP 204"
+          },
+          "205": {
+            "description": "HTTP 205"
+          },
+          "3XX": {
+            "description": "HTTP 3XX",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "HTTP 304"
+          },
+          "default": {
+            "description": "HTTP default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "previous": {
+            "$ref": "#/components/schemas/Payload"
+          }
+        },
+        "required": ["ok"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

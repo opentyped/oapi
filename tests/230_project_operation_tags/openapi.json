@@ -1,0 +1,94 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/one": {
+      "get": {
+        "operationId": "api_one",
+        "tags": ["operation,one", "shared", "public"],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "security": [
+          {
+            "Key": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://public.example.test"
+          }
+        ]
+      }
+    },
+    "/api/two": {
+      "get": {
+        "operationId": "api_two",
+        "tags": ["public", "shared"],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "security": [
+          {
+            "Key": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://public.example.test"
+          }
+        ]
+      }
+    },
+    "/api/admin/one": {
+      "get": {
+        "operationId": "api_admin_one",
+        "tags": ["operation,one", "shared", "admin", "public"],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "security": [
+          {
+            "Key": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://public.example.test"
+          }
+        ]
+      }
+    },
+    "/private/one": {
+      "get": {
+        "operationId": "private_one",
+        "tags": ["operation,one", "shared", "private"],
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "Key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Key"
+      }
+    }
+  }
+}

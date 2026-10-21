@@ -1,0 +1,20 @@
+{
+  "openapi": "3.2.0",
+  "securitySchemes": {
+    "device": {
+      "type": "oauth2",
+      "deprecated": true,
+      "oauth2MetadataUrl": "https://auth.example.test/.well-known/oauth-authorization-server",
+      "flows": {
+        "deviceAuthorization": {
+          "deviceAuthorizationUrl": "https://auth.example.test/device",
+          "tokenUrl": "https://auth.example.test/token",
+          "refreshUrl": "https://auth.example.test/refresh",
+          "scopes": { "read:items": "Read devices" }
+        }
+      }
+    },
+    "deviceAlias": { "$ref": "#/components/securitySchemes/device" },
+    "clientCert": { "type": "mutualTLS", "description": "Client certificate" }
+  }
+}

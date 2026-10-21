@@ -1,0 +1,142 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "one": {
+            "$ref": "#/components/schemas/BoxOftest.Model.one"
+          },
+          "two": {
+            "$ref": "#/components/schemas/BoxOftest.Model.two"
+          },
+          "flags": {
+            "$ref": "#/components/schemas/BoxOftest.Model.flags"
+          }
+        },
+        "required": ["one", "two", "flags"],
+        "additionalProperties": false
+      },
+      "PairModel": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/PairOftest.PairModel.value.AAndtest.PairModel.value.B"
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "BoxOftest.Model.one": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["id"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "BoxOftest.Model.two": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "BoxOftest.Model.flags": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "one": {
+                "type": "boolean"
+              },
+              "two": {
+                "type": "boolean"
+              },
+              "flags": {
+                "type": "boolean"
+              }
+            },
+            "required": ["one", "two", "flags"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "PairOftest.PairModel.value.AAndtest.PairModel.value.B": {
+        "type": "object",
+        "properties": {
+          "one": {
+            "$ref": "#/components/schemas/BoxOftest.PairModel.value.A"
+          },
+          "two": {
+            "$ref": "#/components/schemas/BoxOftest.PairModel.value.B"
+          }
+        },
+        "required": ["one", "two"],
+        "additionalProperties": false
+      },
+      "BoxOftest.PairModel.value.A": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "literal": {
+                "type": "number"
+              }
+            },
+            "required": ["literal"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "BoxOftest.PairModel.value.B": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["id"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/ping": {
+      "get": {
+        "operationId": "ping",
+        "x-priority": 8,
+        "x-indexed": 8,
+        "x-levels": [0, 1, 8],
+        "x-details": { "offset": -2 },
+        "responses": { "204": { "description": "HTTP 204" } }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

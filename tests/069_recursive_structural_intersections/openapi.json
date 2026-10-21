@@ -1,0 +1,71 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "next": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Model"
+              },
+              {
+                "$ref": "#/components/schemas/Model"
+              }
+            ]
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": ["value", "count"],
+        "additionalProperties": false
+      },
+      "Extended": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/Intersection.Left.And.Right"
+          },
+          "count": {
+            "type": "number"
+          },
+          "extra": {
+            "type": "boolean"
+          }
+        },
+        "required": ["value", "count", "extra"],
+        "additionalProperties": false
+      },
+      "Intersection.Left.And.Right": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/Intersection.Left.And.Right"
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": ["value", "count"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

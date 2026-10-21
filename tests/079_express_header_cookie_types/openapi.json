@@ -1,0 +1,51 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/session": {
+      "get": {
+        "operationId": "readSession",
+        "parameters": [
+          { "name": "X-Trace", "in": "header", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "X-Mode",
+            "in": "header",
+            "required": false,
+            "schema": { "type": "string", "enum": ["fast", "slow"] }
+          },
+          { "name": "session", "in": "cookie", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "theme",
+            "in": "cookie",
+            "required": false,
+            "schema": { "type": "string", "enum": ["dark", "light"] }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/SessionResult" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SessionResult": {
+        "type": "object",
+        "properties": {
+          "trace": { "type": "string" },
+          "session": { "type": "string" },
+          "mode": { "type": "string", "enum": ["fast", "slow"] },
+          "theme": { "type": "string", "enum": ["dark", "light"] }
+        },
+        "required": ["trace", "session", "mode", "theme"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

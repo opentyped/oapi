@@ -1,0 +1,95 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "dictionary"
+          },
+          "item-pair": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "allOf": [
+                      {
+                        "type": "string",
+                        "minLength": 2
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 2
+                      }
+                    ]
+                  }
+                },
+                "required": ["count", "name"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "allOf": [
+                      {
+                        "type": "string",
+                        "minLength": 2
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 2
+                      }
+                    ]
+                  }
+                },
+                "required": ["count", "name"],
+                "additionalProperties": false
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": ["kind", "item-pair"],
+        "additionalProperties": false,
+        "patternProperties": {
+          "^(?!(?:item-pair)(?![\\s\\S]))item-[\\s\\S]*(?![\\s\\S])": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Value"
+            }
+          }
+        }
+      },
+      "Value": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

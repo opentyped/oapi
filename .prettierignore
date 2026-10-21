@@ -1,0 +1,12 @@
+node_modules/
+dist/
+examples/dist/
+examples/**/generated/
+package-lock.json
+# Definition goldens preserve the TypeScript printer's exact output.
+tests/**/schema.d.ts
+tests/.golden-*/
+tests/.contract-*/
+
+.openapi/
+tests/**/openapi.d.ts

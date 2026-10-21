@@ -1,0 +1,130 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "array": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          },
+          "tuple": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "boolean",
+                "title": "id"
+              },
+              {
+                "type": "boolean",
+                "title": "count"
+              }
+            ],
+            "items": false,
+            "minItems": 1,
+            "maxItems": 2
+          },
+          "rest": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "boolean",
+                "title": "id"
+              }
+            ],
+            "items": {
+              "type": "boolean",
+              "title": "tail"
+            },
+            "minItems": 1
+          },
+          "identity": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string",
+                "title": "id"
+              },
+              {
+                "type": "number",
+                "title": "count"
+              }
+            ],
+            "items": false,
+            "minItems": 1,
+            "maxItems": 2
+          },
+          "keys": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string",
+                "const": "0",
+                "title": "id"
+              },
+              {
+                "type": "string",
+                "const": "1",
+                "title": "count"
+              }
+            ],
+            "items": false,
+            "minItems": 1,
+            "maxItems": 2
+          },
+          "mandatory": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string",
+                "title": "id"
+              },
+              {
+                "type": "number",
+                "title": "count"
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "repeat": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 1
+              }
+            ],
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "minItems": 1
+          }
+        },
+        "required": ["array", "tuple", "rest", "identity", "keys", "mandatory", "repeat"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

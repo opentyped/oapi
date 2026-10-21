@@ -1,0 +1,50 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "PublicModel": {
+        "$ref": "#/components/schemas/PublicModelOfmapped",
+        "title": "Public model"
+      },
+      "PublicModelOfmapped": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true,
+            "minLength": 2
+          },
+          "secret": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "deprecated": false,
+            "default": true
+          },
+          "previous": {
+            "$ref": "#/components/schemas/PublicModelOfmapped",
+            "title": "Public model",
+            "deprecated": true
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicModelOfmapped",
+              "title": "Public model"
+            }
+          }
+        },
+        "required": ["id", "secret", "active"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

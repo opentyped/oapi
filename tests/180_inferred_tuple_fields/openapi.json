@@ -1,0 +1,98 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "pair": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "const": "ada",
+                        "title": "name"
+                      },
+                      {
+                        "$ref": "#/components/schemas/User",
+                        "title": "owner"
+                      },
+                      {
+                        "type": "string",
+                        "const": "ada",
+                        "title": "copy"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 3
+                  }
+                },
+                "required": ["pair"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "pair": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "string",
+                        "const": "bo",
+                        "title": "name"
+                      },
+                      {
+                        "$ref": "#/components/schemas/User",
+                        "title": "owner"
+                      },
+                      {
+                        "type": "string",
+                        "const": "bo",
+                        "title": "copy"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 3
+                  }
+                },
+                "required": ["pair"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["item"],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

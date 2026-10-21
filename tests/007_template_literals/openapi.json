@@ -1,0 +1,28 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": ["evt_created_1", "evt_created_2", "evt_deleted_1", "evt_deleted_2"]
+          },
+          "numeric": {
+            "type": "string",
+            "pattern": "^item_[0-9]+$"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["key", "numeric"]
+      }
+    }
+  }
+}

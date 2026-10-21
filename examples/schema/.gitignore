@@ -1,0 +1,4 @@
+/dist/
+/generated/
+/.openapi/
+/node_modules/

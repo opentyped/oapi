@@ -1,0 +1,77 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "rejected": {
+            "type": "boolean",
+            "const": false
+          },
+          "accepted": {
+            "type": "boolean",
+            "const": true
+          },
+          "escaped": {
+            "type": "boolean",
+            "const": false
+          },
+          "composite": {
+            "type": "object",
+            "properties": {
+              "no": {
+                "type": "boolean",
+                "const": false
+              }
+            },
+            "required": ["no"],
+            "additionalProperties": false
+          },
+          "annotated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2
+              }
+            ]
+          },
+          "distributed": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "rejected": {
+                    "type": "string",
+                    "const": "other"
+                  }
+                },
+                "required": ["rejected"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "accepted": {
+                    "type": "string",
+                    "const": "item-a"
+                  }
+                },
+                "required": ["accepted"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["rejected", "accepted", "escaped", "composite", "annotated", "distributed"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

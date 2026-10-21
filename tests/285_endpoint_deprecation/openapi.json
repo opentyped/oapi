@@ -1,0 +1,73 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/legacy": {
+      "get": {
+        "operationId": "Legacy",
+        "deprecated": true,
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Output" } }
+            }
+          }
+        }
+      }
+    },
+    "/current": {
+      "get": {
+        "operationId": "Current",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Output" } }
+            }
+          }
+        }
+      }
+    },
+    "/mounted": {
+      "get": {
+        "operationId": "mountedCurrent",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Output" } }
+            }
+          }
+        }
+      }
+    },
+    "/web": {
+      "get": {
+        "operationId": "currentWeb",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Output" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Output": {
+        "type": "object",
+        "properties": { "ok": { "type": "boolean" } },
+        "required": ["ok"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

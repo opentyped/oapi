@@ -1,0 +1,10 @@
+/** @schema @jsonSchema {"const":null} */
+export type Null = unknown;
+/** @schema @jsonSchema {"type":"number","const":"string"} */
+export type Wrong = unknown;
+/** @schema @jsonSchema {"type":"string","enum":["a","b"],"allOf":[{"const":"b"}]} */
+export type Choice = unknown;
+/** @schema @jsonSchema {"type":["string","null"],"enum":["a"]} */
+export type NonNull = unknown;
+/** @schema @jsonSchema {"enum":[{"kind":"one"},{"kind":"two"}]} */
+export type Objects = unknown;

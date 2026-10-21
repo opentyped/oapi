@@ -1,0 +1,113 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/overlap": {
+      "get": {
+        "operationId": "overlapSearch",
+        "responses": {
+          "204": {
+            "description": "HTTP 204"
+          }
+        },
+        "parameters": [
+          {
+            "name": "shared",
+            "in": "query",
+            "required": true,
+            "description": "Shared query value",
+            "schema": {
+              "allOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "style": "form"
+          },
+          {
+            "name": "left",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "list",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "right",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "shared": {
+            "allOf": [
+              {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "left": {
+            "type": "boolean"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "right": {
+            "type": "string"
+          }
+        },
+        "required": ["shared", "left", "list", "right"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

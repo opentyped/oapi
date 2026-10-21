@@ -1,0 +1,47 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "public.Directory": {
+        "type": "object",
+        "properties": {
+          "admin": { "$ref": "#/components/schemas/admin.User" },
+          "customer": { "$ref": "#/components/schemas/customer.User" }
+        },
+        "additionalProperties": false,
+        "required": ["admin", "customer"]
+      },
+      "admin.User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "peers": { "$ref": "#/components/schemas/ReadonlyOfRecordOfstringAndadmin.User" }
+        },
+        "additionalProperties": false,
+        "required": ["id", "peers"]
+      },
+      "customer.User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "peers": {
+            "$ref": "#/components/schemas/ReadonlyOfRecordOfstringAndcustomer.User"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "peers"]
+      },
+      "ReadonlyOfRecordOfstringAndadmin.User": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/components/schemas/admin.User" }
+      },
+      "ReadonlyOfRecordOfstringAndcustomer.User": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/components/schemas/customer.User" }
+      }
+    }
+  }
+}

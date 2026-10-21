@@ -1,0 +1,54 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["admin", "member"]
+          },
+          "code": {
+            "type": "number",
+            "enum": [1, 2]
+          },
+          "overlap": {
+            "type": "string",
+            "const": "b"
+          },
+          "mixed": {
+            "type": "string",
+            "const": "ok"
+          },
+          "choice": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Choice"
+              },
+              {
+                "type": "string",
+                "enum": ["b", "c"]
+              }
+            ]
+          }
+        },
+        "required": ["role", "code", "overlap", "mixed", "choice"],
+        "additionalProperties": false
+      },
+      "Impossible": {
+        "not": {}
+      },
+      "Choice": {
+        "type": "string",
+        "enum": ["a", "b"]
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "namespaces": { "./test.ts": "models" },
+  "typeMappings": [
+    { "match": { "module": "decimal.js", "export": "default" }, "schema": { "type": "string" } }
+  ]
+}

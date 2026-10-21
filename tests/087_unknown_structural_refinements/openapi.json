@@ -1,0 +1,126 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "right"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "right"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "right"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "optional": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "right"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "right"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "right"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "single": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeftValue"
+              },
+              {
+                "$ref": "#/components/schemas/LeftValue"
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "LeftValue": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "string"
+          }
+        },
+        "required": ["left"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

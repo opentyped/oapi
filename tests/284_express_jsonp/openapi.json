@@ -1,0 +1,52 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/profile": {
+      "get": {
+        "operationId": "jsonpProfile",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "const": "text" }
+          },
+          { "name": "fail", "in": "query", "required": false, "schema": { "type": "boolean" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Output" } },
+              "text/plain": { "schema": { "type": "string" } }
+            }
+          },
+          "400": {
+            "description": "HTTP 400",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Failure" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Output": {
+        "type": "object",
+        "properties": { "name": { "type": "string" } },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "Failure": {
+        "type": "object",
+        "properties": { "message": { "type": "string" } },
+        "required": ["message"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

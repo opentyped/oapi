@@ -1,0 +1,1 @@
+{ "namespaces": { "./models/**/*.ts": "models", "./api/**/*.ts": "api" } }

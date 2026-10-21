@@ -1,0 +1,33 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/nested": {
+      "get": {
+        "operationId": "nestedMetadata",
+        "summary": "Nested metadata",
+        "description": "First tag group,one",
+        "tags": ["group,one", "nested"],
+        "externalDocs": { "url": "https://example.com/nested", "description": "Nested reference" },
+        "x-owner": "nested",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "ok": { "type": "boolean", "const": true } },
+                  "required": ["ok"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

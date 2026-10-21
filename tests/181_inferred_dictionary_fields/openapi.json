@@ -1,0 +1,118 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "indexed": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string",
+                      "const": "ada"
+                    }
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["values", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "recorded": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "$ref": "#/components/schemas/ReadonlyOfRecordOfstringAndReadonlyArrayOfLiteral_bo"
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["values", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "wrapped": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "$ref": "#/components/schemas/ReadonlyOftest.Wrapped.values"
+                  },
+                  "owner": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": ["values", "owner"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["indexed", "recorded", "wrapped"],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "ReadonlyOfRecordOfstringAndReadonlyArrayOfLiteral_bo": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "const": "bo"
+          }
+        }
+      },
+      "ReadonlyOftest.Wrapped.values": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "const": "cy"
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "models.User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "manager": { "$ref": "#/components/schemas/models.User" }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "models.team.User": {
+        "type": "object",
+        "properties": { "name": { "type": "string" } },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "billing.User": {
+        "type": "object",
+        "properties": { "id": { "type": "number" } },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "Users": {
+        "type": "object",
+        "properties": {
+          "account": { "$ref": "#/components/schemas/models.User" },
+          "team": { "$ref": "#/components/schemas/models.team.User" },
+          "billing": { "$ref": "#/components/schemas/billing.User" }
+        },
+        "required": ["account", "team", "billing"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

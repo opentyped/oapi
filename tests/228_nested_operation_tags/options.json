@@ -1,0 +1,33 @@
+{
+  "include": {
+    "paths": ["one"]
+  },
+  "nest": [
+    {
+      "path": "/v1",
+      "operationIdPrefix": "public_",
+      "tags": ["public", "shared"],
+      "include": {
+        "paths": ["one"]
+      },
+      "nest": [
+        {
+          "path": "/admin",
+          "operationIdPrefix": "admin_",
+          "tags": ["admin,ops", "public"],
+          "include": {
+            "paths": ["two"]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/private",
+      "operationIdPrefix": "private_",
+      "tags": ["private"],
+      "include": {
+        "paths": ["one"]
+      }
+    }
+  ]
+}

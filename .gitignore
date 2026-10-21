@@ -1,0 +1,14 @@
+node_modules/
+dist/
+generated/
+.openapi/
+coverage/
+*.tsbuildinfo
+*.tgz
+*.log
+.env
+.env.*
+!.env.example
+tests/.golden-*/
+tests/.contract-*/
+.DS_Store

@@ -1,0 +1,91 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "listUsers",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.User"
+                }
+              }
+            }
+          }
+        },
+        "x-typedapi-namespace": "models"
+      },
+      "post": {
+        "operationId": "createUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api.User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "HTTP 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api.User"
+                }
+              }
+            }
+          }
+        },
+        "x-typedapi-namespace": "api"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "models.Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          }
+        },
+        "required": ["street"],
+        "additionalProperties": false
+      },
+      "models.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/models.Address"
+          }
+        },
+        "required": ["id", "address"],
+        "additionalProperties": false
+      },
+      "api.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Tree": {
+        "$id": "https://example.test/tree",
+        "$anchor": "tree",
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#tree"
+            }
+          }
+        },
+        "required": ["label"],
+        "additionalProperties": false
+      },
+      "Forest": {
+        "$id": "https://example.test/forest.json",
+        "$anchor": "node",
+        "$defs": {
+          "node": {
+            "$id": "node.json",
+            "$anchor": "node",
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#node"
+                }
+              }
+            },
+            "required": ["label"],
+            "additionalProperties": false
+          }
+        },
+        "type": "object",
+        "properties": {
+          "entry": {
+            "$ref": "node.json#node"
+          }
+        },
+        "required": ["entry"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

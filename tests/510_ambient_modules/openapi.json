@@ -1,0 +1,52 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/users/{id}": {
+      "get": {
+        "operationId": "getUser",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/api.User" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "models.User": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "address": { "$ref": "#/components/schemas/models.Address" },
+          "manager": { "$ref": "#/components/schemas/models.User" }
+        },
+        "required": ["id", "address"]
+      },
+      "models.Address": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": { "street": { "type": "string" } },
+        "required": ["street"]
+      },
+      "api.User": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "record": { "$ref": "#/components/schemas/models.User" },
+          "label": { "type": "string" }
+        },
+        "required": ["record", "label"]
+      }
+    }
+  }
+}

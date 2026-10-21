@@ -1,0 +1,71 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/negotiated/{id}": {
+      "get": {
+        "operationId": "readNegotiated",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NegotiatedResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "JsonPayload": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "TextPayload": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": ["note"],
+        "additionalProperties": false
+      }
+    },
+    "responses": {
+      "NegotiatedResponse": {
+        "description": "Negotiated payload.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JsonPayload"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/TextPayload"
+            }
+          }
+        }
+      }
+    }
+  }
+}

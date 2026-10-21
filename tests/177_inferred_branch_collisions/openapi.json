@@ -1,0 +1,146 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "ada",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "ada"
+                  },
+                  "entity": {
+                    "$ref": "#/components/schemas/a.User"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "const": "a"
+                  }
+                },
+                "required": ["name", "entity", "kind"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "bo",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "bo"
+                  },
+                  "entity": {
+                    "$ref": "#/components/schemas/a.User"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "const": "a"
+                  }
+                },
+                "required": ["name", "entity", "kind"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "right": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "ada",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "ada"
+                  },
+                  "entity": {
+                    "$ref": "#/components/schemas/b.User"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "const": "b"
+                  }
+                },
+                "required": ["name", "entity", "kind"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "const": "bo",
+                    "minLength": 2
+                  },
+                  "copy": {
+                    "type": "string",
+                    "const": "bo"
+                  },
+                  "entity": {
+                    "$ref": "#/components/schemas/b.User"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "const": "b"
+                  }
+                },
+                "required": ["name", "entity", "kind"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": ["left", "right"],
+        "additionalProperties": false
+      },
+      "a.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/a.User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "b.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/b.User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

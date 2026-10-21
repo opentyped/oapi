@@ -1,0 +1,6 @@
+{
+  "namespaces": { "./models/**/*.ts": "models", "./api/**/*.ts": "api" },
+  "typeMappings": [
+    { "match": { "module": "decimal.js", "export": "default" }, "schema": { "type": "string" } }
+  ]
+}

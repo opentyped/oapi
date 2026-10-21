@@ -1,0 +1,155 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "shared": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "shared", "right"],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "minProperties": 2
+                  },
+                  {
+                    "maxProperties": 3
+                  }
+                ],
+                "minProperties": 2
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "shared": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "shared", "right"],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "minProperties": 2
+                  },
+                  {
+                    "maxProperties": 3
+                  }
+                ],
+                "maxProperties": 3
+              }
+            ]
+          },
+          "optional": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "shared": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "shared", "right"],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "minProperties": 2
+                  },
+                  {
+                    "maxProperties": 3
+                  }
+                ],
+                "minProperties": 2
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "left": {
+                    "type": "string"
+                  },
+                  "shared": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                },
+                "required": ["left", "shared", "right"],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "minProperties": 2
+                  },
+                  {
+                    "maxProperties": 3
+                  }
+                ],
+                "maxProperties": 3
+              }
+            ]
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      },
+      "Dictionary": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "left": {
+              "type": "string"
+            },
+            "shared": {
+              "type": "number"
+            },
+            "right": {
+              "type": "number"
+            }
+          },
+          "required": ["left", "shared", "right"],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "minProperties": 2
+            },
+            {
+              "maxProperties": 3
+            }
+          ]
+        }
+      }
+    }
+  }
+}

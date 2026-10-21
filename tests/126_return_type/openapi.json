@@ -1,0 +1,78 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Result": {
+        "type": "object",
+        "properties": {
+          "direct": {
+            "$ref": "#/components/schemas/User"
+          },
+          "async": {
+            "$ref": "#/components/schemas/User"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "label": {
+            "type": "string",
+            "minLength": 3
+          },
+          "inferred": {
+            "$ref": "#/components/schemas/User"
+          },
+          "inferredAsync": {
+            "$ref": "#/components/schemas/User"
+          },
+          "inferredList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "callable": {
+            "$ref": "#/components/schemas/User"
+          },
+          "instantiated": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": [
+          "direct",
+          "async",
+          "list",
+          "label",
+          "inferred",
+          "inferredAsync",
+          "inferredList",
+          "callable",
+          "instantiated"
+        ],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 2
+          },
+          "manager": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

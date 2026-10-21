@@ -1,0 +1,67 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/status": {
+      "get": {
+        "operationId": "readStatus",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "ok": { "type": "boolean", "const": true } },
+                  "additionalProperties": false,
+                  "required": ["ok"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "HTTP 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "notFound": { "type": "boolean", "const": true } },
+                  "additionalProperties": false,
+                  "required": ["notFound"]
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "HTTP 4XX",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "clientError": { "type": "string" } },
+                  "additionalProperties": false,
+                  "required": ["clientError"]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "HTTP default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "unexpected": { "type": "string" } },
+                  "additionalProperties": false,
+                  "required": ["unexpected"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

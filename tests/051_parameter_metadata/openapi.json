@@ -1,0 +1,70 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": { "title": "Golden fixtures", "version": "1.0.0" },
+  "paths": {
+    "/catalogs/{catalog}/search": {
+      "get": {
+        "operationId": "searchCatalog",
+        "parameters": [
+          {
+            "name": "catalog",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Catalog identifier",
+            "example": "main"
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } },
+            "style": "pipeDelimited",
+            "explode": false,
+            "allowReserved": true,
+            "example": ["new", "sale"],
+            "x-owner": "search"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "available": { "type": "boolean" }
+              },
+              "additionalProperties": false
+            },
+            "description": "Flat search filters",
+            "style": "deepObject",
+            "explode": true
+          },
+          {
+            "name": "X-Trace",
+            "in": "header",
+            "required": false,
+            "schema": { "type": "string" },
+            "deprecated": true,
+            "style": "simple",
+            "explode": false,
+            "example": "trace-1"
+          },
+          {
+            "name": "session",
+            "in": "cookie",
+            "required": true,
+            "schema": { "type": "string" },
+            "style": "form",
+            "explode": false,
+            "examples": { "primary": { "value": "session-1" } }
+          }
+        ],
+        "responses": { "204": { "description": "Search completed." } }
+      }
+    }
+  },
+  "components": { "schemas": {} }
+}

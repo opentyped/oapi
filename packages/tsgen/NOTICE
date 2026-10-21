@@ -1,0 +1,9 @@
+TypeScript definition transformations are derived from openapi-typescript 7.13.0.
+Source: https://github.com/openapi-ts/openapi-typescript/tree/openapi-typescript%407.13.0/packages/openapi-typescript/src
+Copyright (c) 2020 Drew Powers. Licensed under the MIT License (see LICENSE).
+
+TypedAPI modifications: independent object-input API; removal of Redocly loading
+and bundling; package-local imports; OpenAPI 3.2 operation and streaming types;
+schema resource resolution and private declarations for nested schema definitions.
+The upstream transformation modules are retained together to make provenance
+and future comparisons explicit. No upstream CLI or client runtime is included.

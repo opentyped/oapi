@@ -1,0 +1,21 @@
+{
+  "openapi": "3.2.0",
+  "security": [
+    {
+      "https://auth.example.test/schemes/default": []
+    }
+  ],
+  "securitySchemes": {
+    "local": {
+      "type": "oauth2",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "https://auth.example.test/token",
+          "scopes": {
+            "read": "Read data"
+          }
+        }
+      }
+    }
+  }
+}

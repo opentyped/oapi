@@ -1,0 +1,18 @@
+{
+  "openapi": "3.2.0",
+  "$self": "https://example.test/openapi.json",
+  "include": {},
+  "documents": [
+    {
+      "path": "/api",
+      "operationIdPrefix": "api_",
+      "options": {
+        "root": ".",
+        "tsconfig": "tsconfig.json",
+        "openapi": "3.2.0",
+        "$self": "https://example.test/openapi.json",
+        "info": { "title": "Child", "version": "1" }
+      }
+    }
+  ]
+}

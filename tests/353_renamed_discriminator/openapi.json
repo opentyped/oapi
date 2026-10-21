@@ -1,0 +1,73 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataset": {
+        "type": "object",
+        "required": ["type"],
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/A"
+          },
+          {
+            "$ref": "#/components/schemas/B"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "a": "#/components/schemas/A",
+            "b": "#/components/schemas/B"
+          }
+        }
+      },
+      "A": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "a"
+          },
+          "parent": {
+            "type": "object",
+            "required": ["type"],
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/A"
+              },
+              {
+                "$ref": "#/components/schemas/B"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "a": "#/components/schemas/A",
+                "b": "#/components/schemas/B"
+              }
+            }
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      "B": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "b"
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/nullable-object": {
+      "get": {
+        "operationId": "NullableObject",
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "x-owner": "nullable",
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id"],
+                      "additionalProperties": false,
+                      "x-owner": "nullable"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "example": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "flag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "enabled": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "disabled": {
+            "type": "string",
+            "minLength": 2
+          },
+          "explicit": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "literal": {
+            "description": "Lifecycle state.",
+            "default": "active",
+            "examples": [null, "active"],
+            "x-role": "state",
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "active",
+                "description": "Lifecycle state.",
+                "default": "active",
+                "examples": [null, "active"],
+                "x-role": "state"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "numeric": {
+            "anyOf": [
+              {
+                "type": "number",
+                "const": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "optional": {
+            "type": "string"
+          }
+        },
+        "required": ["flag", "enabled", "disabled", "explicit", "literal", "numeric"],
+        "additionalProperties": false
+      },
+      "Shared": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "maybe": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": ["active", "inactive"]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "plain": {
+                "type": "string",
+                "enum": ["active", "inactive"]
+              }
+            },
+            "required": ["maybe", "plain"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

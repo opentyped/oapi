@@ -1,0 +1,22 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "@example/catalog",
+    "version": "2.3.4",
+    "description": "Catalog API",
+    "license": { "name": "MIT" },
+    "contact": { "name": "API Team", "email": "api@example.com", "url": "https://example.com" }
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": { "id": { "type": "string" } },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

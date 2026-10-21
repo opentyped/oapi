@@ -1,0 +1,27 @@
+{
+  "openapi": "3.2.0",
+  "$self": "https://example.test/definitions/openapi.json",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Node": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/Node"
+          }
+        },
+        "required": ["label"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

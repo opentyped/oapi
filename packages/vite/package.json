@@ -1,0 +1,59 @@
+{
+  "name": "@typedapi/vite",
+  "version": "0.1.0",
+  "description": "Vite integration for compile-time OpenAPI generation",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./defaults": {
+      "types": "./dist/defaults.d.ts",
+      "import": "./dist/defaults.js",
+      "require": "./dist/defaults.js"
+    },
+    "./artifact": {
+      "types": "./dist/artifact.d.ts",
+      "import": "./dist/artifact.js",
+      "require": "./dist/artifact.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run build",
+    "postbuild": "node --input-type=module -e \"import { chmodSync } from 'node:fs'; chmodSync('dist/cli.js', 0o755)\""
+  },
+  "dependencies": {
+    "@typedapi/compiler": "0.1.0",
+    "@typedapi/openapi": "0.1.0",
+    "@jridgewell/remapping": "2.3.5",
+    "chokidar": "4.0.3",
+    "typescript": "~5.9.3",
+    "tsx": "4.23.15",
+    "@typedapi/tsgen": "0.1.0"
+  },
+  "peerDependencies": {
+    "vite": ">=6 <9"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "tsc-alias": "1.9.8"
+  },
+  "bin": {
+    "typedapi": "./dist/cli.js"
+  }
+}

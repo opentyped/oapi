@@ -1,0 +1,87 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "alternatives": {
+            "anyOf": [
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string",
+                    "const": "start"
+                  }
+                ],
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 4
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string",
+                    "const": "start"
+                  },
+                  {
+                    "type": "boolean",
+                    "title": "flag"
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          },
+          "forwarded": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string",
+                "const": "start"
+              }
+            ],
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 4
+          },
+          "shortened": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string",
+                "const": "start"
+              },
+              {
+                "type": "number",
+                "title": "count"
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "impossible": {
+            "not": {}
+          }
+        },
+        "required": ["alternatives", "forwarded", "shortened"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

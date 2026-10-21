@@ -1,0 +1,57 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Widget": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            }
+          },
+          "point": {
+            "const": [1, 2],
+            "description": "Origin coordinates"
+          },
+          "mode": {
+            "enum": ["on", "off"],
+            "type": "string",
+            "description": "Power mode"
+          },
+          "child": {
+            "$ref": "#/components/schemas/Child"
+          }
+        },
+        "required": ["name", "tags", "settings", "point", "mode", "child"],
+        "additionalProperties": false
+      },
+      "Child": {
+        "type": "object",
+        "properties": {
+          "flag": {
+            "type": "boolean"
+          }
+        },
+        "required": ["flag"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

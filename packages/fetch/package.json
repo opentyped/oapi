@@ -1,0 +1,26 @@
+{
+  "name": "typedapi",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Typed Fetch requests driven by TypedAPI route declarations",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./fetch": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run build",
+    "prebuild": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\""
+  },
+  "devDependencies": {
+    "tsc-alias": "1.9.8"
+  },
+  "sideEffects": false
+}

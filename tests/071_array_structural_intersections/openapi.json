@@ -1,0 +1,100 @@
+{
+  "openapi": "3.2.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Golden fixtures",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Model": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "allOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "string"
+                    },
+                    "right": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["left", "right"],
+                  "additionalProperties": false
+                },
+                "maxItems": 3
+              }
+            ]
+          },
+          "nested": {
+            "allOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "left": {
+                        "type": "string"
+                      },
+                      "right": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["left", "right"],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": ["values", "nested"],
+        "additionalProperties": false
+      }
+    }
+  }
+}
