@@ -36,7 +36,8 @@
     "examples:check": "npm run build && npm run check --workspaces --if-present",
     "prepack:packages": "node --input-type=module -e \"import { mkdirSync } from 'node:fs'; mkdirSync('.oapi/packages', { recursive: true })\"",
     "pack:packages": "npm pack --workspace packages/ast --workspace packages/compiler --workspace packages/express --workspace packages/fetch --workspace packages/openapi --workspace packages/schema --workspace packages/tsgen --workspace packages/vite --ignore-scripts --pack-destination .oapi/packages",
-    "postbuild:packages": "npm rebuild @opentyped/tsgen @opentyped/vite --ignore-scripts"
+    "postbuild:packages": "npm rebuild @opentyped/tsgen @opentyped/vite --ignore-scripts",
+    "publish:packages": "npm publish --workspace packages/ast --workspace packages/openapi --workspace packages/schema --workspace packages/compiler --workspace packages/express --workspace packages/fetch --workspace packages/tsgen --workspace packages/vite --registry https://registry.npmjs.org --access public --ignore-scripts"
   },
   "devDependencies": {
     "@opentyped/express": "0.1.0",

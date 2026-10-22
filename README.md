@@ -2,18 +2,14 @@
 
 [![Build](https://github.com/opentyped/oapi/actions/workflows/check.yml/badge.svg)](https://github.com/opentyped/oapi/actions/workflows/check.yml)
 [![OpenAPI 3.2](https://img.shields.io/badge/OpenAPI-3.2-6BA539)](https://spec.openapis.org/oas/v3.2.0.html)
-[![GitHub Packages](https://img.shields.io/badge/packages-%40opentyped-blue)](https://github.com/orgs/opentyped/packages?repo_name=oapi)
+[![npm](https://img.shields.io/npm/v/@opentyped/vite)](https://www.npmjs.com/package/@opentyped/vite)
 
 Utoipa-inspired OpenAPI generation for TypeScript. Reads types and route annotations from the AST at build time to generate an OpenAPI document and TypeScript declarations.
 
 ```sh
-npm config set @opentyped:registry https://npm.pkg.github.com
-npm login --scope=@opentyped --registry=https://npm.pkg.github.com --auth-type=legacy
 npm install express @opentyped/express @opentyped/openapi @opentyped/fetch
 npm install -D typescript vite @types/express @types/node @opentyped/compiler @opentyped/vite
 ```
-
-GitHub Packages login requires a token with `read:packages`.
 
 ## 1. Write models and handlers
 
