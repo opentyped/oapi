@@ -27,6 +27,8 @@ export interface User {
 }
 ```
 
+`@schema` exports the type as JSON Schema under `components.schemas` (`models.User` here). Properties become schema fields; recursive types use `$ref`.
+
 ```ts
 // src/api/users.ts
 import express from 'express';
@@ -50,7 +52,26 @@ oapi.mount<{
 app.listen(3000);
 ```
 
-`mount` registers the Express handler and provides its types to the generator.
+`mount` registers the Express handler at runtime. The AST parser reads the wrapper call at build time:
+
+- `method: 'GET'` and `path: '/users/:id'` → `paths['/users/{id}'].get`.
+- `operationId` → the operation’s identifier.
+- Contract `params`, `query`, and `headers` → parameters; `body` → request body; `responses` → status-specific response schemas referencing `models.User`.
+
+For documentation without a wrapper, annotate a contract with `@route`:
+
+```ts
+/**
+ * @route GET /users/{id}
+ * @operationId getUser
+ */
+export interface GetUser {
+  params: { id: string };
+  responses: { 200: { body: User } };
+}
+```
+
+`@route` generates an OpenAPI operation; it does not register a runtime handler. The Express wrapper already supplies this metadata, so it needs no `@route` tag.
 
 ## 2. Generate JSON and declarations
 
