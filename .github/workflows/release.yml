@@ -1,11 +1,11 @@
 name: Release packages
 on:
-  release:
-    types: [published]
+  push:
+    tags: ['v*']
 permissions:
   contents: read
 concurrency:
-  group: release-${{ github.event.release.tag_name }}
+  group: release-${{ github.ref_name }}
   cancel-in-progress: false
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
           }
           JS
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_TAG: ${{ github.ref_name }}
       - run: npm ci
       - run: npm run check
       - run: npm run pack:packages
@@ -37,7 +37,7 @@ jobs:
           path: .oapi/packages/*.tgz
           if-no-files-found: error
   upload:
-    needs: build
+    needs: [build, publish]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -46,11 +46,16 @@ jobs:
         with:
           name: npm-packages
           path: packages
-      - name: Attach packages to the release
-        run: gh release upload "$RELEASE_TAG" packages/*.tgz --repo "$GITHUB_REPOSITORY" --clobber
+      - name: Create release and attach packages
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" packages/*.tgz --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" packages/*.tgz --repo "$GITHUB_REPOSITORY" --verify-tag --generate-notes
+          fi
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_TAG: ${{ github.ref_name }}
   publish:
     needs: build
     runs-on: ubuntu-latest
