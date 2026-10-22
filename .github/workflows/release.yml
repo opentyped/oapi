@@ -87,7 +87,7 @@ jobs:
           scope: '@opentyped'
       - name: Publish to GitHub Packages
         run: |
-          for archive in packages/*.tgz; do
+          for archive in ./packages/*.tgz; do
             npm publish "$archive" --registry https://npm.pkg.github.com --ignore-scripts
           done
         env:
