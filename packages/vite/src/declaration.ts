@@ -1,6 +1,6 @@
 import path from 'node:path';
-import { generateDeclarations } from '@opentyped/tsgen';
-import type { Generation, OutputOptions } from '@opentyped/compiler/config';
+import { generateDeclarations } from '@opentyped/oapi-tsgen';
+import type { Generation, OutputOptions } from '@opentyped/oapi-compiler/config';
 
 /** Renders ambient declarations at the configured output path. */
 export class DeclarationFile {

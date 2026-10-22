@@ -1,7 +1,7 @@
 import type ts from 'typescript';
-import { tryParsePointer } from '@opentyped/openapi/pointer';
-import { SCHEMA_ANNOTATIONS } from '@opentyped/openapi/schema/graph';
-import { visitSchema } from '@opentyped/openapi/schema/visitor';
+import { tryParsePointer } from '@opentyped/oapi-openapi/pointer';
+import { SCHEMA_ANNOTATIONS } from '@opentyped/oapi-openapi/schema/graph';
+import { visitSchema } from '@opentyped/oapi-openapi/schema/visitor';
 import type { Schema } from '~/definition';
 import { SchemaError } from '~/error';
 import { schemaReference } from '~/destination';

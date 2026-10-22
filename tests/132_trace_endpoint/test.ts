@@ -1,5 +1,5 @@
 import express from 'express';
-import oapi from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
 interface Trace {
   responses: { 200: { body: string; contentType: 'message/http' } };
 }

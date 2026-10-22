@@ -1,4 +1,4 @@
-import { createClient } from '@opentyped/fetch';
+import { createClient } from '@opentyped/oapi-fetch';
 import type { User } from 'openapi/models';
 import type { schema, CreateUserInput } from 'openapi/api';
 

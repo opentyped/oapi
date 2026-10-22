@@ -1,6 +1,6 @@
 import path from 'node:path';
-import type { Generation, OutputOptions } from '@opentyped/compiler/config';
-import { stableJson } from '@opentyped/openapi/json';
+import type { Generation, OutputOptions } from '@opentyped/oapi-compiler/config';
+import { stableJson } from '@opentyped/oapi-openapi/json';
 import { DeclarationFile } from '~/declaration';
 import { replaceFile } from '~/file';
 

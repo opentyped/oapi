@@ -1,10 +1,10 @@
-import { visitDocument } from '@opentyped/openapi/document/visitor';
+import { visitDocument } from '@opentyped/oapi-openapi/document/visitor';
 import ts from 'typescript';
 import { printAst, recordType, STRING, NEVER } from '~/ast';
 import { endpointDeclarations, namespacePaths } from '~/endpoint';
 import { definitionNodes } from '~/generator';
 import type { DefinitionOptions } from '~/generator';
-import type { SchemaExport } from '@opentyped/openapi/schema/definition';
+import type { SchemaExport } from '@opentyped/oapi-openapi/schema/definition';
 
 export interface DeclarationOptions extends DefinitionOptions {
   /** Prefix of ambient module names; defaults to openapi. */

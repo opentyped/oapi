@@ -1,5 +1,5 @@
 import type { Connect } from 'vite';
-import { stableJson } from '@opentyped/openapi/json';
+import { stableJson } from '@opentyped/oapi-openapi/json';
 import type { DocumentSnapshot } from '~/snapshot';
 
 /** Read-only development transport for generated documents. */

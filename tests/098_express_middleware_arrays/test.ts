@@ -1,7 +1,7 @@
 import express from 'express';
 import type { RequestHandler } from 'express';
-import oapi from '@opentyped/express';
-import type { EmptyResponse } from '@opentyped/openapi';
+import oapi from '@opentyped/oapi-express';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 
 interface Empty {
   responses: { 204: EmptyResponse };

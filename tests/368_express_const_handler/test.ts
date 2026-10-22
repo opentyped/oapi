@@ -1,7 +1,7 @@
 import express from 'express';
-import oapi from '@opentyped/express';
-import type { Handler } from '@opentyped/express';
-import type { EmptyResponse } from '@opentyped/openapi';
+import oapi from '@opentyped/oapi-express';
+import type { Handler } from '@opentyped/oapi-express';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 const app = express();
 interface Model {
   id: string;

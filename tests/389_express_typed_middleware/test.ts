@@ -1,7 +1,7 @@
 import express from 'express';
 import type { RequestHandler, ErrorRequestHandler } from 'express';
-import oapi from '@opentyped/express';
-import type { Middleware, ExpressHandler } from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
+import type { Middleware, ExpressHandler } from '@opentyped/oapi-express';
 
 interface Create {
   params: { id: string };

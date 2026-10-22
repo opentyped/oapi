@@ -1,8 +1,8 @@
-import { tagNames } from '@opentyped/openapi/document/metadata';
+import { tagNames } from '@opentyped/oapi-openapi/document/metadata';
 import type { ModelDeclaration } from '~/parser/declaration';
-import type { Selection, Nest } from '@opentyped/openapi/registration';
+import type { Selection, Nest } from '@opentyped/oapi-openapi/registration';
 import { DeclarationSelection } from '~/parser/document/selection';
-import { GenerationError } from '@opentyped/openapi/diagnostic';
+import { GenerationError } from '@opentyped/oapi-openapi/diagnostic';
 
 /** Composes selected declarations before compilation, so nested documents share one schema graph. */
 export class DocumentRegistration {

@@ -1,4 +1,4 @@
-import type { ExpressHandler } from '@opentyped/express';
+import type { ExpressHandler } from '@opentyped/oapi-express';
 
 interface Read {
   params: { id: string };

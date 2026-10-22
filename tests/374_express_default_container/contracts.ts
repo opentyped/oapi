@@ -1,4 +1,4 @@
-import type { EmptyResponse } from '@opentyped/openapi';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 export interface Model {
   id: string;
   parent?: Model;

@@ -3,13 +3,13 @@ import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { GenerationCompiler } from '@opentyped/compiler';
-import { defaultParsers } from '@opentyped/vite';
-import { ExpressParser } from '@opentyped/express/parser';
-import type { GenerateOptions, DeclarationRenderer } from '@opentyped/compiler';
-import type { OpenApiDocument } from '@opentyped/openapi';
-import { generateDefinitions, generateDeclarations } from '@opentyped/tsgen';
-import type { DefinitionOptions, DeclarationOptions } from '@opentyped/tsgen';
+import { GenerationCompiler } from '@opentyped/oapi-compiler';
+import { defaultParsers } from '@opentyped/oapi-vite';
+import { ExpressParser } from '@opentyped/oapi-express/parser';
+import type { GenerateOptions, DeclarationRenderer } from '@opentyped/oapi-compiler';
+import type { OpenApiDocument } from '@opentyped/oapi-openapi';
+import { generateDefinitions, generateDeclarations } from '@opentyped/oapi-tsgen';
+import type { DefinitionOptions, DeclarationOptions } from '@opentyped/oapi-tsgen';
 import ts from 'typescript';
 
 const directory = fileURLToPath(new URL('.', import.meta.url));

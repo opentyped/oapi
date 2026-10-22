@@ -2,14 +2,14 @@ import { DeclarationFile } from '~/declaration';
 import { defaultParsers } from '~/defaults';
 import { writeArtifacts } from '~/artifact';
 import { SourceTransforms } from '~/transform';
-import { GenerationError } from '@opentyped/openapi/diagnostic';
+import { GenerationError } from '@opentyped/oapi-openapi/diagnostic';
 import path from 'node:path';
 import os from 'node:os';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import type { Plugin, ResolvedConfig } from 'vite';
-import type { Generation, OutputOptions } from '@opentyped/compiler/config';
-import { GenerationCompiler } from '@opentyped/compiler/generate';
-import type { SourceTransform } from '@opentyped/compiler/parser/parser';
+import type { Generation, OutputOptions } from '@opentyped/oapi-compiler/config';
+import { GenerationCompiler } from '@opentyped/oapi-compiler/generate';
+import type { SourceTransform } from '@opentyped/oapi-compiler/parser/parser';
 import { serveDocuments } from '~/development';
 import { SourceWatcher } from '~/watcher';
 

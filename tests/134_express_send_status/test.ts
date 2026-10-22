@@ -1,5 +1,5 @@
 import express from 'express';
-import oapi from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
 interface Unavailable {
   responses: { 503: { body: string; contentType: 'text/plain' } };
 }

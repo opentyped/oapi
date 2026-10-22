@@ -1,9 +1,9 @@
-import { visitDocument } from '@opentyped/openapi/document/visitor';
-import { httpMethod } from '@opentyped/openapi/document/operation';
-import { compileDocument } from '@opentyped/openapi/document/document';
-import { mergePathItem } from '@opentyped/openapi/document/merge';
-import { GenerationError } from '@opentyped/openapi/diagnostic';
-import { stableJson } from '@opentyped/openapi/json';
+import { visitDocument } from '@opentyped/oapi-openapi/document/visitor';
+import { httpMethod } from '@opentyped/oapi-openapi/document/operation';
+import { compileDocument } from '@opentyped/oapi-openapi/document/document';
+import { mergePathItem } from '@opentyped/oapi-openapi/document/merge';
+import { GenerationError } from '@opentyped/oapi-openapi/diagnostic';
+import { stableJson } from '@opentyped/oapi-openapi/json';
 import type { Parser } from '~/parser/parser';
 import type { ParserContext } from '~/parser/context';
 

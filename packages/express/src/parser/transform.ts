@@ -1,11 +1,11 @@
 import ts from 'typescript';
 import { realpathSync } from 'node:fs';
 import MagicString from 'magic-string';
-import type { Project } from '@opentyped/ast/project';
-import { annotationsOf } from '@opentyped/compiler/parser/annotation';
+import type { Project } from '@opentyped/oapi-ast/project';
+import { annotationsOf } from '@opentyped/oapi-compiler/parser/annotation';
 import { endpointDeclarations } from '~/parser/declaration';
-import { unwrapExpression } from '@opentyped/ast/navigation';
-import { constantDeclaration } from '@opentyped/ast/constant';
+import { unwrapExpression } from '@opentyped/oapi-ast/navigation';
+import { constantDeclaration } from '@opentyped/oapi-ast/constant';
 
 /** Erases recognized registration calls while preserving argument evaluation and source maps. */
 export class RegistrationTransform {

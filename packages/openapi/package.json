@@ -1,6 +1,6 @@
 {
-  "name": "@opentyped/openapi",
-  "version": "0.1.0",
+  "name": "@opentyped/oapi-openapi",
+  "version": "0.5.0",
   "description": "Compiler-independent OpenAPI 3.2 documents, schemas and validation",
   "type": "module",
   "engines": {

@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import { openapi } from '@opentyped/vite';
+import { openapi } from '@opentyped/oapi-vite';
 import generation from './oapi.config';
 
 export default defineConfig({

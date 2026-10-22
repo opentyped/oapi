@@ -1,4 +1,4 @@
-import { defineConfig } from '@opentyped/compiler';
+import { defineConfig } from '@opentyped/oapi-compiler';
 
 export default defineConfig({
   tsconfig: 'tsconfig.json',

@@ -1,5 +1,5 @@
 {
-  "name": "@opentyped/example-client",
+  "name": "@opentyped/oapi-example-client",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,11 +11,11 @@
     "start": "tsx demo.ts"
   },
   "devDependencies": {
-    "@opentyped/tsgen": "0.1.0",
+    "@opentyped/oapi-tsgen": "0.5.0",
     "typescript": "~5.9.3",
     "tsx": "4.23.15"
   },
   "dependencies": {
-    "@opentyped/fetch": "0.1.0"
+    "@opentyped/oapi-fetch": "0.5.0"
   }
 }

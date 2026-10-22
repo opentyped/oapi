@@ -1,5 +1,5 @@
-import { webHandler } from '@opentyped/openapi/contract';
-import type { EmptyResponse } from '@opentyped/openapi';
+import { webHandler } from '@opentyped/oapi-openapi/contract';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 
 interface ReadAsset {
   params: { id: string };

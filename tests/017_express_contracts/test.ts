@@ -1,4 +1,4 @@
-import oapi from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
 import express from 'express';
 
 const app = express();

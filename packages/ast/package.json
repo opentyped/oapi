@@ -1,6 +1,6 @@
 {
-  "name": "@opentyped/ast",
-  "version": "0.1.0",
+  "name": "@opentyped/oapi-ast",
+  "version": "0.5.0",
   "description": "Generic TypeScript project and syntax analysis",
   "type": "module",
   "engines": {

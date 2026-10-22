@@ -1,5 +1,8 @@
 name: Check
-on: [push, pull_request]
+on:
+  push:
+    branches: ['**']
+  pull_request:
 permissions:
   contents: read
 jobs:
@@ -16,11 +19,3 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: npm run pack:packages
-        if: matrix.node == 24
-      - uses: actions/upload-artifact@v4
-        if: matrix.node == 24
-        with:
-          name: npm-packages
-          path: .oapi/packages/*.tgz
-          if-no-files-found: error

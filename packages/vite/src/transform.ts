@@ -1,6 +1,6 @@
 import remapping from '@jridgewell/remapping';
-import { GenerationError } from '@opentyped/openapi/diagnostic';
-import type { SourceTransform } from '@opentyped/compiler/parser/parser';
+import { GenerationError } from '@opentyped/oapi-openapi/diagnostic';
+import type { SourceTransform } from '@opentyped/oapi-compiler/parser/parser';
 
 /** Runs framework transforms in order and traces their maps to checked source. */
 export class SourceTransforms {

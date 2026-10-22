@@ -1,6 +1,6 @@
-import { GenerationError } from '@opentyped/openapi/diagnostic';
+import { GenerationError } from '@opentyped/oapi-openapi/diagnostic';
 import type { ResolvedConfig, ViteDevServer } from 'vite';
-import type { Generation } from '@opentyped/compiler/config';
+import type { Generation } from '@opentyped/oapi-compiler/config';
 import { DocumentEndpoint } from '~/endpoint';
 import { DocumentSnapshot } from '~/snapshot';
 import { SourceWatcher } from '~/watcher';

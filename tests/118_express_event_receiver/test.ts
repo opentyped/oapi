@@ -1,6 +1,6 @@
 import express from 'express';
-import oapi from '@opentyped/express';
-import type { EmptyResponse } from '@opentyped/openapi';
+import oapi from '@opentyped/oapi-express';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 
 interface ReceivedEvent {
   id: string;

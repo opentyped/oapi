@@ -1,6 +1,6 @@
 import ts from 'typescript';
-import { DocumentReferences } from '@opentyped/openapi/document/reference';
-import { formatPointer } from '@opentyped/openapi/pointer';
+import { DocumentReferences } from '@opentyped/oapi-openapi/document/reference';
+import { formatPointer } from '@opentyped/oapi-openapi/pointer';
 import { STRING, NEVER, TypeDeclarations, propertyText, unionType } from '~/ast';
 
 const parameterNames: Record<string, string> = {

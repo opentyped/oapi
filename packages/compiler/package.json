@@ -1,6 +1,6 @@
 {
-  "name": "@opentyped/compiler",
-  "version": "0.1.0",
+  "name": "@opentyped/oapi-compiler",
+  "version": "0.5.0",
   "type": "module",
   "engines": {
     "node": ">=22.13"
@@ -31,9 +31,9 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@opentyped/ast": "0.1.0",
-    "@opentyped/openapi": "0.1.0",
-    "@opentyped/schema": "0.1.0",
+    "@opentyped/oapi-ast": "0.5.0",
+    "@opentyped/oapi-openapi": "0.5.0",
+    "@opentyped/oapi-schema": "0.5.0",
     "minimatch": "10.2.6",
     "openapi3-ts": "^4.6.2",
     "ts-api-utils": "^2.5.0",

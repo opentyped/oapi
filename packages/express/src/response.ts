@@ -5,7 +5,7 @@ import type {
   Part,
   ResponseStatus,
   ResponseAtStatus,
-} from '@opentyped/openapi/contract';
+} from '@opentyped/oapi-openapi/contract';
 
 type TrimMedia<T extends string> = T extends `${' ' | '\t'}${infer V}`
   ? TrimMedia<V>

@@ -1,10 +1,10 @@
 import type { ParserFactory } from '~/parser/parser';
 import type { ParserContext } from '~/parser/context';
 import { GenerationSession } from '~/session';
-import type { Project } from '@opentyped/ast/project';
+import type { Project } from '@opentyped/oapi-ast/project';
 import type { GenerateOptions, Generation, DeclarationRenderer } from '~/config';
-import { ProjectCache } from '@opentyped/ast/project';
-import { ProjectValidation } from '@opentyped/ast/validation';
+import { ProjectCache } from '@opentyped/oapi-ast/project';
+import { ProjectValidation } from '@opentyped/oapi-ast/validation';
 /** Retains checked TypeScript programs between generations; document state stays per run. */
 export class GenerationCompiler {
   private readonly projects = new ProjectCache();

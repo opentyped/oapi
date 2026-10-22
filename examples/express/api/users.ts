@@ -1,6 +1,6 @@
 import type { Express } from 'express';
-import oapi from '@opentyped/express';
-import type { JsonResponse } from '@opentyped/openapi';
+import oapi from '@opentyped/oapi-express';
+import type { JsonResponse } from '@opentyped/oapi-openapi';
 import type { User } from '../models/user';
 
 interface GetUser {

@@ -1,11 +1,11 @@
 import type { Parser } from '~/parser/parser';
 import type { ParserOptions } from '~/parser/options';
-import type { DocumentModifier } from '@opentyped/openapi/document/modifier';
-import type { Schema, SchemaExport } from '@opentyped/openapi/schema/definition';
-import type { OpenApiDocument } from '@opentyped/openapi/document/definition';
-export type { TypeMapping } from '@opentyped/schema';
-export type { Schema } from '@opentyped/openapi/schema/definition';
-export type { Operation, OpenApiDocument } from '@opentyped/openapi/document/definition';
+import type { DocumentModifier } from '@opentyped/oapi-openapi/document/modifier';
+import type { Schema, SchemaExport } from '@opentyped/oapi-openapi/schema/definition';
+import type { OpenApiDocument } from '@opentyped/oapi-openapi/document/definition';
+export type { TypeMapping } from '@opentyped/oapi-schema';
+export type { Schema } from '@opentyped/oapi-openapi/schema/definition';
+export type { Operation, OpenApiDocument } from '@opentyped/oapi-openapi/document/definition';
 
 export interface ProjectDocument {
   options: GenerateOptions;

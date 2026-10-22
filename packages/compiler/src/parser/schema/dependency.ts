@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import path from 'node:path';
-import { sourceOf } from '@opentyped/ast/diagnostic';
-import type { Project } from '@opentyped/ast/project';
+import { sourceOf } from '@opentyped/oapi-ast/diagnostic';
+import type { Project } from '@opentyped/oapi-ast/project';
 
 /** Generated declarations are consumers of source contracts, never generation inputs. */
 export function assertSourceContracts(

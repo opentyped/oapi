@@ -1,5 +1,5 @@
-import oapi from '@opentyped/express';
-import type { Router } from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
+import type { Router } from '@opentyped/oapi-express';
 import type { UserRepository, UserRecord } from './repository.js';
 
 declare const app: Router;

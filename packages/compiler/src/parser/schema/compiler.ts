@@ -1,14 +1,14 @@
 import path from 'node:path';
-import { SchemaGenerator } from '@opentyped/schema';
-import { formatPointer } from '@opentyped/openapi/pointer';
-import type { TypeMapping, SchemaRoot } from '@opentyped/schema';
-import type { Project } from '@opentyped/ast/project';
-import { objectSchema } from '@opentyped/openapi/schema/shape';
-import { componentName } from '@opentyped/openapi/schema/reference';
-import { absoluteSchema } from '@opentyped/openapi/schema/resource';
-import { mapSchema } from '@opentyped/openapi/schema/visitor';
-import type { Compilation } from '@opentyped/openapi/schema/compilation';
-import type { Components, Schema } from '@opentyped/openapi/schema/definition';
+import { SchemaGenerator } from '@opentyped/oapi-schema';
+import { formatPointer } from '@opentyped/oapi-openapi/pointer';
+import type { TypeMapping, SchemaRoot } from '@opentyped/oapi-schema';
+import type { Project } from '@opentyped/oapi-ast/project';
+import { objectSchema } from '@opentyped/oapi-openapi/schema/shape';
+import { componentName } from '@opentyped/oapi-openapi/schema/reference';
+import { absoluteSchema } from '@opentyped/oapi-openapi/schema/resource';
+import { mapSchema } from '@opentyped/oapi-openapi/schema/visitor';
+import type { Compilation } from '@opentyped/oapi-openapi/schema/compilation';
+import type { Components, Schema } from '@opentyped/oapi-openapi/schema/definition';
 import type { ModelDeclaration, ModelIdentity } from '~/parser/declaration';
 import type { TypePolicy } from '~/parser/schema/safety';
 

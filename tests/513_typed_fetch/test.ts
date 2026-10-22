@@ -1,4 +1,4 @@
-import type { EmptyResponse } from '@opentyped/openapi';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 /** @schema */
 export interface User {
   id: string;

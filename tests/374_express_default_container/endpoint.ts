@@ -1,4 +1,4 @@
-import type { Endpoint } from '@opentyped/express';
+import type { Endpoint } from '@opentyped/oapi-express';
 import type { Read } from './contracts.js';
 export default {
   read: {

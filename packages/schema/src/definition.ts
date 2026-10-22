@@ -1,5 +1,5 @@
 import type ts from 'typescript';
-import type { SchemaEntry } from '@opentyped/openapi/schema/resource';
+import type { SchemaEntry } from '@opentyped/oapi-openapi/schema/resource';
 
 export type Schema = boolean | { [key: string]: unknown };
 

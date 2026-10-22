@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { disjointTemplates, escapePattern, templatePattern } from '@opentyped/ast/pattern';
+import { disjointTemplates, escapePattern, templatePattern } from '@opentyped/oapi-ast/pattern';
 import type { Schema } from '~/definition';
 import { SchemaError } from '~/error';
 import type { SchemaProvenance } from '~/provenance';

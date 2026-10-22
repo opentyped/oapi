@@ -1,6 +1,6 @@
 import type { Decimal } from 'decimal.js';
-import type { Router } from '@opentyped/express';
-import oapi from '@opentyped/express';
+import type { Router } from '@opentyped/oapi-express';
+import oapi from '@opentyped/oapi-express';
 
 declare const app: Router;
 interface CreatePayment {

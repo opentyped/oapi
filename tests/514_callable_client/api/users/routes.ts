@@ -1,6 +1,6 @@
-import oapi from '@opentyped/express';
-import type { Router } from '@opentyped/express';
-import type { EmptyResponse } from '@opentyped/openapi';
+import oapi from '@opentyped/oapi-express';
+import type { Router } from '@opentyped/oapi-express';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 import type { User } from '../../models/user.js';
 declare const app: Router;
 oapi.mount<{

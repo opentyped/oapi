@@ -4,11 +4,15 @@ import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 import { parse, match } from 'path-to-regexp';
 import type { Token } from 'path-to-regexp';
-import type { Source } from '@opentyped/openapi/diagnostic';
-import { ConstantString, constantDeclaration, constantProperty } from '@opentyped/ast/constant';
-import { ConstantJson } from '@opentyped/ast/json';
-import { sourceOf } from '@opentyped/ast/diagnostic';
-import { unwrapExpression } from '@opentyped/ast/navigation';
+import type { Source } from '@opentyped/oapi-openapi/diagnostic';
+import {
+  ConstantString,
+  constantDeclaration,
+  constantProperty,
+} from '@opentyped/oapi-ast/constant';
+import { ConstantJson } from '@opentyped/oapi-ast/json';
+import { sourceOf } from '@opentyped/oapi-ast/diagnostic';
+import { unwrapExpression } from '@opentyped/oapi-ast/navigation';
 
 const methods = new Set(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD', 'TRACE']);
 

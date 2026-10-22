@@ -1,14 +1,14 @@
-name: Release packages
+name: Publish to npm
 on:
   push:
     tags: ['v*']
 permissions:
   contents: read
 concurrency:
-  group: release-${{ github.ref_name }}
+  group: npm-release
   cancel-in-progress: false
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,77 +17,24 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - name: Set package versions from the tag
-        run: |
-          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([+-].*)?$ ]] || exit 1
-          npm version "${RELEASE_TAG#v}" --no-git-tag-version --allow-same-version --ignore-scripts --workspaces=false
-          node --input-type=module <<'JS'
-          import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
-          const read = (file) => JSON.parse(readFileSync(file, 'utf8'));
-          const version = read('package.json').version;
-          const packages = readdirSync('packages').map((name) => `packages/${name}/package.json`);
-          const names = new Set(packages.map((file) => read(file).name));
-          const examples = readdirSync('examples').map((name) => `examples/${name}/package.json`);
-          for (const file of ['package.json', ...packages, ...examples]) {
-            const pkg = read(file);
-            if (names.has(pkg.name)) pkg.version = version;
-            for (const field of ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']) {
-              for (const name of Object.keys(pkg[field] ?? {})) {
-                if (names.has(name)) pkg[field][name] = version;
-              }
-            }
-            writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');
-          }
-          JS
-          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Set versions from the tag
+        run: node scripts/version.mjs "$RELEASE_TAG"
         env:
           RELEASE_TAG: ${{ github.ref_name }}
       - run: npm run check
       - run: npm run pack:packages
-      - uses: actions/upload-artifact@v4
-        with:
-          name: npm-packages
-          path: .oapi/packages/*.tgz
-          if-no-files-found: error
-  upload:
-    needs: [build, publish]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: npm-packages
-          path: packages
-      - name: Create release and attach packages
-        run: |
-          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            gh release upload "$RELEASE_TAG" packages/*.tgz --repo "$GITHUB_REPOSITORY" --clobber
-          else
-            gh release create "$RELEASE_TAG" packages/*.tgz --repo "$GITHUB_REPOSITORY" --verify-tag --generate-notes
-          fi
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.ref_name }}
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: npm-packages
-          path: packages
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
           scope: '@opentyped'
-      - name: Publish to npm
+      - name: Publish validated packages to npm
         run: |
-          for archive in ./packages/*.tgz; do
-            npm publish "$archive" --registry https://registry.npmjs.org --access public --ignore-scripts
+          npm_tag=latest
+          if [[ "$RELEASE_TAG" == *-* ]]; then npm_tag=next; fi
+          for archive in ./.release/*.tgz; do
+            npm publish "$archive" --registry https://registry.npmjs.org --access public --ignore-scripts --tag "$npm_tag"
           done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_TAG: ${{ github.ref_name }}

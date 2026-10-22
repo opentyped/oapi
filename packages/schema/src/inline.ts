@@ -1,7 +1,7 @@
 import type ts from 'typescript';
-import { inlineReferences } from '@opentyped/openapi/schema/graph';
-import { mapSchema, visitSchema } from '@opentyped/openapi/schema/visitor';
-import type { Schema as ResourceSchema } from '@opentyped/openapi/schema/definition';
+import { inlineReferences } from '@opentyped/oapi-openapi/schema/graph';
+import { mapSchema, visitSchema } from '@opentyped/oapi-openapi/schema/visitor';
+import type { Schema as ResourceSchema } from '@opentyped/oapi-openapi/schema/definition';
 import type { Schema, SchemaDestination } from '~/definition';
 import { schemaEntries, schemaCatalog } from '~/destination';
 import { SchemaError } from '~/error';

@@ -16,5 +16,5 @@
 - Verify full outputs with authored numbered TypeScript/OpenAPI/definition goldens; no extra test suites in `tests/`.
 - Configure exact OpenAPI JSON and ambient declaration file paths; no manifests or standalone schema files; configurable module prefix.
 - Export every generated type from `<prefix>/<configured-namespace>`; reserve `schema` for that namespace’s typed routes.
-- Provide callable `@opentyped/fetch`: typed params/query and one body; path/method/media select payload types; native response narrowing; support Node, Web and Expo.
+- Provide callable `@opentyped/oapi-fetch`: typed params/query and one body; path/method/media select payload types; native response narrowing; support Node, Web and Expo.
 - Export endpoint input/response/error types in source-folder namespaces; retain namespaces through OpenAPI JSON.

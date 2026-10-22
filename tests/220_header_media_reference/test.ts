@@ -1,4 +1,4 @@
-import type { EmptyResponse } from '@opentyped/openapi';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 
 /** @route GET /read */
 export interface Read {

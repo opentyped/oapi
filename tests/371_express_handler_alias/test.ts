@@ -1,6 +1,6 @@
-import type { ExpressHandler } from '@opentyped/express';
-import type { HttpContract } from '@opentyped/openapi';
-import type { EmptyResponse } from '@opentyped/openapi';
+import type { ExpressHandler } from '@opentyped/oapi-express';
+import type { HttpContract } from '@opentyped/oapi-openapi';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 
 interface EventPayload {
   id: string;

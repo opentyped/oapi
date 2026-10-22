@@ -6,8 +6,8 @@ import ts from 'typescript';
 import { DeclarationFile } from '~/declaration';
 import { writeArtifacts } from '~/artifact';
 import { defaultParsers } from '~/defaults';
-import { generate } from '@opentyped/compiler';
-import type { OutputOptions } from '@opentyped/compiler/config';
+import { generate } from '@opentyped/oapi-compiler';
+import type { OutputOptions } from '@opentyped/oapi-compiler/config';
 
 try {
   const { values } = parseArgs({

@@ -1,4 +1,4 @@
-import type { EmptyResponse } from '@opentyped/openapi';
+import type { EmptyResponse } from '@opentyped/oapi-openapi';
 /** @route POST /documents */
 export interface WriteXml {
   requestBody: { content: { 'application/xml': string } };

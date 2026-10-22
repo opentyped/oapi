@@ -1,10 +1,14 @@
 import ts from 'typescript';
-import { sourceNodes } from '@opentyped/ast/nodes';
-import type { Project } from '@opentyped/ast/project';
+import { sourceNodes } from '@opentyped/oapi-ast/nodes';
+import type { Project } from '@opentyped/oapi-ast/project';
 import { expressMethod, expressPaths, openApiPaths, validateMountPaths } from '~/parser/route';
-import { ConstantString, constantDeclaration, constantProperty } from '@opentyped/ast/constant';
-import { sourceOf } from '@opentyped/ast/diagnostic';
-import { unwrapExpression } from '@opentyped/ast/navigation';
+import {
+  ConstantString,
+  constantDeclaration,
+  constantProperty,
+} from '@opentyped/oapi-ast/constant';
+import { sourceOf } from '@opentyped/oapi-ast/diagnostic';
+import { unwrapExpression } from '@opentyped/oapi-ast/navigation';
 
 interface Mount {
   parent: ts.Symbol;

@@ -1,5 +1,5 @@
 import type { User, schema } from '@app/generated/models';
-import { createClient, RequestBody } from '@opentyped/fetch';
+import { createClient, RequestBody } from '@opentyped/oapi-fetch';
 export const user: User = { id: '1' };
 const client = createClient<schema>();
 void client('/users/{id}', { params: { id: user.id } });

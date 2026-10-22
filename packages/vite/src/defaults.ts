@@ -1,9 +1,9 @@
-import { SchemaDiscovery } from '@opentyped/compiler/parser/schema/discovery';
-import { JSDocEndpointParser } from '@opentyped/compiler/parser/endpoint/parser';
-import { DocumentParser } from '@opentyped/compiler/parser/document/parser';
-import { SchemaSafety, SchemaCompiler } from '@opentyped/compiler/parser/schema/steps';
-import { DocumentEmitter } from '@opentyped/compiler/parser/document/emitter';
-import type { Parser } from '@opentyped/compiler/parser/parser';
+import { SchemaDiscovery } from '@opentyped/oapi-compiler/parser/schema/discovery';
+import { JSDocEndpointParser } from '@opentyped/oapi-compiler/parser/endpoint/parser';
+import { DocumentParser } from '@opentyped/oapi-compiler/parser/document/parser';
+import { SchemaSafety, SchemaCompiler } from '@opentyped/oapi-compiler/parser/schema/steps';
+import { DocumentEmitter } from '@opentyped/oapi-compiler/parser/document/emitter';
+import type { Parser } from '@opentyped/oapi-compiler/parser/parser';
 
 export function defaultParsers(): Parser[] {
   return [

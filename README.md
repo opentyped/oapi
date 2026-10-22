@@ -2,13 +2,13 @@
 
 [![Build](https://github.com/opentyped/oapi/actions/workflows/check.yml/badge.svg)](https://github.com/opentyped/oapi/actions/workflows/check.yml)
 [![OpenAPI 3.2](https://img.shields.io/badge/OpenAPI-3.2-6BA539)](https://spec.openapis.org/oas/v3.2.0.html)
-[![npm](https://img.shields.io/npm/v/@opentyped/vite)](https://www.npmjs.com/package/@opentyped/vite)
+[![npm](https://img.shields.io/npm/v/@opentyped/oapi-vite)](https://www.npmjs.com/package/@opentyped/oapi-vite)
 
 Utoipa-inspired OpenAPI generation for TypeScript. Reads types and route annotations from the AST at build time to generate an OpenAPI document and TypeScript declarations.
 
 ```sh
-npm install express @opentyped/express @opentyped/openapi @opentyped/fetch
-npm install -D typescript vite @types/express @types/node @opentyped/compiler @opentyped/vite
+npm install express @opentyped/oapi-express @opentyped/oapi-openapi @opentyped/oapi-fetch
+npm install -D typescript vite @types/express @types/node @opentyped/oapi-compiler @opentyped/oapi-vite
 ```
 
 ## 1. Write models and handlers
@@ -28,7 +28,7 @@ export interface User {
 ```ts
 // src/api/users.ts
 import express from 'express';
-import oapi from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
 import type { User } from '../models/user';
 
 const app = express();
@@ -73,9 +73,9 @@ export interface GetUser {
 
 ```ts
 // oapi.config.ts
-import { defineConfig } from '@opentyped/compiler';
-import { defaultParsers } from '@opentyped/vite';
-import { ExpressParser } from '@opentyped/express/parser';
+import { defineConfig } from '@opentyped/oapi-compiler';
+import { defaultParsers } from '@opentyped/oapi-vite';
+import { ExpressParser } from '@opentyped/oapi-express/parser';
 
 export default defineConfig({
   tsconfig: './tsconfig.json',
@@ -90,7 +90,7 @@ export default defineConfig({
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
-import { openapi } from '@opentyped/vite';
+import { openapi } from '@opentyped/oapi-vite';
 import generation from './oapi.config';
 
 export default defineConfig({
@@ -106,7 +106,7 @@ Namespace globs determine imports: `models` → `openapi/models`, `api` → `ope
 ## 3. Use typed Fetch
 
 ```ts
-import { createClient } from '@opentyped/fetch';
+import { createClient } from '@opentyped/oapi-fetch';
 import type { User } from 'openapi/models';
 import type { schema } from 'openapi/api';
 
@@ -130,3 +130,20 @@ Path and method determine parameter, body, and response types. Supports JSON, ot
 - [Client](examples/client): OpenAPI JSON → types → Fetch.
 - [Content](examples/content): XML, binary, multipart, SSE.
 - [Serialization](examples/serialization): Decimal → string mapping.
+
+## npm releases
+
+Branch pushes and pull requests run `npm run check`. Pushing a `vX.Y.Z` tag
+sets all publishable workspace versions and internal dependencies from the tag,
+runs the checks, and publishes validated tarballs to npm. Prerelease tags such
+as `v1.0.0-beta.1` use npm's `next` dist-tag; stable versions use `latest`.
+Configure the repository Actions secret `NPM_TOKEN` with npm publishing access
+to `@opentyped`. Credentials are supplied only to the publish step.
+
+```sh
+git tag v0.5.0
+git push origin HEAD
+git push origin v0.5.0
+```
+
+Use a new version for every release; npm versions cannot be overwritten.

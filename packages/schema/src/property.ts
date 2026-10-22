@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { tagsOf } from '@opentyped/ast/jsdoc';
+import { tagsOf } from '@opentyped/oapi-ast/jsdoc';
 import { SchemaError } from '~/error';
 
 const NAME_RULES = new Set([

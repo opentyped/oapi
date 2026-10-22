@@ -1,5 +1,5 @@
-import oapi from '@opentyped/express';
-import type { Router, Middleware } from '@opentyped/express';
+import oapi from '@opentyped/oapi-express';
+import type { Router, Middleware } from '@opentyped/oapi-express';
 import type { RequestHandler, ErrorRequestHandler } from 'express';
 
 declare const app: Router;

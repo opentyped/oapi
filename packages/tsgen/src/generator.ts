@@ -1,7 +1,7 @@
 import ts from 'typescript';
-import { DocumentValidation } from '@opentyped/openapi';
-import type { OpenApiDocument } from '@opentyped/openapi';
-import { validateJson } from '@opentyped/openapi/json';
+import { DocumentValidation } from '@opentyped/oapi-openapi';
+import type { OpenApiDocument } from '@opentyped/oapi-openapi';
+import { validateJson } from '@opentyped/oapi-openapi/json';
 import { createContext } from '~/context';
 import { resolveSchemaReferences } from '~/pointer';
 import { documentNodes } from '~/transform/document';

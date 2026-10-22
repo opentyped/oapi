@@ -1,11 +1,11 @@
 import { RegistrationTransform } from '~/parser/transform';
 import ts from 'typescript';
-import { sourceNodes } from '@opentyped/ast/nodes';
+import { sourceNodes } from '@opentyped/oapi-ast/nodes';
 import { RouterMounts } from '~/parser/router';
 import { mountedDeclarations } from '~/parser/declaration';
-import type { Parser } from '@opentyped/compiler/parser/parser';
-import type { Project } from '@opentyped/ast/project';
-import type { ParserContext } from '@opentyped/compiler/parser/context';
+import type { Parser } from '@opentyped/oapi-compiler/parser/parser';
+import type { Project } from '@opentyped/oapi-ast/project';
+import type { ParserContext } from '@opentyped/oapi-compiler/parser/context';
 
 export class ExpressParser implements Parser {
   readonly name = 'express/endpoints';

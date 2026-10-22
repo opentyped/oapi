@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { templatePattern } from '@opentyped/ast/pattern';
+import { templatePattern } from '@opentyped/oapi-ast/pattern';
 import type { Schema } from '~/definition';
 import { annotate, schemaOverride, overrideResolver } from '~/annotation';
 import { SchemaError } from '~/error';

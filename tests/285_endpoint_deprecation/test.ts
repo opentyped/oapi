@@ -1,6 +1,6 @@
-import oapi from '@opentyped/express';
-import type { Router } from '@opentyped/express';
-import { webHandler } from '@opentyped/openapi/contract';
+import oapi from '@opentyped/oapi-express';
+import type { Router } from '@opentyped/oapi-express';
+import { webHandler } from '@opentyped/oapi-openapi/contract';
 
 declare const app: Router;
 interface Output {

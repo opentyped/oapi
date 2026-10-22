@@ -1,7 +1,7 @@
 import ts from 'typescript';
-import { programDiagnostics } from '@opentyped/ast/project';
-import { templatePattern } from '@opentyped/ast/pattern';
-import { symbolProperty } from '@opentyped/ast/navigation';
+import { programDiagnostics } from '@opentyped/oapi-ast/project';
+import { templatePattern } from '@opentyped/oapi-ast/pattern';
+import { symbolProperty } from '@opentyped/oapi-ast/navigation';
 import type {
   Schema,
   SchemaDocument,

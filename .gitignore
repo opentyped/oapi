@@ -11,3 +11,4 @@ coverage/
 tests/.golden-*/
 tests/.contract-*/
 .DS_Store
+.release/

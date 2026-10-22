@@ -1,4 +1,4 @@
-import type { Generation } from '@opentyped/compiler/config';
+import type { Generation } from '@opentyped/oapi-compiler/config';
 
 /** Keeps a failed generation explicit so consumers cannot mistake stale output for current output. */
 export class DocumentSnapshot {

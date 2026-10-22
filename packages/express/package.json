@@ -1,6 +1,6 @@
 {
-  "name": "@opentyped/express",
-  "version": "0.1.0",
+  "name": "@opentyped/oapi-express",
+  "version": "0.5.0",
   "type": "module",
   "engines": {
     "node": ">=22.13"
@@ -26,9 +26,9 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@opentyped/ast": "0.1.0",
-    "@opentyped/openapi": "0.1.0",
-    "@opentyped/compiler": "0.1.0",
+    "@opentyped/oapi-ast": "0.5.0",
+    "@opentyped/oapi-openapi": "0.5.0",
+    "@opentyped/oapi-compiler": "0.5.0",
     "typescript": "~5.9.3",
     "magic-string": "^1.4.3",
     "path-to-regexp": "8.4.2",

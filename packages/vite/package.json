@@ -1,6 +1,6 @@
 {
-  "name": "@opentyped/vite",
-  "version": "0.1.0",
+  "name": "@opentyped/oapi-vite",
+  "version": "0.5.0",
   "description": "Vite integration for compile-time OpenAPI generation",
   "type": "module",
   "engines": {
@@ -33,13 +33,13 @@
     "postbuild": "node --input-type=module -e \"import { chmodSync } from 'node:fs'; chmodSync('dist/cli.js', 0o755)\""
   },
   "dependencies": {
-    "@opentyped/compiler": "0.1.0",
-    "@opentyped/openapi": "0.1.0",
+    "@opentyped/oapi-compiler": "0.5.0",
+    "@opentyped/oapi-openapi": "0.5.0",
     "@jridgewell/remapping": "2.3.5",
     "chokidar": "4.0.3",
     "typescript": "~5.9.3",
     "tsx": "4.23.15",
-    "@opentyped/tsgen": "0.1.0"
+    "@opentyped/oapi-tsgen": "0.5.0"
   },
   "peerDependencies": {
     "vite": ">=6 <9"

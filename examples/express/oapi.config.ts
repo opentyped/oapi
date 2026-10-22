@@ -1,6 +1,6 @@
-import { defineConfig } from '@opentyped/compiler';
-import { defaultParsers } from '@opentyped/vite';
-import { ExpressParser } from '@opentyped/express/parser';
+import { defineConfig } from '@opentyped/oapi-compiler';
+import { defaultParsers } from '@opentyped/oapi-vite';
+import { ExpressParser } from '@opentyped/oapi-express/parser';
 
 export default defineConfig({
   tsconfig: 'tsconfig.json',

@@ -1,4 +1,4 @@
-import { createClient, RequestBody } from '@opentyped/fetch';
+import { createClient, RequestBody } from '@opentyped/oapi-fetch';
 import type { schema } from 'openapi/routes';
 import type { User, UpdateUserInput } from 'openapi/api/users';
 const client = createClient<schema>({ baseUrl: 'https://example.com' });

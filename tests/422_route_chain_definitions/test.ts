@@ -1,5 +1,5 @@
 import express from 'express';
-import { handler as endpoint } from '@opentyped/express';
+import { handler as endpoint } from '@opentyped/oapi-express';
 
 const app = express();
 

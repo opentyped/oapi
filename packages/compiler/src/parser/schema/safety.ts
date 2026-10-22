@@ -1,4 +1,4 @@
-import { separateIndexes, indexPattern, templatePattern } from '@opentyped/ast/pattern';
+import { separateIndexes, indexPattern, templatePattern } from '@opentyped/oapi-ast/pattern';
 import { annotationsOf } from '~/parser/annotation';
 import ts from 'typescript';
 import {
@@ -7,7 +7,7 @@ import {
   isTupleTypeReference,
   isTypeFlagSet,
 } from 'ts-api-utils';
-import { fail } from '@opentyped/ast/diagnostic';
+import { fail } from '@opentyped/oapi-ast/diagnostic';
 import {
   builtInName,
   propertiesOf,
@@ -17,7 +17,7 @@ import {
   mutabilitySource,
   unwrapNoInfer,
   unwrapType,
-} from '@opentyped/ast/navigation';
+} from '@opentyped/oapi-ast/navigation';
 
 export interface TypePolicy {
   any?: 'error' | 'allow';

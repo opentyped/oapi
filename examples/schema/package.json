@@ -1,5 +1,5 @@
 {
-  "name": "@opentyped/example-schema",
+  "name": "@opentyped/oapi-example-schema",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,8 +9,8 @@
     "check": "npm run json && npm run typecheck"
   },
   "devDependencies": {
-    "@opentyped/compiler": "0.1.0",
-    "@opentyped/vite": "0.1.0",
+    "@opentyped/oapi-compiler": "0.5.0",
+    "@opentyped/oapi-vite": "0.5.0",
     "typescript": "~5.9.3"
   }
 }
