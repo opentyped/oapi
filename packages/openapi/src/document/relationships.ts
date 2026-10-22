@@ -61,7 +61,7 @@ export class DocumentRelationships {
         this.refs.pointer(link.operationRef) !== undefined
       ) {
         const operation = this.object(this.refs.resolve(link.operationRef));
-        let path = '/.typedapi-link-target';
+        let path = '/.oapi-link-target';
         while (Object.hasOwn(this.document.paths, path)) path += '_';
         if (
           !operation ||

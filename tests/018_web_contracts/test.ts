@@ -1,5 +1,5 @@
-import { webHandler } from '@typedapi/openapi/contract';
-import type { EmptyResponse } from '@typedapi/openapi';
+import { webHandler } from '@opentyped/openapi/contract';
+import type { EmptyResponse } from '@opentyped/openapi';
 
 interface EventPayload {
   id: string;

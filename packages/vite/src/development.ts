@@ -1,6 +1,6 @@
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 import type { ResolvedConfig, ViteDevServer } from 'vite';
-import type { Generation } from '@typedapi/compiler/config';
+import type { Generation } from '@opentyped/compiler/config';
 import { DocumentEndpoint } from '~/endpoint';
 import { DocumentSnapshot } from '~/snapshot';
 import { SourceWatcher } from '~/watcher';
@@ -9,7 +9,6 @@ import { SourceWatcher } from '~/watcher';
 export function serveDocuments(
   server: ViteDevServer,
   config: ResolvedConfig,
-  directory: string,
   regenerate: () => Generation,
   outputs: readonly string[] = [],
 ): () => Promise<void> {
@@ -17,10 +16,10 @@ export function serveDocuments(
   let watchFailure: Error | undefined;
   const report = (error: Error): void => {
     snapshot.failure = error;
-    config.logger.error(`[typedapi] ${error.message}`);
+    config.logger.error(`[oapi] ${error.message}`);
     server.ws.send({
       type: 'error',
-      err: { message: error.message, stack: error.stack ?? '', plugin: 'typedapi' },
+      err: { message: error.message, stack: error.stack ?? '', plugin: 'oapi' },
     });
   };
   const refresh = (): void => {
@@ -36,7 +35,7 @@ export function serveDocuments(
     watcher.track(result.files, result.watchRoots);
     server.ws.send({
       type: 'custom',
-      event: 'typedapi:update',
+      event: 'oapi:update',
       data: { paths: Object.keys(result.document.paths).length },
     });
   };
@@ -50,6 +49,6 @@ export function serveDocuments(
   server.httpServer?.once('close', () => {
     void watcher.close().catch(report);
   });
-  server.middlewares.use(new DocumentEndpoint(config.base, directory, snapshot).handle);
+  server.middlewares.use(new DocumentEndpoint(config.base, snapshot).handle);
   return watcher.close;
 }

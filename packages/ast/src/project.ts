@@ -12,6 +12,8 @@ export interface Project {
   directories: string[];
 }
 
+const builders = new WeakMap<ts.Program, ts.EmitAndSemanticDiagnosticsBuilderProgram>();
+
 const checkedPrograms = new WeakMap<ts.Program, readonly ts.Diagnostic[]>();
 
 /** Share complete diagnostics between AST consumers without rechecking an incremental program. */
@@ -19,6 +21,7 @@ export function programDiagnostics(
   program: ts.Program,
   builder?: ts.EmitAndSemanticDiagnosticsBuilderProgram,
 ): readonly ts.Diagnostic[] {
+  builder ??= builders.get(program);
   const cached = checkedPrograms.get(program);
   if (cached) return cached;
   if (builder && builder.getProgram() !== program)
@@ -54,7 +57,18 @@ interface CachedProject {
 export class ProjectCache {
   private readonly projects = new Map<string, CachedProject>();
 
-  load = (root: string, tsconfig: string): Project => load(root, tsconfig, this.projects);
+  load = (root: string, tsconfig: string): Project => {
+    const project = this.loadUnchecked(root, tsconfig);
+    diagnostics(
+      programDiagnostics(project.program).filter(
+        (item) => item.category === ts.DiagnosticCategory.Error,
+      ),
+    );
+    return project;
+  };
+
+  loadUnchecked = (root: string, tsconfig: string, excluded: readonly string[] = []): Project =>
+    load(root, tsconfig, this.projects, excluded);
 
   clear(): void {
     this.projects.clear();
@@ -70,15 +84,38 @@ export function isDefaultLibrarySymbol(project: Project, symbol: ts.Symbol | und
 
 /** Loads the actual project configuration, including extends, imports and project references. */
 export function loadProject(root: string, tsconfig: string): Project {
-  return load(root, tsconfig);
+  const project = loadUncheckedProject(root, tsconfig);
+  diagnostics(
+    programDiagnostics(project.program).filter(
+      (item) => item.category === ts.DiagnosticCategory.Error,
+    ),
+  );
+  return project;
 }
 
-function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>): Project {
+/** Constructs the real program before generated consumer declarations exist. */
+export function loadUncheckedProject(
+  root: string,
+  tsconfig: string,
+  excluded: readonly string[] = [],
+): Project {
+  return load(root, tsconfig, undefined, excluded);
+}
+
+function load(
+  root: string,
+  tsconfig: string,
+  cache?: Map<string, CachedProject>,
+  excluded: readonly string[] = [],
+): Project {
   const configPath = path.resolve(root, tsconfig);
+  const ignored = new Set(excluded.map((file) => path.resolve(file)));
+  const cacheKey = JSON.stringify([configPath, [...ignored].sort()]);
   const files = new Set<string>([configPath]);
   const roots = new Set<string>();
   const contents = new Map<string, string | undefined>();
   const readCurrentFile = (file: string): string | undefined => {
+    if (ignored.has(path.resolve(file))) return undefined;
     if (contents.has(file)) return contents.get(file);
     const text = ts.sys.readFile(file);
     contents.set(file, text);
@@ -98,11 +135,12 @@ function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>
       { noEmit: true },
       configPath,
     );
+    parsed.fileNames = parsed.fileNames.filter((file) => !ignored.has(path.resolve(file)));
     for (const directory of Object.keys(parsed.wildcardDirectories ?? {})) roots.add(directory);
     for (const file of parsed.fileNames) files.add(path.resolve(file));
     diagnostics(parsed.errors);
     const optionsKey = JSON.stringify([parsed.options, parsed.projectReferences]);
-    let state = cache?.get(configPath);
+    let state = cache?.get(cacheKey);
     if (
       cache &&
       (!state ||
@@ -118,7 +156,7 @@ function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>
         missing: new Map(),
         failed: true,
       };
-      cache.set(configPath, state);
+      cache.set(cacheKey, state);
     }
     const host = state
       ? ts.createIncrementalCompilerHost(parsed.options)
@@ -176,6 +214,7 @@ function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>
     }
     const readHostFile = host.readFile;
     host.readFile = (file): string | undefined => {
+      if (ignored.has(path.resolve(file))) return undefined;
       const text = contents.has(file) ? contents.get(file) : readHostFile(file);
       contents.set(file, text);
       if (path.extname(file).toLowerCase() === '.json') {
@@ -186,6 +225,7 @@ function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>
     };
     const fileExists = host.fileExists;
     host.fileExists = (file): boolean => {
+      if (ignored.has(path.resolve(file))) return false;
       const exists = fileExists(file);
       const absolute = path.resolve(file);
       if (!exists) state?.missing.set(absolute, 'file');
@@ -230,6 +270,7 @@ function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>
         host,
         ...(parsed.projectReferences ? { projectReferences: parsed.projectReferences } : {}),
       });
+    if (builder) builders.set(program, builder);
     for (const source of program.getSourceFiles()) {
       if (!program.isSourceFileDefaultLibrary(source)) files.add(path.resolve(source.fileName));
     }
@@ -246,11 +287,6 @@ function load(root: string, tsconfig: string, cache?: Map<string, CachedProject>
       diagnostics(reference.commandLine.errors);
       references.push(...(reference.references ?? []));
     }
-    diagnostics(
-      programDiagnostics(program, builder).filter(
-        (item) => item.category === ts.DiagnosticCategory.Error,
-      ),
-    );
     if (state) state.failed = false;
     const project = {
       program,

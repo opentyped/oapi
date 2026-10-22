@@ -1,22 +1,22 @@
 {
-  "name": "@typedapi/example-web",
+  "name": "@opentyped/example-web",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "json": "typedapi --config typedapi.config.ts",
+    "json": "oapi --config oapi.config.ts",
     "typecheck": "tsc --noEmit",
     "check": "npm run json && npm run typecheck",
     "start": "tsx demo.ts"
   },
   "devDependencies": {
-    "@typedapi/compiler": "0.1.0",
-    "@typedapi/vite": "0.1.0",
+    "@opentyped/compiler": "0.1.0",
+    "@opentyped/vite": "0.1.0",
     "typescript": "~5.9.3",
     "tsx": "4.23.15"
   },
   "dependencies": {
-    "@typedapi/openapi": "0.1.0",
-    "typedapi": "0.1.0"
+    "@opentyped/openapi": "0.1.0",
+    "@opentyped/fetch": "0.1.0"
   }
 }

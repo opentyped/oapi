@@ -1,7 +1,7 @@
-import { SchemaResource } from '@typedapi/openapi/schema/resource';
-import { formatPointer } from '@typedapi/openapi/pointer';
-import type { SchemaEntry, SchemaCatalog } from '@typedapi/openapi/schema/resource';
-import type { Schema as ResourceSchema } from '@typedapi/openapi/schema/definition';
+import { SchemaResource } from '@opentyped/openapi/schema/resource';
+import { formatPointer } from '@opentyped/openapi/pointer';
+import type { SchemaEntry, SchemaCatalog } from '@opentyped/openapi/schema/resource';
+import type { Schema as ResourceSchema } from '@opentyped/openapi/schema/definition';
 import type { Schema, SchemaDestination } from '~/definition';
 
 export function schemaReference(name: string, path: readonly string[]): string {

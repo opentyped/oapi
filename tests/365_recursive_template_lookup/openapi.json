@@ -17,10 +17,10 @@
           "value": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/Leaf"
+                "$ref": "#/components/schemas/Tree"
               },
               {
-                "$ref": "#/components/schemas/Tree"
+                "$ref": "#/components/schemas/Leaf"
               }
             ]
           }

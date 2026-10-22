@@ -1,5 +1,5 @@
-import { createClient, RequestBody } from 'typedapi/fetch';
-import type { ClientResponse } from 'typedapi/fetch';
+import { createClient, RequestBody } from '@opentyped/fetch';
+import type { ClientResponse } from '@opentyped/fetch';
 import type { schema } from 'openapi/routes';
 const client = createClient<schema>({ baseUrl: 'https://example.com' });
 

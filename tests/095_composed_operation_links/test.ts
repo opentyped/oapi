@@ -1,5 +1,5 @@
-import oapi from '@typedapi/express';
-import type { Router } from '@typedapi/express';
+import oapi from '@opentyped/express';
+import type { Router } from '@opentyped/express';
 
 declare const app: Router;
 interface Item {

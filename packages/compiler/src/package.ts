@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { InfoObject } from 'openapi3-ts/oas32';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 
 function packageContact(author: unknown): InfoObject['contact'] {
   const person =

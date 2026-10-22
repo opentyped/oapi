@@ -55,7 +55,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "api/users"
+        "x-opentyped-namespace": "api/users"
       },
       "get": {
         "operationId": "ListUsers",
@@ -104,7 +104,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "api/users"
+        "x-opentyped-namespace": "api/users"
       }
     },
     "/drafts": {
@@ -130,7 +130,7 @@
             "description": "HTTP 204"
           }
         },
-        "x-typedapi-namespace": "api/users"
+        "x-opentyped-namespace": "api/users"
       }
     },
     "/health": {
@@ -148,7 +148,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "api/users"
+        "x-opentyped-namespace": "api/users"
       }
     },
     "/text": {
@@ -166,7 +166,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "api/users"
+        "x-opentyped-namespace": "api/users"
       }
     }
   },

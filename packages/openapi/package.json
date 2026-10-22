@@ -1,5 +1,5 @@
 {
-  "name": "@typedapi/openapi",
+  "name": "@opentyped/openapi",
   "version": "0.1.0",
   "description": "Compiler-independent OpenAPI 3.2 documents, schemas and validation",
   "type": "module",
@@ -42,5 +42,13 @@
     "typescript": "~5.9.3",
     "@types/content-type": "^1.1.9",
     "tsc-alias": "1.9.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentyped/oapi.git",
+    "directory": "packages/openapi"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

@@ -7,7 +7,7 @@ export interface Model {
   __proto__: Payload;
   constructor?: string;
   hasOwnProperty?: boolean;
-  __typedapi_proto__?: string;
+  __oapi_proto__?: string;
 }
 
 interface Base {

@@ -9,7 +9,7 @@
     "/documents": {
       "post": {
         "operationId": "WriteXml",
-        "x-typedapi-namespace": "api/transport",
+        "x-opentyped-namespace": "api/transport",
         "requestBody": {
           "required": true,
           "content": {
@@ -37,7 +37,7 @@
     "/files/{name}": {
       "put": {
         "operationId": "UploadFile",
-        "x-typedapi-namespace": "api/transport",
+        "x-opentyped-namespace": "api/transport",
         "parameters": [
           {
             "name": "name",
@@ -66,7 +66,7 @@
       },
       "get": {
         "operationId": "DownloadFile",
-        "x-typedapi-namespace": "api/transport",
+        "x-opentyped-namespace": "api/transport",
         "parameters": [
           {
             "name": "name",
@@ -94,7 +94,7 @@
     "/events": {
       "get": {
         "operationId": "ReadEvents",
-        "x-typedapi-namespace": "api/transport",
+        "x-opentyped-namespace": "api/transport",
         "responses": {
           "200": {
             "description": "HTTP 200",
@@ -112,7 +112,7 @@
     "/forms": {
       "post": {
         "operationId": "SubmitForm",
-        "x-typedapi-namespace": "api/transport",
+        "x-opentyped-namespace": "api/transport",
         "requestBody": {
           "required": true,
           "content": {

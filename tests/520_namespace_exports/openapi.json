@@ -21,7 +21,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "models"
+        "x-opentyped-namespace": "models"
       },
       "post": {
         "operationId": "createUser",
@@ -47,7 +47,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "api"
+        "x-opentyped-namespace": "api"
       }
     }
   },

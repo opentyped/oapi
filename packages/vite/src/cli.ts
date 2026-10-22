@@ -3,10 +3,11 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import ts from 'typescript';
+import { DeclarationFile } from '~/declaration';
 import { writeArtifacts } from '~/artifact';
 import { defaultParsers } from '~/defaults';
-import { generate } from '@typedapi/compiler';
-import type { OutputOptions } from '@typedapi/compiler/config';
+import { generate } from '@opentyped/compiler';
+import type { OutputOptions } from '@opentyped/compiler/config';
 
 try {
   const { values } = parseArgs({
@@ -15,10 +16,10 @@ try {
   });
   if (values.help) {
     console.log(
-      'Usage: typedapi --config typedapi.config.mjs\nConfig exports a default OutputOptions object. Paths are relative to the config directory unless root is set.',
+      'Usage: oapi --config oapi.config.mjs\nConfig exports a default OutputOptions object. Paths are relative to the config directory unless root is set.',
     );
   } else {
-    const file = path.resolve(values.config ?? 'typedapi.config.mjs');
+    const file = path.resolve(values.config ?? 'oapi.config.mjs');
     const url = pathToFileURL(file).href;
     let loaded: unknown;
     if (/\.[cm]?ts$/.test(file)) {
@@ -45,10 +46,11 @@ try {
       ...value,
       root: path.resolve(path.dirname(file), value.root ?? '.'),
     };
-    const result = await writeArtifacts(options, generate(options, defaultParsers));
-    result.warnings.forEach((warning) => console.warn(`[typedapi] ${warning}`));
+    const declaration = new DeclarationFile(options);
+    const result = writeArtifacts(options, generate(options, defaultParsers, declaration));
+    result.warnings.forEach((warning) => console.warn(`[oapi] ${warning}`));
     console.log(
-      `Generated ${Object.keys(result.document.paths).length} paths, ${Object.keys(result.document.webhooks ?? {}).length} webhooks and ${Object.keys(result.schemas).length} JSON schemas in ${path.resolve(options.root, options.outDir ?? '.openapi')}`,
+      `Generated ${Object.keys(result.document.paths).length} paths, ${Object.keys(result.document.webhooks ?? {}).length} webhooks to ${options.output.document} and ${options.output.declarations}`,
     );
   }
 } catch (error) {

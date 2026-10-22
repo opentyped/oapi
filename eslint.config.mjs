@@ -171,14 +171,14 @@ const modulePatterns = (patterns) => patterns;
 const noCompiler = {
   paths: ['typescript', 'ts-json-schema-generator', 'vite', 'express'],
   patterns: modulePatterns([
-    'typedapi',
-    'typedapi/*',
-    '@typedapi/compiler*',
-    '@typedapi/express*',
-    '@typedapi/vite*',
-    '@typedapi/tsgen*',
-    '@typedapi/ast',
-    '@typedapi/ast/*',
+    'oapi',
+    'oapi/*',
+    '@opentyped/compiler*',
+    '@opentyped/express*',
+    '@opentyped/vite*',
+    '@opentyped/tsgen*',
+    '@opentyped/ast',
+    '@opentyped/ast/*',
   ]),
 };
 
@@ -205,13 +205,13 @@ export default tseslint.config(
         'error',
         {
           patterns: [
-            '@typedapi/ast*',
-            '@typedapi/compiler*',
-            '@typedapi/express*',
-            '@typedapi/vite*',
-            '@typedapi/tsgen*',
-            'typedapi',
-            'typedapi/*',
+            '@opentyped/ast*',
+            '@opentyped/compiler*',
+            '@opentyped/express*',
+            '@opentyped/vite*',
+            '@opentyped/tsgen*',
+            'oapi',
+            'oapi/*',
             'vite',
             'vite/*',
             'express',
@@ -292,9 +292,9 @@ export default tseslint.config(
         'error',
         {
           patterns: modulePatterns([
-            '@typedapi/*',
-            'typedapi',
-            'typedapi/*',
+            '@opentyped/*',
+            'oapi',
+            'oapi/*',
             'vite',
             'vite/*',
             'express',
@@ -354,10 +354,10 @@ export default tseslint.config(
         {
           paths: ['typescript', 'ts-json-schema-generator'],
           patterns: modulePatterns([
-            '@typedapi/ast',
-            '@typedapi/ast/*',
-            '@typedapi/compiler',
-            '@typedapi/compiler/*',
+            '@opentyped/ast',
+            '@opentyped/ast/*',
+            '@opentyped/compiler',
+            '@opentyped/compiler/*',
             '~/parser/*',
           ]),
         },
@@ -381,7 +381,7 @@ export default tseslint.config(
     rules: {
       'no-restricted-imports': [
         'error',
-        { patterns: modulePatterns(['@typedapi/compiler/parser/*/**', '@typedapi/express*']) },
+        { patterns: modulePatterns(['@opentyped/compiler/parser/*/**', '@opentyped/express*']) },
       ],
     },
   },

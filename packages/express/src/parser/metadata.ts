@@ -1,9 +1,9 @@
-import { ConstantJson } from '@typedapi/ast/json';
-import { ConstantString } from '@typedapi/ast/constant';
+import { ConstantJson } from '@opentyped/ast/json';
+import { ConstantString } from '@opentyped/ast/constant';
 import ts from 'typescript';
-import type { Source } from '@typedapi/openapi/diagnostic';
-import { annotationsOf } from '@typedapi/compiler/parser/annotation';
-import { unwrapExpression } from '@typedapi/ast/navigation';
+import type { Source } from '@opentyped/openapi/diagnostic';
+import { annotationsOf } from '@opentyped/compiler/parser/annotation';
+import { unwrapExpression } from '@opentyped/ast/navigation';
 
 /** Reads documentation fields without evaluating application expressions. */
 export function endpointMetadata(

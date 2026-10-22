@@ -1,6 +1,6 @@
-import type { TypeMapping } from '@typedapi/schema';
-import type { DocumentOptions } from '@typedapi/openapi/document/definition';
-import type { Selection, Nest } from '@typedapi/openapi/registration';
+import type { TypeMapping } from '@opentyped/schema';
+import type { DocumentOptions } from '@opentyped/openapi/document/definition';
+import type { Selection, Nest } from '@opentyped/openapi/registration';
 
 /** Settings available to a parser; pipeline composition belongs to the caller. */
 export interface ParserOptions extends DocumentOptions {

@@ -1,6 +1,6 @@
 import remapping from '@jridgewell/remapping';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
-import type { SourceTransform } from '@typedapi/compiler/parser/parser';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
+import type { SourceTransform } from '@opentyped/compiler/parser/parser';
 
 /** Runs framework transforms in order and traces their maps to checked source. */
 export class SourceTransforms {
@@ -13,7 +13,7 @@ export class SourceTransforms {
       const checked = step.source(file);
       if (checked !== undefined && checked !== code && step.apply(checked, file))
         throw new GenerationError(
-          `${file}: Registered endpoint source differs from checked TypeScript. Keep route metadata in source; run TypedAPI before preprocessing that preserves endpoint semantics.`,
+          `${file}: Registered endpoint source differs from checked TypeScript. Keep route metadata in source; run OpenTyped OAPI before preprocessing that preserves endpoint semantics.`,
         );
       const value = step.apply(current, file);
       if (!value) {

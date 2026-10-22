@@ -1,6 +1,6 @@
 import type { User, Address, schema } from 'openapi/models';
 import type { User as ApiUser, schema as ApiSchema } from 'openapi/api';
-import { createClient } from 'typedapi/fetch';
+import { createClient } from '@opentyped/fetch';
 const address: Address = { street: 'Main' };
 const user: User = { id: '1', address };
 const apiUser: ApiUser = { id: 1 };

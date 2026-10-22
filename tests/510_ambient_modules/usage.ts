@@ -17,7 +17,7 @@ const missing: Get['parameters']['path'] = {};
 export type Unknown = schema['/missing'];
 void [params, response, wrong, missing];
 
-import { createClient } from 'typedapi/fetch';
+import { createClient } from '@opentyped/fetch';
 const client = createClient<schema>({ baseUrl: 'https://example.com' });
 export async function getUser(): Promise<ApiUser | undefined> {
   const response = await client('/users/{id}', { params: { id: '1' } });

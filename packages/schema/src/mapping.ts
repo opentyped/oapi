@@ -1,7 +1,7 @@
 import ts from 'typescript';
-import { moduleSymbols } from '@typedapi/ast/module';
-import { validateJson } from '@typedapi/openapi/json';
-import { explicitSchema } from '@typedapi/openapi/schema/validation';
+import { moduleSymbols } from '@opentyped/ast/module';
+import { validateJson } from '@opentyped/openapi/json';
+import { explicitSchema } from '@opentyped/openapi/schema/validation';
 import type { Schema, TypeMapping } from '~/definition';
 
 /** Match exported declaration identity, never structural assignability or a class name. */

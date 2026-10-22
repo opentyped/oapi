@@ -1,5 +1,5 @@
 {
-  "name": "@typedapi/compiler",
+  "name": "@opentyped/compiler",
   "version": "0.1.0",
   "type": "module",
   "engines": {
@@ -31,9 +31,9 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@typedapi/ast": "0.1.0",
-    "@typedapi/openapi": "0.1.0",
-    "@typedapi/schema": "0.1.0",
+    "@opentyped/ast": "0.1.0",
+    "@opentyped/openapi": "0.1.0",
+    "@opentyped/schema": "0.1.0",
     "minimatch": "10.2.6",
     "openapi3-ts": "^4.6.2",
     "ts-api-utils": "^2.5.0",
@@ -41,5 +41,13 @@
   },
   "devDependencies": {
     "tsc-alias": "1.9.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentyped/oapi.git",
+    "directory": "packages/compiler"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

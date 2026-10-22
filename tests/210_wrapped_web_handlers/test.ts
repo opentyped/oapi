@@ -1,4 +1,4 @@
-import { webHandler } from '@typedapi/openapi/contract';
+import { webHandler } from '@opentyped/openapi/contract';
 
 interface Read {
   responses: { 200: { body: { ok: boolean } } };

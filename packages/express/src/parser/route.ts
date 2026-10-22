@@ -4,11 +4,11 @@ import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 import { parse, match } from 'path-to-regexp';
 import type { Token } from 'path-to-regexp';
-import type { Source } from '@typedapi/openapi/diagnostic';
-import { ConstantString, constantDeclaration, constantProperty } from '@typedapi/ast/constant';
-import { ConstantJson } from '@typedapi/ast/json';
-import { sourceOf } from '@typedapi/ast/diagnostic';
-import { unwrapExpression } from '@typedapi/ast/navigation';
+import type { Source } from '@opentyped/openapi/diagnostic';
+import { ConstantString, constantDeclaration, constantProperty } from '@opentyped/ast/constant';
+import { ConstantJson } from '@opentyped/ast/json';
+import { sourceOf } from '@opentyped/ast/diagnostic';
+import { unwrapExpression } from '@opentyped/ast/navigation';
 
 const methods = new Set(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD', 'TRACE']);
 

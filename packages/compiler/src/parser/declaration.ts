@@ -1,6 +1,6 @@
 import ts from 'typescript';
-import { sourceOf } from '@typedapi/ast/diagnostic';
-import type { Source } from '@typedapi/openapi/diagnostic';
+import { sourceOf } from '@opentyped/ast/diagnostic';
+import type { Source } from '@opentyped/openapi/diagnostic';
 
 export type ModelNode =
   ts.InterfaceDeclaration | ts.TypeAliasDeclaration | ts.EnumDeclaration | ts.ClassDeclaration;

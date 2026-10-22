@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import { openapi } from '@typedapi/vite';
-import generation from './typedapi.config';
+import { openapi } from '@opentyped/vite';
+import generation from './oapi.config';
 
 export default defineConfig({
   root: fileURLToPath(new URL('.', import.meta.url)),

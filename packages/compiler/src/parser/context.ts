@@ -1,17 +1,17 @@
-import { DEFAULT_OPENAPI } from '@typedapi/openapi/document/definition';
-import { sourceOf } from '@typedapi/ast/diagnostic';
-import type { Source } from '@typedapi/openapi/diagnostic';
+import { DEFAULT_OPENAPI } from '@opentyped/openapi/document/definition';
+import { sourceOf } from '@opentyped/ast/diagnostic';
+import type { Source } from '@opentyped/openapi/diagnostic';
 import type { SourceTransform } from '~/parser/transform';
 import type ts from 'typescript';
-import type { Project } from '@typedapi/ast/project';
-import { walkProject } from '@typedapi/ast/walk';
+import type { Project } from '@opentyped/ast/project';
+import { walkProject } from '@opentyped/ast/walk';
 import type { ParserOptions } from '~/parser/options';
 import type { ModelDeclaration } from '~/parser/declaration';
-import type { Compilation } from '@typedapi/openapi/schema/compilation';
+import type { Compilation } from '@opentyped/openapi/schema/compilation';
 import type { ModelIdentity } from '~/parser/declaration';
-import type { OpenApiDocument } from '@typedapi/openapi/document/definition';
-import type { Schema } from '@typedapi/openapi/schema/definition';
-import { DIALECT } from '@typedapi/openapi/schema/dialect';
+import type { OpenApiDocument } from '@opentyped/openapi/document/definition';
+import type { Schema } from '@opentyped/openapi/schema/definition';
+import { DIALECT } from '@opentyped/openapi/schema/dialect';
 
 /** One project's mutable generation state, shared by its configured parser steps. */
 export class ParserContext {

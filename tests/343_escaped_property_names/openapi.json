@@ -27,7 +27,7 @@
           "__proto__": {
             "$ref": "#/components/schemas/Dataset"
           },
-          "__typedapi_proto__": {
+          "__oapi_proto__": {
             "type": "boolean"
           },
           "a": {

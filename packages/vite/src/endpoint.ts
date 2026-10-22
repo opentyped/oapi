@@ -1,5 +1,5 @@
 import type { Connect } from 'vite';
-import { stableJson } from '@typedapi/openapi/json';
+import { stableJson } from '@opentyped/openapi/json';
 import type { DocumentSnapshot } from '~/snapshot';
 
 /** Read-only development transport for generated documents. */
@@ -8,18 +8,15 @@ export class DocumentEndpoint {
 
   constructor(
     base: string,
-    directory: string,
     private readonly snapshot: DocumentSnapshot,
   ) {
-    this.prefix = `${base.replace(/\/$/, '')}/${directory}/`;
+    this.prefix = `${base.replace(/\/$/, '')}/openapi.json`;
   }
 
   handle: Connect.NextHandleFunction = (request, response, next) => {
     const url = new URL(request.url ?? '/', 'http://localhost');
-    if (!url.pathname.startsWith(this.prefix)) return next();
-    const file = url.pathname.slice(this.prefix.length);
-    const content = this.snapshot.content(file);
-    if (file !== 'openapi.json' && content === undefined) return next();
+    if (url.pathname !== this.prefix) return next();
+    const content = this.snapshot.result?.document;
     if (request.method !== 'GET' && request.method !== 'HEAD') {
       response.statusCode = 405;
       response.setHeader('Allow', 'GET, HEAD');

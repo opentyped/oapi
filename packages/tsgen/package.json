@@ -1,5 +1,5 @@
 {
-  "name": "@typedapi/tsgen",
+  "name": "@opentyped/tsgen",
   "version": "0.1.0",
   "description": "Generate TypeScript definitions from OpenAPI documents",
   "type": "module",
@@ -26,12 +26,20 @@
   },
   "dependencies": {
     "typescript": "~5.9.3",
-    "@typedapi/openapi": "0.1.0"
+    "@opentyped/openapi": "0.1.0"
   },
   "bin": {
-    "typedapi-tsgen": "./dist/cli.js"
+    "oapi-tsgen": "./dist/cli.js"
   },
   "devDependencies": {
     "tsc-alias": "1.9.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentyped/oapi.git",
+    "directory": "packages/tsgen"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

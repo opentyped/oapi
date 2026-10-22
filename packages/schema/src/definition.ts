@@ -1,5 +1,5 @@
 import type ts from 'typescript';
-import type { SchemaEntry } from '@typedapi/openapi/schema/resource';
+import type { SchemaEntry } from '@opentyped/openapi/schema/resource';
 
 export type Schema = boolean | { [key: string]: unknown };
 
@@ -22,6 +22,8 @@ export interface SchemaOptions {
   root: string;
   /** Relative file globs mapped to namespace prefixes; the most-specific static base wins. */
   namespaces?: Readonly<Record<string, string>>;
+  /** The document compiler validates the complete program after rendering declarations. */
+  deferDiagnostics?: boolean;
   /** Maximum number of distinct type instantiations. Prevents expanding generics forever. */
   maxTypes?: number;
   typeMappings?: readonly TypeMapping[];

@@ -20,7 +20,7 @@
           "hasOwnProperty": {
             "type": "boolean"
           },
-          "__typedapi_proto__": {
+          "__oapi_proto__": {
             "type": "string"
           }
         },

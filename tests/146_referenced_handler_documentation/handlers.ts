@@ -1,5 +1,5 @@
-import type { Handler } from '@typedapi/express';
-import type { EmptyResponse } from '@typedapi/openapi';
+import type { Handler } from '@opentyped/express';
+import type { EmptyResponse } from '@opentyped/openapi';
 export interface Contract {
   responses: { 204: EmptyResponse };
 }

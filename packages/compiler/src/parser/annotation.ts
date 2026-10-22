@@ -1,8 +1,8 @@
-import { tagsOf, documentationOf } from '@typedapi/ast/jsdoc';
-import { operationAnnotations } from '@typedapi/openapi/document/definition';
+import { tagsOf, documentationOf } from '@opentyped/ast/jsdoc';
+import { operationAnnotations } from '@opentyped/openapi/document/definition';
 import ts from 'typescript';
-import type { Project } from '@typedapi/ast/project';
-import { fail } from '@typedapi/ast/diagnostic';
+import type { Project } from '@opentyped/ast/project';
+import { fail } from '@opentyped/ast/diagnostic';
 
 const singular = new Set([
   ...operationAnnotations,

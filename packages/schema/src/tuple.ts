@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { SCHEMA_ANNOTATIONS } from '@typedapi/openapi/schema/graph';
+import { SCHEMA_ANNOTATIONS } from '@opentyped/openapi/schema/graph';
 import { annotate } from '~/annotation';
 import type { Schema } from '~/definition';
 import { SchemaError } from '~/error';

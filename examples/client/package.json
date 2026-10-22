@@ -1,21 +1,21 @@
 {
-  "name": "@typedapi/example-client",
+  "name": "@opentyped/example-client",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "json": "npm run generate",
-    "generate": "typedapi-tsgen openapi.json",
+    "generate": "oapi-tsgen openapi.json -o openapi.d.ts",
     "typecheck": "tsc --noEmit",
     "check": "npm run generate && npm run typecheck",
     "start": "tsx demo.ts"
   },
   "devDependencies": {
-    "@typedapi/tsgen": "0.1.0",
+    "@opentyped/tsgen": "0.1.0",
     "typescript": "~5.9.3",
     "tsx": "4.23.15"
   },
   "dependencies": {
-    "typedapi": "0.1.0"
+    "@opentyped/fetch": "0.1.0"
   }
 }

@@ -205,7 +205,7 @@ export class SchemaResource {
             const parts = parse(resource.id ? resolve(resource.id, node.$id) : node.$id);
             delete parts.fragment;
             const id = normalize(serialize(parts));
-            resource = resources.get(id) ?? { id, path: ['x-typedapi-query'], anchors: new Map() };
+            resource = resources.get(id) ?? { id, path: ['x-opentyped-query'], anchors: new Map() };
           }
           scopes.set(location(path), resource);
           if (typeof node === 'boolean') return;

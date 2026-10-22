@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
-import { symbolProperty } from '@typedapi/ast/navigation';
+import { symbolProperty } from '@opentyped/ast/navigation';
 import type { Schema } from '~/definition';
 import { SchemaError } from '~/error';
 import { queryOrigin } from '~/query';
-import { documentationOf } from '@typedapi/ast/jsdoc';
+import { documentationOf } from '@opentyped/ast/jsdoc';
 
 export interface AnnotationOrigin {
   readonly syntax: ts.TypeNode;

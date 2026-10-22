@@ -1,4 +1,4 @@
-import type { StreamResponse } from '@typedapi/openapi';
+import type { StreamResponse } from '@opentyped/openapi';
 
 /** @route POST /documents */
 export interface WriteXml {

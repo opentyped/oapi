@@ -3,13 +3,13 @@ import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { GenerationCompiler } from '@typedapi/compiler';
-import { defaultParsers } from '@typedapi/vite';
-import { ExpressParser } from '@typedapi/express/parser';
-import type { GenerateOptions } from '@typedapi/compiler';
-import type { OpenApiDocument } from '@typedapi/openapi';
-import { generateDefinitions, generateDeclarations } from '@typedapi/tsgen';
-import type { DefinitionOptions, DeclarationOptions } from '@typedapi/tsgen';
+import { GenerationCompiler } from '@opentyped/compiler';
+import { defaultParsers } from '@opentyped/vite';
+import { ExpressParser } from '@opentyped/express/parser';
+import type { GenerateOptions, DeclarationRenderer } from '@opentyped/compiler';
+import type { OpenApiDocument } from '@opentyped/openapi';
+import { generateDefinitions, generateDeclarations } from '@opentyped/tsgen';
+import type { DefinitionOptions, DeclarationOptions } from '@opentyped/tsgen';
 import ts from 'typescript';
 
 const directory = fileURLToPath(new URL('.', import.meta.url));
@@ -72,22 +72,37 @@ for (const name of cases)
     const expected = JSON.parse(
       await readFile(path.join(fixture, 'openapi.json'), 'utf8'),
     ) as OpenApiDocument;
+    const declarationOptions = files.includes('declarations.json')
+      ? (JSON.parse(
+          await readFile(path.join(fixture, 'declarations.json'), 'utf8'),
+        ) as DeclarationOptions)
+      : {};
+    const declarations: DeclarationRenderer | undefined = files.includes('openapi.d.ts')
+      ? {
+          file: path.join(root, 'openapi.d.ts'),
+          render: (result): string =>
+            generateDeclarations(result.document, { ...declarationOptions, models: result.models }),
+        }
+      : undefined;
     const compiler = new GenerationCompiler(defaultParsers);
     t.after(() => compiler.clear());
-    const result = compiler.generate(options);
+    const result = compiler.generate(options, undefined, declarations);
     assert.deepEqual(
       JSON.parse(JSON.stringify(result.document)),
       expected,
       `${name}: generated OpenAPI differs from the hand-authored contract`,
     );
     if (files.includes('steps')) {
-      assert.deepEqual(compiler.generate(options).document, result.document);
+      assert.deepEqual(
+        compiler.generate(options, undefined, declarations).document,
+        result.document,
+      );
       for (const step of (await readdir(path.join(fixture, 'steps'))).sort()) {
         const source = path.join(fixture, 'steps', step);
         await cp(source, root, { recursive: true });
         const document = JSON.parse(await readFile(path.join(source, 'openapi.json'), 'utf8'));
         assert.deepEqual(
-          JSON.parse(JSON.stringify(compiler.generate(options).document)),
+          JSON.parse(JSON.stringify(compiler.generate(options, undefined, declarations).document)),
           document,
           `${name}/${step}: incremental generation differs from the authored contract`,
         );
@@ -101,11 +116,6 @@ for (const name of cases)
         : {};
       const ambient = files.includes('openapi.d.ts');
       const file = ambient ? 'openapi.d.ts' : 'schema.d.ts';
-      const declarationOptions = files.includes('declarations.json')
-        ? (JSON.parse(
-            await readFile(path.join(fixture, 'declarations.json'), 'utf8'),
-          ) as DeclarationOptions)
-        : {};
       const definitions = ambient
         ? generateDeclarations(result.document, {
             ...declarationOptions,

@@ -27,4 +27,4 @@ export interface Override {
   requestBody: AliasedBody;
   responses: { 204: EmptyResponse };
 }
-import type { EmptyResponse } from '@typedapi/openapi/contract';
+import type { EmptyResponse } from '@opentyped/openapi/contract';

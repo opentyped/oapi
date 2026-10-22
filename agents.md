@@ -1,4 +1,5 @@
 - Build Utoipa’s TypeScript equivalent: annotate models and handlers; generate OpenAPI 3.2 and JSON Schema at compile time.
+- Render real declarations before full-project typechecking; publish only validated output; generation inputs must not depend on generated types.
 - Generate through Vite and `npm run json`; never execute application source.
 - Make `oapi.mount<Contract>(app, { method, path, handler })` register Express routes and describe them statically.
 - Type params, query, body, headers, and status-specific responses; enforce handler contracts.
@@ -13,7 +14,7 @@
 - Reuse proven schema/OpenAPI libraries; keep custom machinery small.
 - Build `tsgen` from openapi-typescript: native OpenAPI 3.2, namespace-safe definitions only, no HTTP runtime.
 - Verify full outputs with authored numbered TypeScript/OpenAPI/definition goldens; no extra test suites in `tests/`.
-- Emit one ambient `.openapi/openapi.d.ts`; configure its directory and module prefix.
+- Configure exact OpenAPI JSON and ambient declaration file paths; no manifests or standalone schema files; configurable module prefix.
 - Export every generated type from `<prefix>/<configured-namespace>`; reserve `schema` for that namespace’s typed routes.
-- Provide callable `typedapi/fetch`: typed params/query and one body; path/method/media select payload types; native response narrowing; support Node, Web and Expo.
+- Provide callable `@opentyped/fetch`: typed params/query and one body; path/method/media select payload types; native response narrowing; support Node, Web and Expo.
 - Export endpoint input/response/error types in source-folder namespaces; retain namespaces through OpenAPI JSON.

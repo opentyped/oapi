@@ -1,5 +1,5 @@
-import oapi from '@typedapi/express';
-import type { Router, Handler } from '@typedapi/express';
+import oapi from '@opentyped/express';
+import type { Router, Handler } from '@opentyped/express';
 
 declare const app: Router;
 interface Read {

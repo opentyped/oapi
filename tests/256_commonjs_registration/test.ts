@@ -1,5 +1,5 @@
-import oapi = require('@typedapi/express');
-import type { Router } from '@typedapi/express';
+import oapi = require('@opentyped/express');
+import type { Router } from '@opentyped/express';
 
 declare const app: Router;
 interface CommonJsPayload {

@@ -1,6 +1,6 @@
 import ts from 'typescript';
-import { DocumentReferences } from '@typedapi/openapi/document/reference';
-import { formatPointer } from '@typedapi/openapi/pointer';
+import { DocumentReferences } from '@opentyped/openapi/document/reference';
+import { formatPointer } from '@opentyped/openapi/pointer';
 import { STRING, NEVER, TypeDeclarations, propertyText, unionType } from '~/ast';
 
 const parameterNames: Record<string, string> = {
@@ -119,7 +119,7 @@ export function namespacePaths(
         let operation = owner[name] as Record<string, unknown>;
         if (typeof operation?.$ref === 'string')
           operation = references.resolve(operation.$ref) as Record<string, unknown>;
-        if ((operation?.['x-typedapi-namespace'] ?? 'api') === namespace) {
+        if ((operation?.['x-opentyped-namespace'] ?? 'api') === namespace) {
           included = true;
           return field;
         }

@@ -1,7 +1,7 @@
 import express from 'express';
-import oapi from '@typedapi/express';
-import type { EmptyResponse } from '@typedapi/openapi';
-import { webHandler } from '@typedapi/openapi/contract';
+import oapi from '@opentyped/express';
+import type { EmptyResponse } from '@opentyped/openapi';
+import { webHandler } from '@opentyped/openapi/contract';
 
 interface Reset {
   responses: { 205: EmptyResponse };

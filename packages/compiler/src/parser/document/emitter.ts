@@ -1,9 +1,9 @@
-import { visitDocument } from '@typedapi/openapi/document/visitor';
-import { httpMethod } from '@typedapi/openapi/document/operation';
-import { compileDocument } from '@typedapi/openapi/document/document';
-import { mergePathItem } from '@typedapi/openapi/document/merge';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
-import { stableJson } from '@typedapi/openapi/json';
+import { visitDocument } from '@opentyped/openapi/document/visitor';
+import { httpMethod } from '@opentyped/openapi/document/operation';
+import { compileDocument } from '@opentyped/openapi/document/document';
+import { mergePathItem } from '@opentyped/openapi/document/merge';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
+import { stableJson } from '@opentyped/openapi/json';
 import type { Parser } from '~/parser/parser';
 import type { ParserContext } from '~/parser/context';
 
@@ -83,7 +83,7 @@ export class DocumentEmitter implements Parser {
       object(operation, role): void {
         if (role !== 'operationObject' || typeof operation.operationId !== 'string') return;
         const namespace = namespaces.get(operation.operationId);
-        if (namespace) operation['x-typedapi-namespace'] = namespace;
+        if (namespace) operation['x-opentyped-namespace'] = namespace;
       },
     });
   }

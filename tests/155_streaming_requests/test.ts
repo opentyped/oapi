@@ -1,7 +1,7 @@
-import oapi from '@typedapi/express';
-import type { Router } from '@typedapi/express';
-import { webHandler } from '@typedapi/openapi/contract';
-import type { EmptyResponse, StreamRequest } from '@typedapi/openapi';
+import oapi from '@opentyped/express';
+import type { Router } from '@opentyped/express';
+import { webHandler } from '@opentyped/openapi/contract';
+import type { EmptyResponse, StreamRequest } from '@opentyped/openapi';
 interface UploadItem {
   /** @minLength 2 */
   id: string;

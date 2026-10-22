@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import { annotationsOf } from '~/parser/annotation';
-import { fail } from '@typedapi/ast/diagnostic';
-import { aliasTarget, unwrapExpression, unwrapType } from '@typedapi/ast/navigation';
+import { fail } from '@opentyped/ast/diagnostic';
+import { aliasTarget, unwrapExpression, unwrapType } from '@opentyped/ast/navigation';
 
 /** Recognizes contract-bearing adapters by the resolved declaration, including import aliases. */
 function contractArgument(

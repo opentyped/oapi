@@ -1,11 +1,11 @@
 import type { Parser } from '~/parser/parser';
 import type { ParserOptions } from '~/parser/options';
-import type { DocumentModifier } from '@typedapi/openapi/document/modifier';
-import type { Schema, SchemaExport } from '@typedapi/openapi/schema/definition';
-import type { OpenApiDocument } from '@typedapi/openapi/document/definition';
-export type { TypeMapping } from '@typedapi/schema';
-export type { Schema } from '@typedapi/openapi/schema/definition';
-export type { Operation, OpenApiDocument } from '@typedapi/openapi/document/definition';
+import type { DocumentModifier } from '@opentyped/openapi/document/modifier';
+import type { Schema, SchemaExport } from '@opentyped/openapi/schema/definition';
+import type { OpenApiDocument } from '@opentyped/openapi/document/definition';
+export type { TypeMapping } from '@opentyped/schema';
+export type { Schema } from '@opentyped/openapi/schema/definition';
+export type { Operation, OpenApiDocument } from '@opentyped/openapi/document/definition';
 
 export interface ProjectDocument {
   options: GenerateOptions;
@@ -25,10 +25,10 @@ export interface GenerateOptions extends Omit<ParserOptions, 'info'> {
 }
 
 export interface OutputOptions extends GenerateOptions {
-  /** JSON output relative to root. Default: .openapi. */
-  outDir?: string;
-  /** Ambient type output is independent of JSON artifacts. */
-  declarations?: { outDir?: string; prefix?: string };
+  /** Exact output files, relative to root. No other artifacts are emitted. */
+  output: { document: string; declarations: string };
+  /** Ambient module prefix. Default: openapi. */
+  prefix?: string;
 }
 
 export interface Generation {
@@ -41,6 +41,12 @@ export interface Generation {
   files: string[];
   /** Project roots and include-glob directories needed for discovery of added files. */
   watchRoots?: string[];
+}
+
+/** In-memory declaration files rendered before whole-project validation. */
+export interface DeclarationRenderer {
+  readonly file: string;
+  render(generation: Generation): string;
 }
 
 export function defineConfig<T extends OutputOptions>(config: T): T {

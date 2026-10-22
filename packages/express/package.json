@@ -1,5 +1,5 @@
 {
-  "name": "@typedapi/express",
+  "name": "@opentyped/express",
   "version": "0.1.0",
   "type": "module",
   "engines": {
@@ -26,9 +26,9 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@typedapi/ast": "0.1.0",
-    "@typedapi/openapi": "0.1.0",
-    "@typedapi/compiler": "0.1.0",
+    "@opentyped/ast": "0.1.0",
+    "@opentyped/openapi": "0.1.0",
+    "@opentyped/compiler": "0.1.0",
     "typescript": "~5.9.3",
     "magic-string": "^1.4.3",
     "path-to-regexp": "8.4.2",
@@ -48,5 +48,13 @@
   },
   "devDependencies": {
     "tsc-alias": "1.9.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentyped/oapi.git",
+    "directory": "packages/express"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

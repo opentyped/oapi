@@ -1,4 +1,4 @@
-import type { EmptyResponse } from '@typedapi/openapi';
+import type { EmptyResponse } from '@opentyped/openapi';
 
 /** @route GET /search */
 export interface Search {

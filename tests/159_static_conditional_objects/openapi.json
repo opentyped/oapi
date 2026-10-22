@@ -36,10 +36,10 @@
       "Either": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/Rejected"
+            "$ref": "#/components/schemas/Selected"
           },
           {
-            "$ref": "#/components/schemas/Selected"
+            "$ref": "#/components/schemas/Rejected"
           }
         ]
       },

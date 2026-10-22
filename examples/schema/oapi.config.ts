@@ -1,9 +1,9 @@
-import { defineConfig } from '@typedapi/compiler';
+import { defineConfig } from '@opentyped/compiler';
 
 export default defineConfig({
-  tsconfig: 'tsconfig.openapi.json',
+  tsconfig: 'tsconfig.json',
   namespaces: { './accounts/**/*.ts': 'accounts', './billing/**/*.ts': 'billing' },
   openapi: '3.2.0',
   info: { title: 'Schemas', version: '1.0.0' },
-  outDir: 'generated',
+  output: { document: 'openapi.json', declarations: 'openapi.d.ts' },
 });

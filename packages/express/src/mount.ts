@@ -1,5 +1,5 @@
 import type { ServerObject } from 'openapi3-ts/oas32';
-import type { Extensions } from '@typedapi/openapi/json';
+import type { Extensions } from '@opentyped/openapi/json';
 import type { Response as ContractResponse } from '~/response';
 import type { NextFunction, Request, RequestHandler, ErrorRequestHandler, IRouter } from 'express';
 import type {
@@ -10,7 +10,7 @@ import type {
   RequestBody,
   RequestQuery,
   ResponseBody,
-} from '@typedapi/openapi/contract';
+} from '@opentyped/openapi/contract';
 
 /** Express's standard generics connected to the same contract used for generation.
  * @openapiContract

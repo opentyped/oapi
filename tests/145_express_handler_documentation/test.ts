@@ -1,6 +1,6 @@
-import oapi from '@typedapi/express';
-import type { EmptyResponse } from '@typedapi/openapi';
-import type { Router } from '@typedapi/express';
+import oapi from '@opentyped/express';
+import type { EmptyResponse } from '@opentyped/openapi';
+import type { Router } from '@opentyped/express';
 declare const app: Router;
 interface Contract {
   responses: { 204: EmptyResponse };

@@ -6,7 +6,7 @@ export interface Dataset {
   '"quoted"'?: Dataset;
   "'single'": boolean;
   ['__proto__']?: Dataset;
-  __typedapi_proto__?: boolean;
+  __oapi_proto__?: boolean;
   // Preserve an escaped source spelling.
   // prettier-ignore
   "\u0061": string;

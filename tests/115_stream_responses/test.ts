@@ -1,7 +1,7 @@
 import express from 'express';
-import oapi from '@typedapi/express';
-import { webHandler } from '@typedapi/openapi/contract';
-import type { StreamResponse } from '@typedapi/openapi';
+import oapi from '@opentyped/express';
+import { webHandler } from '@opentyped/openapi/contract';
+import type { StreamResponse } from '@opentyped/openapi';
 
 /** @example {"id":"one"} */
 interface StreamEvent {

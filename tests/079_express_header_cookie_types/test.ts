@@ -1,4 +1,4 @@
-import oapi from '@typedapi/express';
+import oapi from '@opentyped/express';
 import express from 'express';
 
 interface SessionResult {

@@ -1,4 +1,4 @@
-import type { Generation } from '@typedapi/compiler/config';
+import type { Generation } from '@opentyped/compiler/config';
 
 /** Keeps a failed generation explicit so consumers cannot mistake stale output for current output. */
 export class DocumentSnapshot {
@@ -12,13 +12,5 @@ export class DocumentSnapshot {
     } catch (error) {
       this.failure = error instanceof Error ? error : new Error(String(error));
     }
-  }
-
-  content(file: string): unknown {
-    if (file === 'openapi.json') return this.result?.document;
-    const match = /^schemas\/([a-zA-Z0-9._-]+)\.json$/.exec(file);
-    const name = match?.[1];
-    if (name && Object.hasOwn(this.result?.schemas ?? {}, name)) return this.result!.schemas[name];
-    return undefined;
   }
 }

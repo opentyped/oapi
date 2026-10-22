@@ -1,6 +1,6 @@
 import path from 'node:path';
-import { TypeMappings } from '@typedapi/schema';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { TypeMappings } from '@opentyped/schema';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 import { TypeSafety } from '~/parser/schema/safety';
 import { compileSchemas } from '~/parser/schema/compiler';
 import type { Parser } from '~/parser/parser';

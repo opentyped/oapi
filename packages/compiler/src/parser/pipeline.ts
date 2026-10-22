@@ -1,7 +1,7 @@
 import { stages } from '~/parser/parser';
 import type { Parser } from '~/parser/parser';
 import type { ParserContext } from '~/parser/context';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 
 /** Orders rules by stage and owns rule validation and error attribution. */
 export class ParserPipeline {

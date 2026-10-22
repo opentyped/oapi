@@ -1,4 +1,4 @@
-import type { EmptyResponse } from '@typedapi/openapi';
+import type { EmptyResponse } from '@opentyped/openapi';
 
 interface CopyPayload {
   callbackUrl: string;

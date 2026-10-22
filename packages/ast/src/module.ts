@@ -28,7 +28,7 @@ export function moduleSymbols(program: ts.Program, name: string, root: string): 
   for (const mode of [ts.ModuleKind.ESNext, ts.ModuleKind.CommonJS] as const) {
     const resolved = ts.resolveModuleName(
       name,
-      path.join(root, '__typedapi__.ts'),
+      path.join(root, '__oapi__.ts'),
       program.getCompilerOptions(),
       ts.sys,
       undefined,

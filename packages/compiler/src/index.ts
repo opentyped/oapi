@@ -5,6 +5,7 @@ export type {
   OutputOptions,
   ProjectDocument,
   Generation,
+  DeclarationRenderer,
   TypeMapping,
 } from '~/config';
 export * from '~/parser/index';

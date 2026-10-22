@@ -3,12 +3,12 @@ import {
   parsePointer,
   walkPointer,
   formatPointer,
-} from '@typedapi/openapi/pointer';
-import { visitDocument } from '@typedapi/openapi/document/visitor';
-import { SchemaResource } from '@typedapi/openapi/schema/resource';
-import type { SchemaEntry } from '@typedapi/openapi/schema/resource';
-import type { Schema } from '@typedapi/openapi/schema/definition';
-import { visitSchema } from '@typedapi/openapi/schema/visitor';
+} from '@opentyped/openapi/pointer';
+import { visitDocument } from '@opentyped/openapi/document/visitor';
+import { SchemaResource } from '@opentyped/openapi/schema/resource';
+import type { SchemaEntry } from '@opentyped/openapi/schema/resource';
+import type { Schema } from '@opentyped/openapi/schema/definition';
+import { visitSchema } from '@opentyped/openapi/schema/visitor';
 
 /** RFC 6901 token escaping and URI fragment encoding. */
 export function escapePointer(value: string | number): string {

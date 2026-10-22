@@ -1,5 +1,5 @@
 {
-  "name": "@typedapi/ast",
+  "name": "@opentyped/ast",
   "version": "0.1.0",
   "description": "Generic TypeScript project and syntax analysis",
   "type": "module",
@@ -32,5 +32,13 @@
   },
   "devDependencies": {
     "tsc-alias": "1.9.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentyped/oapi.git",
+    "directory": "packages/ast"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

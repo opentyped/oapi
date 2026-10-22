@@ -1,6 +1,6 @@
-import oapi from '@typedapi/express';
-import type { HttpInput } from '@typedapi/openapi';
-import type { Router } from '@typedapi/express';
+import oapi from '@opentyped/express';
+import type { HttpInput } from '@opentyped/openapi';
+import type { Router } from '@opentyped/express';
 declare const app: Router;
 type Input = Pick<HttpInput, never>;
 interface Output {

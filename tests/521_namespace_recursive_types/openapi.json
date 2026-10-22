@@ -46,7 +46,7 @@
             }
           }
         },
-        "x-typedapi-namespace": "models"
+        "x-opentyped-namespace": "models"
       }
     }
   },

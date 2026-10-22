@@ -1,5 +1,5 @@
 import { DocumentRegistration } from '~/parser/document/registration';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 import type { Parser } from '~/parser/parser';
 import type { ParserContext } from '~/parser/context';
 

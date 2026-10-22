@@ -1,4 +1,4 @@
-import type { ExpressHandler } from '@typedapi/express';
+import type { ExpressHandler } from '@opentyped/express';
 
 interface Read {
   params: { id: string };

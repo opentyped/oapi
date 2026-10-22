@@ -1,5 +1,5 @@
 import type { Model, ModelChildren, schema } from 'openapi/models';
-import { createClient } from 'typedapi/fetch';
+import { createClient } from '@opentyped/fetch';
 const children: ModelChildren = [];
 const model: Model = { name: 'root', children };
 children.push(model);

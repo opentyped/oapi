@@ -1,7 +1,7 @@
-import oapi from '@typedapi/express';
-import type { Router } from '@typedapi/express';
-import { webHandler } from '@typedapi/openapi/contract';
-import type { EmptyResponse } from '@typedapi/openapi/contract';
+import oapi from '@opentyped/express';
+import type { Router } from '@opentyped/express';
+import { webHandler } from '@opentyped/openapi/contract';
+import type { EmptyResponse } from '@opentyped/openapi/contract';
 
 declare const app: Router;
 interface Success {

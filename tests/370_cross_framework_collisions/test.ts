@@ -1,7 +1,7 @@
 import express from 'express';
-import oapi from '@typedapi/express';
-import type { Endpoint } from '@typedapi/express';
-import { webHandler } from '@typedapi/openapi/contract';
+import oapi from '@opentyped/express';
+import type { Endpoint } from '@opentyped/express';
+import { webHandler } from '@opentyped/openapi/contract';
 import type { User as Admin } from './a.js';
 import type { User as Customer } from './b.js';
 

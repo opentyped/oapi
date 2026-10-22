@@ -1,13 +1,13 @@
 {
-  "name": "typedapi",
+  "name": "@opentyped/fetch",
   "version": "0.1.0",
   "type": "module",
-  "description": "Typed Fetch requests driven by TypedAPI route declarations",
+  "description": "Typed Fetch requests driven by OpenTyped OAPI route declarations",
   "files": [
     "dist"
   ],
   "exports": {
-    "./fetch": {
+    ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.js"
@@ -22,5 +22,13 @@
   "devDependencies": {
     "tsc-alias": "1.9.8"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentyped/oapi.git",
+    "directory": "packages/fetch"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }

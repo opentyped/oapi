@@ -1,14 +1,14 @@
 import path from 'node:path';
-import { SchemaGenerator } from '@typedapi/schema';
-import { formatPointer } from '@typedapi/openapi/pointer';
-import type { TypeMapping, SchemaRoot } from '@typedapi/schema';
-import type { Project } from '@typedapi/ast/project';
-import { objectSchema } from '@typedapi/openapi/schema/shape';
-import { componentName } from '@typedapi/openapi/schema/reference';
-import { absoluteSchema } from '@typedapi/openapi/schema/resource';
-import { mapSchema } from '@typedapi/openapi/schema/visitor';
-import type { Compilation } from '@typedapi/openapi/schema/compilation';
-import type { Components, Schema } from '@typedapi/openapi/schema/definition';
+import { SchemaGenerator } from '@opentyped/schema';
+import { formatPointer } from '@opentyped/openapi/pointer';
+import type { TypeMapping, SchemaRoot } from '@opentyped/schema';
+import type { Project } from '@opentyped/ast/project';
+import { objectSchema } from '@opentyped/openapi/schema/shape';
+import { componentName } from '@opentyped/openapi/schema/reference';
+import { absoluteSchema } from '@opentyped/openapi/schema/resource';
+import { mapSchema } from '@opentyped/openapi/schema/visitor';
+import type { Compilation } from '@opentyped/openapi/schema/compilation';
+import type { Components, Schema } from '@opentyped/openapi/schema/definition';
 import type { ModelDeclaration, ModelIdentity } from '~/parser/declaration';
 import type { TypePolicy } from '~/parser/schema/safety';
 
@@ -66,6 +66,7 @@ export function compileSchemas(
       return name === undefined ? undefined : componentName(name);
     },
     generatedName,
+    deferDiagnostics: true,
     namespace: (node): string | undefined => identities.namespace?.(node),
     ...(types ? { types } : {}),
     ...(typeMappings ? { typeMappings } : {}),

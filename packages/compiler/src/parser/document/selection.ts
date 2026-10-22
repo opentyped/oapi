@@ -1,8 +1,8 @@
 import path from 'node:path';
 import type { ModelDeclaration } from '~/parser/declaration';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 
-import type { Selection } from '@typedapi/openapi/registration';
+import type { Selection } from '@opentyped/openapi/registration';
 
 /** Owns explicit document membership, the counterpart to Utoipa's OpenApi registration. */
 export class DeclarationSelection {

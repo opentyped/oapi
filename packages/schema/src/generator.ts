@@ -1,7 +1,7 @@
 import ts from 'typescript';
-import { programDiagnostics } from '@typedapi/ast/project';
-import { templatePattern } from '@typedapi/ast/pattern';
-import { symbolProperty } from '@typedapi/ast/navigation';
+import { programDiagnostics } from '@opentyped/ast/project';
+import { templatePattern } from '@opentyped/ast/pattern';
+import { symbolProperty } from '@opentyped/ast/navigation';
 import type {
   Schema,
   SchemaDocument,
@@ -99,7 +99,7 @@ export class SchemaGenerator {
       !destination.path.every((token) => typeof token === 'string')
     )
       throw new Error('Schema destination path must contain JSON pointer tokens');
-    const diagnostics = programDiagnostics(this.program);
+    const diagnostics = this.options.deferDiagnostics ? [] : programDiagnostics(this.program);
     if (diagnostics.some((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error)) {
       throw new Error(
         ts.formatDiagnosticsWithColorAndContext(diagnostics, {

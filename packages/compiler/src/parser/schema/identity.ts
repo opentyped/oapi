@@ -1,11 +1,11 @@
 import path from 'node:path';
 import { Minimatch } from 'minimatch';
 import ts from 'typescript';
-import type { Project } from '@typedapi/ast/project';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
-import { sourceNodes, sourcePath, nodeNames } from '@typedapi/ast/nodes';
-import { tagsOf } from '@typedapi/ast/jsdoc';
-import { sourceOf } from '@typedapi/ast/diagnostic';
+import type { Project } from '@opentyped/ast/project';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
+import { sourceNodes, sourcePath, nodeNames } from '@opentyped/ast/nodes';
+import { tagsOf } from '@opentyped/ast/jsdoc';
+import { sourceOf } from '@opentyped/ast/diagnostic';
 
 const declarationLocations = new WeakMap<ts.Node, Map<string, string>>();
 

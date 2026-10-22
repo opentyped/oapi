@@ -1,6 +1,6 @@
-import type { EmptyResponse } from '@typedapi/openapi';
-import oapi from '@typedapi/express';
-import type { Router } from '@typedapi/express';
+import type { EmptyResponse } from '@opentyped/openapi';
+import oapi from '@opentyped/express';
+import type { Router } from '@opentyped/express';
 
 declare const app: Router;
 interface Search {

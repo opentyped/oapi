@@ -9,7 +9,7 @@
     "/users/{id}": {
       "get": {
         "operationId": "ReadUser",
-        "x-typedapi-namespace": "api/users",
+        "x-opentyped-namespace": "api/users",
         "parameters": [
           {
             "name": "id",
@@ -52,7 +52,7 @@
       },
       "patch": {
         "operationId": "UpdateUser",
-        "x-typedapi-namespace": "api/users",
+        "x-opentyped-namespace": "api/users",
         "parameters": [
           {
             "name": "id",
@@ -186,7 +186,7 @@
       },
       "post": {
         "operationId": "ActivateUser",
-        "x-typedapi-namespace": "api/users",
+        "x-opentyped-namespace": "api/users",
         "parameters": [
           {
             "name": "id",
@@ -237,7 +237,7 @@
       },
       "put": {
         "operationId": "SetLabel",
-        "x-typedapi-namespace": "api/users",
+        "x-opentyped-namespace": "api/users",
         "parameters": [
           {
             "name": "id",
@@ -282,7 +282,7 @@
     "/batch": {
       "post": {
         "operationId": "CreateBatch",
-        "x-typedapi-namespace": "api/users",
+        "x-opentyped-namespace": "api/users",
         "requestBody": {
           "required": true,
           "content": {
@@ -316,7 +316,7 @@
     "/metadata": {
       "post": {
         "operationId": "SetMetadata",
-        "x-typedapi-namespace": "api/users",
+        "x-opentyped-namespace": "api/users",
         "requestBody": {
           "required": true,
           "content": {

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
-import { nodeNames } from '@typedapi/ast/nodes';
+import { nodeNames } from '@opentyped/ast/nodes';
 import ts from 'typescript';
-import { documentationOf } from '@typedapi/ast/jsdoc';
+import { documentationOf } from '@opentyped/ast/jsdoc';
 import { SchemaError } from '~/error';
 import { SchemaNamespace } from '~/namespace';
 

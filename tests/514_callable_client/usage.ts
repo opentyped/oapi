@@ -1,4 +1,4 @@
-import { createClient } from 'typedapi/fetch';
+import { createClient } from '@opentyped/fetch';
 import type { schema } from '@app/spec/routes';
 import type { User } from '@app/spec/models';
 import type {

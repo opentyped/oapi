@@ -1,5 +1,5 @@
-import oapi from '@typedapi/express';
-import type { EmptyResponse } from '@typedapi/openapi';
+import oapi from '@opentyped/express';
+import type { EmptyResponse } from '@opentyped/openapi';
 import express from 'express';
 
 interface Problem {

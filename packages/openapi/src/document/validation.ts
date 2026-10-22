@@ -109,7 +109,7 @@ export class DocumentValidation {
           source.fail(`Server variable ${name} enum must contain its default.`);
       if (!url.trim() || /\s/.test(url)) source.fail('Invalid server URI reference.');
       try {
-        new URL(url, 'https://typedapi.invalid');
+        new URL(url, 'https://oapi.invalid');
       } catch {
         source.fail('Invalid server URI reference.');
       }

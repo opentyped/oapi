@@ -303,7 +303,7 @@ export class SchemaGraph {
             ({ schema }) => typeof schema !== 'boolean' && schema.$id === normalized.$id,
           );
     if (entry) return this.artifact(entry);
-    const synthetic = { schema: root, path: ['x-typedapi-root'] };
+    const synthetic = { schema: root, path: ['x-opentyped-root'] };
     const graph = new SchemaGraph([...this.entries, synthetic], this.self);
     return graph.artifact(graph.owner(synthetic.path));
   }
@@ -326,7 +326,7 @@ export class SchemaGraph {
   private artifact(root: SchemaEntry): Schema {
     const entries = this.closure([root]);
     const id =
-      'urn:typedapi:schema:' +
+      'urn:oapi:schema:' +
       createHash('sha256')
         .update(stableJson({ entries, root: root.path, self: this.self }))
         .digest('hex');
@@ -397,7 +397,7 @@ export class SchemaGraph {
         ? root.schema.$id
         : documentId + '#/$defs/' + pointer(names.get(root)!);
     if (
-      root.path[0] === 'x-typedapi-root' &&
+      root.path[0] === 'x-opentyped-root' &&
       typeof root.schema !== 'boolean' &&
       Object.keys(root.schema).every((key) => ['$ref', '$schema'].includes(key))
     ) {

@@ -2,11 +2,11 @@ import type { RouterMounts } from '~/parser/router';
 import { ExpressRegistration, openApiPaths } from '~/parser/route';
 import { endpointMetadata } from '~/parser/metadata';
 import ts from 'typescript';
-import { annotationsOf } from '@typedapi/compiler/parser/annotation';
-import { sourceOf } from '@typedapi/ast/diagnostic';
-import { constantObject } from '@typedapi/ast/constant';
-import type { ModelDeclaration } from '@typedapi/compiler/parser/declaration';
-import type { Source } from '@typedapi/openapi/diagnostic';
+import { annotationsOf } from '@opentyped/compiler/parser/annotation';
+import { sourceOf } from '@opentyped/ast/diagnostic';
+import { constantObject } from '@opentyped/ast/constant';
+import type { ModelDeclaration } from '@opentyped/compiler/parser/declaration';
+import type { Source } from '@opentyped/openapi/diagnostic';
 
 /** Route-derived names remain stable when handlers are renamed or shared between routers. */
 function operationName(method: string, path: string, source: Source): string {

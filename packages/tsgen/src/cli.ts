@@ -8,15 +8,13 @@ try {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
     options: {
-      output: { type: 'string', short: 'o', default: '.openapi/openapi.d.ts' },
+      output: { type: 'string', short: 'o', default: 'openapi.d.ts' },
       prefix: { type: 'string' },
       help: { type: 'boolean', short: 'h' },
     },
   });
   if (values.help)
-    process.stdout.write(
-      'typedapi-tsgen <openapi.json> [-o .openapi/openapi.d.ts] [--prefix openapi]\n',
-    );
+    process.stdout.write('oapi-tsgen <openapi.json> [-o openapi.d.ts] [--prefix openapi]\n');
   else {
     if (positionals.length !== 1) throw new Error('Provide one OpenAPI JSON file.');
     const document: unknown = JSON.parse(await readFile(positionals[0]!, 'utf8'));
@@ -28,7 +26,7 @@ try {
     );
     if (values.output !== '-') {
       await mkdir(path.dirname(values.output), { recursive: true });
-      const staging = await mkdtemp(path.join(path.dirname(values.output), '.typedapi-tsgen-'));
+      const staging = await mkdtemp(path.join(path.dirname(values.output), '.oapi-tsgen-'));
       try {
         const file = path.join(staging, 'openapi.d.ts');
         await writeFile(file, definitions);

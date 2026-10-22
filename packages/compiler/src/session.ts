@@ -1,22 +1,25 @@
-import { DEFAULT_OPENAPI } from '@typedapi/openapi/document/definition';
+import { DEFAULT_OPENAPI } from '@opentyped/openapi/document/definition';
 import { ParserContext } from '~/parser/context';
 import { ParserPipeline } from '~/parser/pipeline';
 import type { ParserFactory } from '~/parser/parser';
-import { DocumentValidation } from '@typedapi/openapi/document/validation';
+import { DocumentValidation } from '@opentyped/openapi/document/validation';
 import { SchemaIdentity } from '~/parser/schema/identity';
 import type { NamespaceScope } from '~/parser/schema/identity';
-import { modifyDocument } from '@typedapi/openapi/document/modifier';
-import { loadProject } from '@typedapi/ast/project';
-import { AnalysisError } from '@typedapi/ast/error';
+import { modifyDocument } from '@opentyped/openapi/document/modifier';
+import { loadUncheckedProject } from '@opentyped/ast/project';
+import { ProjectValidation } from '@opentyped/ast/validation';
+import { assertSourceContracts } from '~/parser/schema/dependency';
+import type ts from 'typescript';
+import { AnalysisError } from '@opentyped/ast/error';
 import path from 'node:path';
-import { stableJson, validateJson } from '@typedapi/openapi/json';
-import { explicitSchema } from '@typedapi/openapi/schema/validation';
-import { componentName } from '@typedapi/openapi/schema/reference';
-import { mergeDocuments } from '@typedapi/openapi/document/merge';
-import type { Project } from '@typedapi/ast/project';
-import type { GenerateOptions, Generation } from '~/config';
-import type { Schema, SchemaExport } from '@typedapi/openapi/schema/definition';
-import { GenerationError } from '@typedapi/openapi/diagnostic';
+import { stableJson, validateJson } from '@opentyped/openapi/json';
+import { explicitSchema } from '@opentyped/openapi/schema/validation';
+import { componentName } from '@opentyped/openapi/schema/reference';
+import { mergeDocuments } from '@opentyped/openapi/document/merge';
+import type { Project } from '@opentyped/ast/project';
+import type { GenerateOptions, Generation, DeclarationRenderer } from '~/config';
+import type { Schema, SchemaExport } from '@opentyped/openapi/schema/definition';
+import { GenerationError } from '@opentyped/openapi/diagnostic';
 import { packageInfo } from '~/package';
 import type { ParserOptions } from '~/parser/options';
 
@@ -48,6 +51,7 @@ function validateOptions(options: GenerateOptions): void {
 export class GenerationSession {
   private readonly active = new Set<GenerateOptions>();
   private readonly projects = new Map<string, Project>();
+  private readonly contracts = new Map<Project, ts.Node[]>();
   private count = 0;
   private readonly namespaceScopes: NamespaceScope[] = [];
   private identities: SchemaIdentity | undefined;
@@ -58,7 +62,11 @@ export class GenerationSession {
     private readonly defaultParsers: ParserFactory,
     private readonly onProject?: (project: Project) => void,
     private readonly onContext?: (context: ParserContext) => void,
-    private readonly load: typeof loadProject = loadProject,
+    private readonly lifecycle: {
+      load?: typeof loadUncheckedProject;
+      declarations?: DeclarationRenderer;
+      validation?: ProjectValidation;
+    } = {},
   ) {}
 
   run(input: GenerateOptions, supplied?: Project, baseRoot = process.cwd()): Generation {
@@ -67,6 +75,7 @@ export class GenerationSession {
     if (++this.count > 1000)
       throw new GenerationError('Document composition exceeds 1000 generations.');
     validateOptions(input);
+    const top = this.active.size === 0;
     this.active.add(input);
     try {
       const options = {
@@ -90,7 +99,19 @@ export class GenerationSession {
         this.prepare(input, baseRoot, new Set(), { count: 0 });
         this.identities = new SchemaIdentity(project, this.projects.values(), this.namespaceScopes);
       }
-      return this.compile({ ...options, info }, project);
+      const result = this.compile({ ...options, info }, project);
+      if (top) {
+        const output = this.lifecycle.declarations;
+        const declarations = output
+          ? new Map([[path.resolve(output.file), output.render(result)]])
+          : new Map<string, string>();
+        const validation = this.lifecycle.validation ?? new ProjectValidation();
+        for (const project of this.projects.values()) {
+          const checked = validation.check(project, declarations);
+          assertSourceContracts(checked, this.contracts.get(project) ?? [], declarations);
+        }
+      }
+      return result;
     } catch (error) {
       const failure =
         error instanceof AnalysisError
@@ -112,7 +133,13 @@ export class GenerationSession {
     this.files.add(key);
     let project = this.projects.get(key);
     if (!project) {
-      project = supplied ?? this.load(root, tsconfig);
+      project =
+        supplied ??
+        (this.lifecycle.load ?? loadUncheckedProject)(
+          root,
+          tsconfig,
+          this.lifecycle.declarations ? [this.lifecycle.declarations.file] : [],
+        );
       this.projects.set(key, project);
       for (const file of project.files) this.files.add(file);
       for (const directory of project.directories) this.roots.add(directory);
@@ -160,6 +187,12 @@ export class GenerationSession {
       Boolean(options.documents?.length),
     );
     new ParserPipeline(options.parsers ?? this.defaultParsers()).run(context);
+    const contracts = this.contracts.get(project) ?? [];
+    for (const declaration of context.declarations) {
+      contracts.push(declaration.node);
+      if (declaration.output) contracts.push(declaration.output);
+    }
+    this.contracts.set(project, contracts);
     this.onContext?.(context);
     validateJson(context.document, 'Parser document');
     validateJson(context.schemas, 'Standalone schema collection');

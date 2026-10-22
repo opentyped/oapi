@@ -1,4 +1,4 @@
-import { createClient, RequestBody } from 'typedapi/fetch';
+import { createClient, RequestBody } from '@opentyped/fetch';
 import type { schema } from 'openapi/transport';
 
 // An in-process Fetch transport makes this demo runnable without a server.

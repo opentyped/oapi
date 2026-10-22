@@ -2,7 +2,7 @@ import { modelDeclaration } from '~/parser/declaration';
 import type { ModelDeclaration } from '~/parser/declaration';
 import { handlerContract } from '~/parser/endpoint/handler';
 import ts from 'typescript';
-import { sourceOf } from '@typedapi/ast/diagnostic';
+import { sourceOf } from '@opentyped/ast/diagnostic';
 
 export function markedDeclaration(
   node: ts.Node,

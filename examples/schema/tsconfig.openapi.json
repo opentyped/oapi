@@ -1,5 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "include": ["accounts/**/*.ts", "billing/**/*.ts"],
-  "exclude": ["generated", "dist", ".openapi"]
-}

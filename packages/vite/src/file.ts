@@ -1,30 +1,20 @@
-import { open, readFile, rename, unlink } from 'node:fs/promises';
+import { mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 
-export async function removeFile(file: string): Promise<void> {
-  await unlink(file).catch((error: NodeJS.ErrnoException) => {
-    if (error.code !== 'ENOENT') throw error;
-  });
-}
-
 /** Atomic per-file replacement; unchanged artifacts keep their modification time. */
-export async function replaceFile(file: string, content: string): Promise<void> {
+export function replaceFile(file: string, content: string): void {
   try {
-    if ((await readFile(file, 'utf8')) === content) return;
+    if (readFileSync(file, 'utf8') === content) return;
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
   }
-  const temporary = path.join(path.dirname(file), `.typedapi-${randomUUID()}.tmp`);
-  const handle = await open(temporary, 'wx');
+  mkdirSync(path.dirname(file), { recursive: true });
+  const temporary = path.join(path.dirname(file), `.oapi-${randomUUID()}.tmp`);
   try {
-    try {
-      await handle.writeFile(content);
-    } finally {
-      await handle.close();
-    }
-    await rename(temporary, file);
+    writeFileSync(temporary, content, { flag: 'wx' });
+    renameSync(temporary, file);
   } finally {
-    await removeFile(temporary);
+    rmSync(temporary, { force: true });
   }
 }

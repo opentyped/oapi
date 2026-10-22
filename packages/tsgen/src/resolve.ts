@@ -1,4 +1,4 @@
-import { walkPointer, walkReferenceChain } from '@typedapi/openapi/pointer';
+import { walkPointer, walkReferenceChain } from '@opentyped/openapi/pointer';
 import { parseRef } from '~/pointer';
 
 /** Depth-first walk over every plain object in a JSON-shaped value. */
